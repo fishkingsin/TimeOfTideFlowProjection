@@ -1,0 +1,3 @@
+ofxFlowTools
+ofxGui
+ofxOsc
