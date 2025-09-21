@@ -1,3 +1,4 @@
+ofxAppUtils
 ofxFlowTools
 ofxGui
 ofxOsc

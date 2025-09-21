@@ -1,0 +1,105 @@
+@startuml ZacTrack Network Setup - WiFi Connection
+!theme plain
+title ZacTrack System Network Configuration
+
+' Define network components
+package "Local WiFi Network" {
+  [WiFi Router/\nAccess Point] as Router
+  note right of Router
+    **Network Requirements:**
+    • Stable WiFi connection
+    • Low latency preferred
+    • Standard home/office WiFi
+  end note
+}
+
+package "ZacTrack Hardware Setup" #yellow {
+  [ZacTrack\nBase Station] as BaseStation
+  [ZacTrack\nSoftware PC] as ZacTrackPC
+  [ZacTrack\nTags/Sensors] as Tags
+}
+
+package "Flow Visualization Setup" #LightBlue {
+  [Projection/Display\nComputer] as DisplayPC
+  [Flow Application] as FlowApp
+  [Visual Output\n(Projector/Screen)] as Output
+}
+
+' Physical connections
+Tags -.-> BaseStation : "RF Signal\n(Wireless)"
+note on link
+  ZacTrack proprietary
+  wireless protocol
+end note
+
+BaseStation --> ZacTrackPC : "USB/Serial\nConnection"
+
+' Network connections
+ZacTrackPC --> Router : "WiFi Connection"
+note on link
+  **Sends OSC Data:**
+  • Protocol: UDP
+  • Port: 7777
+  • Format: /position [id] x y z
+end note
+
+DisplayPC --> Router : "WiFi Connection"
+note on link
+  **Receives OSC Data:**
+  • Listens on port 7777
+  • Processes position data
+  • Generates flow visuals
+end note
+
+Router --> ZacTrackPC : "Network Traffic"
+Router --> DisplayPC : "Network Traffic"
+
+FlowApp --> Output : "Visual Display"
+
+' Network details
+note bottom
+  **Network Setup Instructions:**
+  
+  **1. WiFi Configuration:**
+  • Both computers connect to same WiFi network
+  • Ensure firewall allows UDP traffic on port 7777
+  • Check network allows device-to-device communication
+  
+  **2. IP Address Setup:**
+  • ZacTrack PC: Can use DHCP (automatic IP)
+  • Display PC: Can use DHCP (automatic IP)
+  • Or assign static IPs for reliability
+  
+  **3. Software Configuration:**
+  • ZacTrack software: Set target IP to Display PC
+  • Flow application: Listen on port 7777
+  • Test connection with ping/network tools
+  
+  **4. Performance Tips:**
+  • Use 5GHz WiFi if available (less congested)
+  • Position computers close to router
+  • Minimize network traffic from other devices
+  • Consider dedicated WiFi network for show
+end note
+
+' Alternative setup
+note top
+  **Alternative Setup Options:**
+  
+  **Option A: Single Computer**
+  • Run both ZacTrack software and Flow app on same PC
+  • ZacTrack sends to localhost (127.0.0.1)
+  • Simpler setup, no network required
+  
+  **Option B: Ethernet Connection**
+  • Use wired Ethernet instead of WiFi
+  • More reliable for permanent installations
+  • Router with both WiFi and Ethernet ports
+  
+  **Option C: Direct Connection**
+  • Connect computers directly (no router)
+  • Set manual IP addresses
+  • Use for temporary/mobile setups
+end note
+
+@enduml

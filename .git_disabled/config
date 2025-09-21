@@ -1,0 +1,16 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "TimeOfTideFlowProjection"]
+	url = git@github.com:fishkingsin/TimeOfTideFlowProjection.git
+	fetch = +refs/heads/*:refs/remotes/TimeOfTideFlowProjection/*
+[remote "origin"]
+	url = git@github.com:fishkingsin/TimeOfTideFlowProjection.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = TimeOfTideFlowProjection
+	merge = refs/heads/main

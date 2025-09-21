@@ -1,5 +1,6 @@
 #include "ofMain.h"
 #include "ofApp.h"
+#include "testApp.h"
 
 #define USE_PROGRAMMABLE_GL
 
@@ -15,5 +16,5 @@ int main( ){
     
     ofCreateWindow(windowSettings);
     
-    ofRunApp(new ofApp());
+	ofRunAppWithAppUtils(new ofApp());
 }

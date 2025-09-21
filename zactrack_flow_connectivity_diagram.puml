@@ -1,0 +1,121 @@
+@startuml ZacTrack Flow Connectivity
+!theme plain
+title ZacTrack and Flow Project Application Connectivity
+
+' Define components
+package "ZacTrack System" {
+  [ZacTrack Hardware] as ZT
+  [ZacTrack Software] as ZTS
+}
+
+package "Network Layer" {
+  [OSC Protocol] as OSC
+  note right of OSC
+    Port: 7777
+    Address: /position [1-50]
+    Data: X, Y, Z coordinates
+  end note
+}
+
+package "TimeOfTideFlowProjection Application" {
+  
+  package "Input Layer" {
+    [ztReceiver] as ZTR
+    [ofxOscReceiver] as OSCR
+    note right of ZTR
+      - Listens on port 7777
+      - Handles up to 50 trackers
+      - Coordinate mapping/inversion
+      - Event broadcasting
+    end note
+  }
+  
+  package "Actor Management" {
+    [ActorManager] as AM
+    [Actor Objects] as AO
+    note right of AM
+      - Creates/manages Actor instances
+      - Maps ZacTrack IDs to Actors
+      - Handles actor lifecycle
+    end note
+  }
+  
+  package "Flow Processing" {
+    [ftActorFlow] as FAF
+    [Flow Systems] as FS
+    [Particle System] as PS
+    note right of FAF
+      - Density Actor Flow
+      - Velocity Actor Flow
+      - Generates flow forces
+    end note
+    
+    note right of FS
+      - Optical Flow
+      - Velocity Bridge Flow
+      - Density Bridge Flow
+      - Temperature Bridge Flow
+      - Fluid Flow
+    end note
+  }
+  
+  package "Visualization" {
+    [Scene Manager] as SM
+    [Rendering Engine] as RE
+    [GUI Controls] as GUI
+  }
+  
+  package "Main Application" {
+    [ofApp] as MAIN
+  }
+}
+
+' Define relationships
+ZT --> ZTS : "Tracking Data"
+ZTS --> OSC : "OSC Messages\n/position [id] x y z"
+OSC --> OSCR : "UDP Network"
+OSCR --> ZTR : "OSC Message\nProcessing"
+
+ZTR --> AM : "ztActorEventArgs\n(key, point)"
+note on link
+  Event-driven
+  architecture
+end note
+
+AM --> AO : "Create/Update\nActor Positions"
+
+AO --> FAF : "Position Data\nfor Flow Generation"
+FAF --> FS : "Flow Forces\n(Density/Velocity)"
+FS --> PS : "Flow Field Data"
+
+MAIN --> ZTR : "Setup & Update"
+MAIN --> AM : "Event Listener\nRegistration"
+MAIN --> FAF : "Flow Configuration"
+MAIN --> FS : "Flow Processing"
+MAIN --> SM : "Scene Management"
+
+SM --> RE : "Render Commands"
+RE --> GUI : "Visual Output"
+
+' Define data flow
+note bottom
+  **Data Flow Summary:**
+  1. ZacTrack hardware tracks objects in 3D space
+  2. ZacTrack software sends OSC messages with position data
+  3. ztReceiver processes OSC messages and maps coordinates
+  4. ActorManager creates/updates Actor objects based on tracking data
+  5. ftActorFlow generates flow forces from actor positions
+  6. Flow systems process and combine various flow inputs
+  7. Scene manager renders the final visualization
+end note
+
+' Define configuration parameters
+note top of ZTR
+  **Configuration Parameters:**
+  - Port: 7777 (configurable)
+  - Coordinate mapping (min/max X,Y)
+  - Invert X/Y options
+  - Debug mode
+end note
+
+@enduml
