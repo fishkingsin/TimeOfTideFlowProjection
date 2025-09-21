@@ -8,7 +8,7 @@
 #include "FlowToolsScene.hpp"
 
 #define MAX_NOISE_SCALE 100000
-ofFbo fbo;
+
 // set the scene name through the base class initializer
 FlowToolsScene::FlowToolsScene() : ofxFadeScene("FlowToolsScene"){
 	setSingleSetup(true); // call setup each time the scene is loaded
@@ -17,11 +17,10 @@ FlowToolsScene::FlowToolsScene() : ofxFadeScene("FlowToolsScene"){
 
 // scene setup
 void FlowToolsScene:: setup() {
-	
+	shadertoy.load("shaders/bufferA.frag");
+	shadertoy.setAdvanceTime(true);
 	densityWidth = 1280;
 	densityHeight = 720;
-	
-	fbo.allocate(densityWidth, densityHeight,  GL_RGBA32F_ARB);
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;
@@ -82,6 +81,7 @@ void FlowToolsScene::setupGui() {
 	toggleFullScreen.addListener(this, &FlowToolsScene::toggleFullScreenListener);
 	gui.add(toggleGuiDraw.set("show gui (G)", true));
 	gui.add(useCamera.set("useCamera", true));
+	gui.add(useShader.set("useShader", true));
 	gui.add(toggleCameraDraw.set("draw camera (C)", true));
 	gui.add(toggleActorDraw.set("draw actor (M)", true));
 	gui.add(toggleParticleDraw.set("draw particles (P)", true));
@@ -175,8 +175,16 @@ void FlowToolsScene:: update() {
 		if (useCamera) {
 			simpleCam.draw(cameraFbo.getWidth(), 0, -cameraFbo.getWidth(), cameraFbo.getHeight());  // draw flipped
 		} else {
+			ofEnableAlphaBlending();
 			ofClear(0, 0, 0, 10);
-			ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 10);
+			if (useShader) {
+				shadertoy.setDimensions(ofGetWindowWidth(), ofGetWindowHeight());
+				shadertoy.begin();
+				ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+				shadertoy.end();
+			}
+			ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
+			ofDisableAlphaBlending();
 		}
 		cameraFbo.end();
 		
@@ -236,7 +244,7 @@ void FlowToolsScene:: draw() {
 	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255, 255 * alpha);
 	ofPushStyle();
-	if (toggleCameraDraw.get() && useCamera) {
+	if (toggleCameraDraw.get()) {
 //		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
 		cameraFbo.draw(0, 0, windowWidth, windowHeight);
 	}

@@ -1,61 +1,61 @@
 <?xml version="1.0"?>
 <settings>
 	<average_FPS>60</average_FPS>
-	<minimum_FPS>41.3737</minimum_FPS>
+	<minimum_FPS>59.7547</minimum_FPS>
 	<fullscreen__F_>1</fullscreen__F_>
 	<show_gui__G_>1</show_gui__G_>
-	<draw_camera__C_>1</draw_camera__C_>
+	<draw_camera__C_>0</draw_camera__C_>
 	<draw_mouse__M_>1</draw_mouse__M_>
 	<draw_particles__P_>1</draw_particles__P_>
 	<reset__R_>0</reset__R_>
 	<visualization>
-		<mode>14</mode>
-		<name>fluid velocity</name>
+		<mode>15</mode>
+		<name>fluid density</name>
 		<scale>0.504082</scale>
 		<show_scalar>0</show_scalar>
 	</visualization>
 	<optical_flow>
-		<threshold>0.00918367</threshold>
-		<boost>0</boost>
+		<threshold>0.0836735</threshold>
+		<boost>0.0367347</boost>
 	</optical_flow>
 	<velocity_bridge>
-		<trail>0.3</trail>
-		<blur>3</blur>
-		<speed>0.3</speed>
+		<trail>0.0505102</trail>
+		<blur>0.510204</blur>
+		<speed>0.0510204</speed>
 	</velocity_bridge>
 	<density_bridge>
-		<trail>0.3</trail>
-		<blur>3</blur>
-		<speed>0.3</speed>
-		<saturation>2.5</saturation>
+		<trail>0.318214</trail>
+		<blur>3.21429</blur>
+		<speed>0.316327</speed>
+		<saturation>1.58163</saturation>
 	</density_bridge>
 	<temperature_bridge>
-		<trail>0.3</trail>
-		<blur>3</blur>
-		<speed>0.5</speed>
+		<trail>0.303061</trail>
+		<blur>3.06122</blur>
+		<speed>-0.346939</speed>
 	</temperature_bridge>
 	<fluid>
-		<speed>0.0459184</speed>
+		<speed>0.00510204</speed>
 		<dissipation>
-			<velocity>0.1</velocity>
-			<density>0.1</density>
-			<temperature>0.1</temperature>
-			<pressure>0.1</pressure>
+			<velocity>0.0260417</velocity>
+			<density>0.0260417</density>
+			<temperature>0.0260417</temperature>
+			<pressure>0.0260417</pressure>
 		</dissipation>
 		<viscosity>
-			<velocity>0.5</velocity>
+			<velocity>0.0364583</velocity>
 			<density>0</density>
 			<temperature>0</temperature>
 		</viscosity>
-		<vorticity>1</vorticity>
+		<vorticity>0.0408163</vorticity>
 		<smoke_buoyancy>
-			<buoyancy>0.6</buoyancy>
+			<buoyancy>0.0520833</buoyancy>
 			<weight>0.2</weight>
 			<ambient_temperature>0.2</ambient_temperature>
 		</smoke_buoyancy>
 	</fluid>
 	<particles>
-		<speed>0.0459184</speed>
+		<speed>0.00510204</speed>
 		<birth_chance>0.5</birth_chance>
 		<birth_velocity_chance>0.5</birth_velocity_chance>
 		<lifespan>5</lifespan>
@@ -64,7 +64,7 @@
 		<mass_spread>0.2</mass_spread>
 		<size>2</size>
 		<size_spread>0.75</size_spread>
-		<twinkle_speed>11</twinkle_speed>
+		<twinkle_speed>1.83673</twinkle_speed>
 		<gravity>0, 0</gravity>
 	</particles>
 	<mouse_density>
@@ -95,8 +95,9 @@
 		<max_Y>-6000</max_Y>
 	</zactrack_receiver>
 	<obsbstacle>
-		<image_file>test.png</image_file>
+		<image_file>flowtools.png</image_file>
 	</obsbstacle>
+	<useShader>1</useShader>
 </settings>
 <group>
 	<average_FPS>60</average_FPS>

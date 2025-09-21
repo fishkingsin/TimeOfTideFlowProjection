@@ -12,7 +12,7 @@
 #include "ftActorFlow.hpp"
 #include "ztReceiver.hpp"
 #include "ActorManager.hpp"
-
+#include "ofxShadertoy.h"
 using namespace flowTools;
 
 enum visualizationTypes{ INPUT_FOR_DEN = 0, INPUT_FOR_VEL, FLOW_VEL, BRIDGE_VEL, BRIDGE_DEN, BRIDGE_TMP, BRIDGE_PRS, OBSTACLE, OBST_EDGE, FLUID_BUOY, FLUID_VORT, FLUID_DIVE, FLUID_TMP, FLUID_PRS, FLUID_VEL, FLUID_DEN };
@@ -53,6 +53,7 @@ public:
 	ofParameterGroup		visualizationParameters;
 	ofParameter<int>		visualizationMode;
 	ofParameter<string>		visualizationName;
+	ofxShadertoy shadertoy;
 	ofParameter<float>		visualizationScale;
 	ofParameter<bool>		toggleVisualizationScalar;
 	void obsbstacleFileNameListener(string& _value);
@@ -72,6 +73,8 @@ public:
 	ofParameter<bool>	toggleFullScreen;
 	ofParameter<bool>	toggleGuiDraw;
 	ofParameter<bool>	useCamera;
+	ofParameter<bool>	useShader;
+	
 	ofParameter<bool>	toggleCameraDraw;
 	ofParameter<bool>	toggleParticleDraw;
 	ofParameter<bool>	toggleActorDraw;

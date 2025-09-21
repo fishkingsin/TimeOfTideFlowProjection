@@ -2,3 +2,4 @@ ofxAppUtils
 ofxFlowTools
 ofxGui
 ofxOsc
+ofxShadertoy
