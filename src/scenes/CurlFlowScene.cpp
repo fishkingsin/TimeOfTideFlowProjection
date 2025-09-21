@@ -12,7 +12,7 @@
 // set the scene name through the base class initializer
 CurlFlowScene::CurlFlowScene() : ofxFadeScene("CurlFlow"){
 	setSingleSetup(false); // call setup each time the scene is loaded
-	setFade(1000, 1000); // 1 second fade in/out
+	setFade(5000, 5000); // 1 second fade in/out
 }
 
 // scene setup
@@ -190,23 +190,9 @@ void CurlFlowScene:: update() {
 			discs[i].vel.y += yVol ;
 		}
 	}
-	ofEnableAlphaBlending();
-	rgbaFboFloat.begin();
-	ofFill();
-	ofSetColor(0, 0, 0, fade * 255);
-	ofDrawRectangle(0,0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
 	
-	// Draw discs
-	for (int i = 0; i < discs.size(); i++) {
-		if (rainbow) {
-			ofSetColor(discs[i].color);
-		} else {
-			ofSetColor(baseColor);
-		}
-		ofDrawCircle(discs[i].pos, particle_size);
-	}
-	rgbaFboFloat.end();
-	ofDisableAlphaBlending();
+	
+	
 }
 
 // called when scene is exiting, this is just a demo and this
@@ -229,11 +215,31 @@ void CurlFlowScene:: updateExit() {
 
 // draw
 void CurlFlowScene:: draw() {
+	ofEnableAlphaBlending();
+	ofPushStyle();
 	
+	rgbaFboFloat.begin();
+	ofFill();
+	ofSetColor(0, 0, 0, fade * 255);
+	ofDrawRectangle(0,0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
+	
+	// Draw discs
+	for (int i = 0; i < discs.size(); i++) {
+		if (rainbow) {
+			ofSetColor(discs[i].color);
+		} else {
+			ofSetColor(baseColor);
+		}
+		ofDrawCircle(discs[i].pos, particle_size);
+	}
+	rgbaFboFloat.end();
+	
+	ofSetColor(255, 255, 255, 255*alpha);
 	rgbaFboFloat.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-	
+	ofDisableAlphaBlending();
 	// Draw GUI
 	gui.draw();
+	ofPopStyle();
 }
 
 // cleanup

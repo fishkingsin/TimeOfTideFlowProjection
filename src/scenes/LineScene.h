@@ -19,7 +19,7 @@ class LineScene : public ofxFadeScene {
 		// set the scene name through the base class initializer
 		LineScene() : ofxFadeScene("Lines"){
 			setSingleSetup(false); // call setup each time the scene is loaded
-			setFade(1000, 1000); // 1 second fade in/out
+			setFade(5000, 5000); // 1 second fade in/out
 		}
 
 		// scene setup
@@ -80,6 +80,11 @@ class LineScene : public ofxFadeScene {
 				lines[i]->draw();
 			}
 			ofSetLineWidth(1);
+			ofDisableAlphaBlending();
+			
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, 255 * (1.0f - alpha));	// alpha member variable for fade in/out
+			ofRectangle(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
 			ofDisableAlphaBlending();
 		}
 		

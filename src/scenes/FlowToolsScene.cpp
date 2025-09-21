@@ -8,11 +8,11 @@
 #include "FlowToolsScene.hpp"
 
 #define MAX_NOISE_SCALE 100000
-
+ofFbo fbo;
 // set the scene name through the base class initializer
 FlowToolsScene::FlowToolsScene() : ofxFadeScene("FlowToolsScene"){
 	setSingleSetup(true); // call setup each time the scene is loaded
-	setFade(1000, 1000); // 1 second fade in/out
+	setFade(5000, 5000); // 1 second fade in/out
 }
 
 // scene setup
@@ -20,6 +20,8 @@ void FlowToolsScene:: setup() {
 	
 	densityWidth = 1280;
 	densityHeight = 720;
+	
+	fbo.allocate(densityWidth, densityHeight,  GL_RGBA32F_ARB);
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;
@@ -228,16 +230,18 @@ void FlowToolsScene:: updateExit() {
 	}
 }
 
+
 // draw
 void FlowToolsScene:: draw() {
-	
+	ofEnableAlphaBlending();
+	ofSetColor(255, 255, 255, 255 * alpha);
 	ofPushStyle();
-	if (toggleCameraDraw.get()) {
-		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+	if (toggleCameraDraw.get() && useCamera) {
+//		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
 		cameraFbo.draw(0, 0, windowWidth, windowHeight);
 	}
-	
-	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+//	
+//	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 	switch(visualizationMode.get()) {
 		case INPUT_FOR_DEN:	densityBridgeFlow.drawInput(0, 0, windowWidth, windowHeight); break;
 		case INPUT_FOR_VEL: opticalFlow.drawInput(0, 0, windowWidth, windowHeight); break;
@@ -257,7 +261,7 @@ void FlowToolsScene:: draw() {
 		case FLUID_DEN:		fluidFlow.draw(0, 0, windowWidth, windowHeight); break;
 		default: break;
 	}
-	
+//	
 	if (toggleParticleDraw) {
 		ofEnableBlendMode(OF_BLENDMODE_ADD);
 		particleFlow.draw(0, 0, windowWidth, windowHeight);
@@ -269,14 +273,17 @@ void FlowToolsScene:: draw() {
 		velocityActorFlow.draw(0, 0, windowWidth, windowHeight);
 	}
 	
-	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
-	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
+//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+//	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
 	
 	if (toggleGuiDraw) {
 		ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 		drawGui();
 	}
 	ofPopStyle();
+	ofDisableAlphaBlending();
+	
+	
 	
 }
 

@@ -26,13 +26,13 @@ void ofApp::setup(){
 	// load scenes
 	flowToolsScene = (FlowToolsScene*) sceneManager.add(new FlowToolsScene());
 	sceneManager.add(new CurlFlowScene()); // save pointer
-	sceneManager.add(new LineScene());
+//	sceneManager.add(new LineScene());
 	sceneManager.setup(true); // true = setup all the scenes now (not on the fly)
 	ofSetLogLevel("ofxSceneManager", OF_LOG_VERBOSE); // lets see whats going on inside
 	
 	// start with a specific scene
 	// set now to true in order to ignore the scene fade and change now
-	sceneManager.gotoScene("Lines", true);
+	sceneManager.gotoScene("CurlFlow", true);
 	lastScene = sceneManager.getCurrentSceneIndex();
 	
 	// overlap scenes when transitioning
