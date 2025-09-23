@@ -18,8 +18,8 @@ CurlFlowScene::CurlFlowScene() : ofxFadeScene("CurlFlow"){
 // scene setup
 void CurlFlowScene:: setup() {
 	// Window size
-	int w = ofGetWidth();
-	int h = ofGetHeight();
+	int w = 1920;
+	int h = 1080;
 	
 	// GUI setup
 	gui.setup();
@@ -29,7 +29,7 @@ void CurlFlowScene:: setup() {
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	guiFlow.set("Flow", false);
 	gui.add(guiFlow);
-	
+	gui.add(toggleGuiDraw.set("show gui (G)", false));
 	guiCenter.set("Center", 128, 0, 255);
 	gui.add(guiCenter);
 	
@@ -238,7 +238,9 @@ void CurlFlowScene:: draw() {
 	rgbaFboFloat.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 	ofDisableAlphaBlending();
 	// Draw GUI
-	gui.draw();
+	if (toggleGuiDraw) {
+		gui.draw();
+	}
 	ofPopStyle();
 }
 

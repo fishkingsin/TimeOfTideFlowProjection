@@ -19,8 +19,8 @@ FlowToolsScene::FlowToolsScene() : ofxFadeScene("FlowToolsScene"){
 void FlowToolsScene:: setup() {
 	shadertoy.load("shaders/bufferA.frag");
 	shadertoy.setAdvanceTime(true);
-	densityWidth = 1280;
-	densityHeight = 720;
+	densityWidth = 1920;
+	densityHeight = 1080;
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;

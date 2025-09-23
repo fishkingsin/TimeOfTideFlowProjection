@@ -50,6 +50,7 @@ public:
 	
 	// GUI
 	ofxPanel gui;
+	ofParameter<bool>	toggleGuiDraw;
 	ofParameter<int> guiFPS;
 	ofParameter<int> guiDiscCount;
 	ofParameter<bool> guiFlow;
