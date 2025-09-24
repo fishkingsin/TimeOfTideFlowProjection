@@ -200,7 +200,7 @@ void GPUCurlFlowScene::drawGUI() {
 
 // cleanup
 void GPUCurlFlowScene:: exit() {
-	fboBuffer.clear();
+
 }
 
 

@@ -1,4 +1,5 @@
 ofxAppUtils
+ofxAutoReloadedShader
 ofxFlowTools
 ofxGui
 ofxOsc

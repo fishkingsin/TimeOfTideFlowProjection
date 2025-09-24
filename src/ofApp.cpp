@@ -26,6 +26,7 @@ void ofApp::setup(){
 	// load scenes
 	
 //	sceneManager.add(new GPUCurlFlowScene());
+	sceneManager.add(new SinglePassFlowFieldScene());
 	flowToolsScene = (FlowToolsScene*) sceneManager.add(new FlowToolsScene());
 	curlFlowScene = (CurlFlowScene*) sceneManager.add(new CurlFlowScene()); // save pointer
 //	sceneManager.add(new LineScene());
