@@ -13,3 +13,4 @@
 #include "CurlFlowScene.hpp"
 #include "LineScene.h"
 #include "FlowToolsScene.hpp"
+#include "GPUCurlFlowScene.hpp"

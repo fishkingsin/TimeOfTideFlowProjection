@@ -13,6 +13,8 @@
 		"10050848-DE02-4066-9630-8AE688EA2298" /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "A1204BFC-3FA3-49C2-BCF6-F23D95C9A125" /* ofxColorPicker.cpp */; };
 		"10A36E1E-F0A9-4FD3-B5C8-BA0AD5F70123" /* ftActorFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "0DF30B86-FF4A-4552-80C7-9547D5B08836" /* ftActorFlow.cpp */; };
 		"17620CC4-E0C9-4E61-B149-43DF768A556D" /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "BC89DAF3-7DB9-4852-9E8B-B05513B125B5" /* ofxOscMessage.cpp */; };
+		1A0F724F2E82F865007820BD /* GPUCurlFlowScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A0F724D2E82F865007820BD /* GPUCurlFlowScene.cpp */; };
+		1A0F72522E82F8F8007820BD /* OctaveNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A0F72502E82F8F8007820BD /* OctaveNoise.cpp */; };
 		1A4EF2322E81370B00511065 /* CueReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EF2312E81370B00511065 /* CueReceiver.cpp */; };
 		"1FF89744-6443-466B-82C6-9286247A2351" /* ftAverageFlowWatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "368F7465-F805-4611-B8D0-49BBC3EF31B0" /* ftAverageFlowWatcher.cpp */; };
 		"2AF07B49-FFDC-437A-BA99-3E5B06B794E6" /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "1EF7F72E-491E-43F1-A38F-AF879C87A364" /* ofxButton.cpp */; };
@@ -39,7 +41,6 @@
 		"8AC0BC78-A2FC-4084-BD45-DBB0CB7FEF3B" /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "5A466B05-746C-4B07-9882-8E7B0A4C17E9" /* ofxLabel.cpp */; };
 		"9801F3D0-A6BA-4D3A-A451-07B7EA0410E6" /* CurlFlowScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "32865960-C75C-4A67-8394-7A9716EEA2FC" /* CurlFlowScene.cpp */; };
 		"9E1C8660-47DD-4F3D-8D32-87FEECE4808D" /* ActorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "482142A9-02C0-4480-A983-2DFBE623D367" /* ActorManager.cpp */; };
-		"9E695782-3B9D-465F-BC70-F211C1FD327B" /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "FA137BF2-54D8-4B04-A60D-70E1F5AAC28C" /* testApp.cpp */; };
 		"A11856FD-1CCB-4E00-9120-26AFEA31DAC0" /* ofxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "5F40E51E-6D2C-43A1-AF19-1C081D13943F" /* ofxScene.cpp */; };
 		"A4D8ECDF-07F9-457F-BDAE-6C5AF2F66B23" /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "CC631D6D-49AD-4A61-9414-D4D3AFEE56C2" /* ofxOscReceiver.cpp */; };
 		"B7EB660E-A826-4B00-B7C8-AD9A8FCEDC6E" /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "9B67FECC-3DEA-4EC4-BF63-BF2B4438CF4E" /* ofxOscSender.cpp */; };
@@ -100,6 +101,10 @@
 		"17BBE202-312C-446F-9B7D-04C195B8614B" /* ftVisualization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftVisualization.h; sourceTree = "<group>"; };
 		191CD6FA2847E21E0085CBB6 /* of.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = of.entitlements; sourceTree = "<group>"; };
 		191EF70929D778A400F35F26 /* openFrameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openFrameworks; path = ../../../libs/openFrameworks; sourceTree = SOURCE_ROOT; };
+		1A0F724D2E82F865007820BD /* GPUCurlFlowScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GPUCurlFlowScene.cpp; sourceTree = "<group>"; };
+		1A0F724E2E82F865007820BD /* GPUCurlFlowScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GPUCurlFlowScene.hpp; sourceTree = "<group>"; };
+		1A0F72502E82F8F8007820BD /* OctaveNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OctaveNoise.cpp; sourceTree = "<group>"; };
+		1A0F72512E82F8F8007820BD /* OctaveNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OctaveNoise.h; sourceTree = "<group>"; };
 		1A4EF2302E81370B00511065 /* CueReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CueReceiver.hpp; sourceTree = "<group>"; };
 		1A4EF2312E81370B00511065 /* CueReceiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CueReceiver.cpp; sourceTree = "<group>"; };
 		1A4EF2342E81C0D300511065 /* CueEventArgs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CueEventArgs.h; sourceTree = "<group>"; };
@@ -167,7 +172,6 @@
 		"64BD0B48-D17E-4E1A-84A9-649555EC47C0" /* ofxLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxLabel.h; sourceTree = "<group>"; };
 		"655E317B-67A5-49B2-9730-F2A7BCC57A87" /* ftTemperatureBridgeShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftTemperatureBridgeShader.h; sourceTree = "<group>"; };
 		"664E03EC-7A26-4FAB-AEBD-7CD66F2848C4" /* ofxParticleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxParticleManager.h; sourceTree = "<group>"; };
-		"67138F7A-DC5E-4D7C-B7EF-1FB0DF1A76BB" /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = testApp.h; sourceTree = "<group>"; };
 		"67A38272-6244-4B9B-9BD0-EBE1AC37F88A" /* ofxApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxApp.h; sourceTree = "<group>"; };
 		"69D772A6-3E12-4B57-AB44-ACE4B82DA5BF" /* ofxApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxApp.cpp; sourceTree = "<group>"; };
 		"6A089A48-6C6B-4795-8AA6-FDA5AD16A157" /* ofxInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxInputField.h; sourceTree = "<group>"; };
@@ -270,7 +274,6 @@
 		"F7E58910-4DFE-4996-8E62-935A448ADB5A" /* ofxSliderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxSliderGroup.h; sourceTree = "<group>"; };
 		"F80001CC-0E3F-45C7-9B4D-D35B3903F0D4" /* ftDarkenShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftDarkenShader.h; sourceTree = "<group>"; };
 		"F9C7E079-DADF-4667-BF4A-E3BD82811F09" /* ofxGuiGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxGuiGroup.h; sourceTree = "<group>"; };
-		"FA137BF2-54D8-4B04-A60D-70E1F5AAC28C" /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		"FA459A4E-026F-41EE-B2F5-D37621DF1649" /* ftObstacleOffsetShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftObstacleOffsetShader.h; sourceTree = "<group>"; };
 		"FAA56023-80EE-4CED-9A5F-D9F5A8517A9A" /* ofxMovingAverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxMovingAverage.h; sourceTree = "<group>"; };
 		"FEF52A37-1E22-4D74-92AB-A6336E506D46" /* ftOpticalFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftOpticalFlow.h; sourceTree = "<group>"; };
@@ -676,8 +679,12 @@
 		"D8068F6B-B599-4371-9923-35A541C542EA" /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1A0F72502E82F8F8007820BD /* OctaveNoise.cpp */,
+				1A0F72512E82F8F8007820BD /* OctaveNoise.h */,
 				"32865960-C75C-4A67-8394-7A9716EEA2FC" /* CurlFlowScene.cpp */,
 				"A3ED0FF6-85E2-4BD6-B794-B879E37A1E91" /* CurlFlowScene.hpp */,
+				1A0F724D2E82F865007820BD /* GPUCurlFlowScene.cpp */,
+				1A0F724E2E82F865007820BD /* GPUCurlFlowScene.hpp */,
 				"791A82B1-2333-4376-B65E-89277C066A85" /* FlowToolsScene.cpp */,
 				"117E8EE4-7766-451B-8AA5-7959ED73C148" /* FlowToolsScene.hpp */,
 				"D30B0211-8AC9-493C-8BA3-1C92EBE6F99B" /* LineScene.h */,
@@ -735,8 +742,6 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				"D8068F6B-B599-4371-9923-35A541C542EA" /* scenes */,
-				"67138F7A-DC5E-4D7C-B7EF-1FB0DF1A76BB" /* testApp.h */,
-				"FA137BF2-54D8-4B04-A60D-70E1F5AAC28C" /* testApp.cpp */,
 				"E6AD66DE-D852-46A8-ACB6-1FBDAE9EE865" /* zactrack */,
 			);
 			path = src;
@@ -920,13 +925,13 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				1A0F724F2E82F865007820BD /* GPUCurlFlowScene.cpp in Sources */,
 				1A4EF2322E81370B00511065 /* CueReceiver.cpp in Sources */,
 				"EF07D01A-FBA0-4D37-B055-B606459B4DCA" /* Actor.cpp in Sources */,
 				"9E1C8660-47DD-4F3D-8D32-87FEECE4808D" /* ActorManager.cpp in Sources */,
 				"10A36E1E-F0A9-4FD3-B5C8-BA0AD5F70123" /* ftActorFlow.cpp in Sources */,
 				"9801F3D0-A6BA-4D3A-A451-07B7EA0410E6" /* CurlFlowScene.cpp in Sources */,
 				"45E2EACA-5D0D-44BB-9A3B-FA5BFBDBD418" /* FlowToolsScene.cpp in Sources */,
-				"9E695782-3B9D-465F-BC70-F211C1FD327B" /* testApp.cpp in Sources */,
 				"64BC0F4C-5CD7-453D-BFD8-FBF0B499F54F" /* ztActorEvent.cpp in Sources */,
 				"696C139B-1AA6-4D79-8612-C2489BD30F78" /* ztReceiver.cpp in Sources */,
 				"D36955B4-142F-41E3-B512-DA79E5E74809" /* ofxApp.cpp in Sources */,
@@ -939,6 +944,7 @@
 				"F0B24726-A8A8-44CD-BC38-11EEC35189D9" /* ftFluidFlow.cpp in Sources */,
 				"40A4D0CC-2A50-4A2C-8AA4-C87ED4F2D869" /* ftFlow.cpp in Sources */,
 				"53CF1B0A-3E9A-4F3D-99B1-23B51719CBC8" /* ftUtil.cpp in Sources */,
+				1A0F72522E82F8F8007820BD /* OctaveNoise.cpp in Sources */,
 				"F292DF38-6876-45D6-8FAD-CA5B788B9944" /* ftAverageFlow.cpp in Sources */,
 				"1FF89744-6443-466B-82C6-9286247A2351" /* ftAverageFlowWatcher.cpp in Sources */,
 				"4079C3AC-BC43-475D-B179-DF616DC2F631" /* ftMouseFlow.cpp in Sources */,

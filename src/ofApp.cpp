@@ -24,8 +24,10 @@ void ofApp::setup(){
 	#endif
 	
 	// load scenes
+	
+//	sceneManager.add(new GPUCurlFlowScene());
 	flowToolsScene = (FlowToolsScene*) sceneManager.add(new FlowToolsScene());
-	sceneManager.add(new CurlFlowScene()); // save pointer
+	curlFlowScene = (CurlFlowScene*) sceneManager.add(new CurlFlowScene()); // save pointer
 //	sceneManager.add(new LineScene());
 	sceneManager.setup(true); // true = setup all the scenes now (not on the fly)
 	ofSetLogLevel("ofxSceneManager", OF_LOG_VERBOSE); // lets see whats going on inside
@@ -36,7 +38,7 @@ void ofApp::setup(){
 	lastScene = sceneManager.getCurrentSceneIndex();
 	
 	// overlap scenes when transitioning
-	sceneManager.setOverlap(true);
+	sceneManager.setOverlap(false);
 	
 	// attach scene manager to this ofxApp so it's called automatically,
 	// you can also call the callbacks (update, draw, keyPressed, etc) manually
@@ -148,6 +150,11 @@ void ofApp::keyPressed(int key){
 			
 		case OF_KEY_UP:
 			sceneManager.gotoScene(lastScene);
+			break;
+			
+		case 'g':
+			if (curlFlowScene != NULL) curlFlowScene->toggleGuiDraw = !curlFlowScene->toggleGuiDraw;
+			if (flowToolsScene != NULL) flowToolsScene->toggleGuiDraw = !flowToolsScene->toggleGuiDraw;
 			break;
 	}
 }

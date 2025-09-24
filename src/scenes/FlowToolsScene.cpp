@@ -241,15 +241,13 @@ void FlowToolsScene:: updateExit() {
 
 // draw
 void FlowToolsScene:: draw() {
-	ofEnableAlphaBlending();
-	ofSetColor(255, 255, 255, 255 * alpha);
-	ofPushStyle();
+	
 	if (toggleCameraDraw.get()) {
 //		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
 		cameraFbo.draw(0, 0, windowWidth, windowHeight);
 	}
-//	
-//	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+	
+	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 	switch(visualizationMode.get()) {
 		case INPUT_FOR_DEN:	densityBridgeFlow.drawInput(0, 0, windowWidth, windowHeight); break;
 		case INPUT_FOR_VEL: opticalFlow.drawInput(0, 0, windowWidth, windowHeight); break;
@@ -280,16 +278,20 @@ void FlowToolsScene:: draw() {
 		densityActorFlow.draw(0, 0, windowWidth, windowHeight);
 		velocityActorFlow.draw(0, 0, windowWidth, windowHeight);
 	}
-	
+	ofEnableAlphaBlending();
+	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
+	ofPushStyle();
+	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 //	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+	ofPopStyle();
+	ofDisableAlphaBlending();
+	
 //	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
 	
 	if (toggleGuiDraw) {
 		ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 		drawGui();
 	}
-	ofPopStyle();
-	ofDisableAlphaBlending();
 	
 	
 	

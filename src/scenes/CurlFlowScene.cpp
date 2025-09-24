@@ -11,7 +11,7 @@
 
 // set the scene name through the base class initializer
 CurlFlowScene::CurlFlowScene() : ofxFadeScene("CurlFlow"){
-	setSingleSetup(false); // call setup each time the scene is loaded
+	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
 }
 
@@ -29,7 +29,7 @@ void CurlFlowScene:: setup() {
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	guiFlow.set("Flow", false);
 	gui.add(guiFlow);
-	gui.add(toggleGuiDraw.set("show gui (G)", false));
+	gui.add(toggleGuiDraw.set("show gui (G)", true));
 	guiCenter.set("Center", 128, 0, 255);
 	gui.add(guiCenter);
 	
@@ -236,7 +236,7 @@ void CurlFlowScene:: draw() {
 	
 	ofSetColor(255, 255, 255, 255*alpha);
 	rgbaFboFloat.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-	ofDisableAlphaBlending();
+	
 	// Draw GUI
 	if (toggleGuiDraw) {
 		gui.draw();
@@ -246,10 +246,7 @@ void CurlFlowScene:: draw() {
 
 // cleanup
 void CurlFlowScene:: exit() {
-//	red.clear();
-//	grn.clear();
-//	blu.clear();
-//	discs.clear();
+	
 }
 
 

@@ -24,6 +24,7 @@ public:
 	
 		
 	FlowToolsScene* flowToolsScene;
+	CurlFlowScene* curlFlowScene;
 	ofxSceneManager sceneManager;
 	int lastScene;
 	// rendering transformer

@@ -36,6 +36,7 @@ void testApp::setup() {
 	#endif
 	
 	// load scenes
+	
 	curlFlowScene = (CurlFlowScene*) sceneManager.add(new CurlFlowScene()); // save pointer
 	sceneManager.add(new LineScene());
 	sceneManager.setup(true); // true = setup all the scenes now (not on the fly)
