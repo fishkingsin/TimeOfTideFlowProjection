@@ -29,7 +29,7 @@ void CurlFlowScene:: setup() {
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	guiFlow.set("Flow", false);
 	gui.add(guiFlow);
-	gui.add(toggleGuiDraw.set("show gui (G)", true));
+	gui.add(toggleGuiDraw.set("show gui (G)", false));
 	guiCenter.set("Center", 128, 0, 255);
 	gui.add(guiCenter);
 	

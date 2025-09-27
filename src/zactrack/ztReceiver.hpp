@@ -41,7 +41,7 @@ public:
 	float timers[NUM_MSG_STRINGS];
 	
 	ofParameterGroup		parameters;
-	ofParameter<bool>		debug;
+	ofParameter<bool>		toggleGuiDraw;
 	ofParameter<int>		port;
 	ofParameter<bool>		invertX;
 	ofParameter<bool>		invertY;
@@ -50,6 +50,7 @@ public:
 	ofParameter<float>		maxX;
 	ofParameter<float>		maxY;
 	ofEvent<ztActorEventArgs> actorEvent;
+	ofxPanel receiverPanel;
 };
 
 #endif /* ztReceiver_hpp */

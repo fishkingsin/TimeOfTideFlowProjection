@@ -3,13 +3,16 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	
+	receiver.setup();
+	
 	// setup for nice jaggy-less rendering
 	ofSetVerticalSync(true);
 	ofBackground(0, 0, 0);
-
+	
+	ofAddListener(receiver.actorEvent, &actorManager, &ActorManager::onActorEvent);
+	
 	// setup the render size (working area)
-	transformer.setRenderSize(ofGetWidth(), ofGetHeight());
-
+	
 	// turn on transform origin translation and scaling to screen size,
 	// disable quad warping, and enable aspect ratio and centering when scaling
 	transformer.setTransforms(true, true, false, true, true);
@@ -17,19 +20,19 @@ void ofApp::setup(){
 	// set the ofxApp transformer so it's automatically applied in draw()
 	setTransformer(&transformer);
 	
-	#ifdef HAVE_OFX_GUI
-		// setup transform panel with transformer pointer,
-		// loads settings & quad warper xml files if found
-		panel.setup(&transformer);
-	#endif
+#ifdef HAVE_OFX_GUI
+	// setup transform panel with transformer pointer,
+	// loads settings & quad warper xml files if found
+	panel.setup(&transformer);
+#endif
 	
 	// load scenes
 	
-//	sceneManager.add(new GPUCurlFlowScene());
+	//	sceneManager.add(new GPUCurlFlowScene());
 	sceneManager.add(new SinglePassFlowFieldScene());
 	flowToolsScene = (FlowToolsScene*) sceneManager.add(new FlowToolsScene());
 	curlFlowScene = (CurlFlowScene*) sceneManager.add(new CurlFlowScene()); // save pointer
-//	sceneManager.add(new LineScene());
+	//	sceneManager.add(new LineScene());
 	sceneManager.setup(true); // true = setup all the scenes now (not on the fly)
 	ofSetLogLevel("ofxSceneManager", OF_LOG_VERBOSE); // lets see whats going on inside
 	
@@ -65,6 +68,7 @@ void ofApp::update(){
 		panel.update();
 	}
 #endif
+	receiver.update();
 }
 
 //--------------------------------------------------------------
@@ -73,7 +77,7 @@ void ofApp::draw(){
 	
 	
 	// the current scene is automatically drawn before this function
-
+	
 	// show the render area edges with a white rect
 	if(isDebug()) {
 		ofNoFill();
@@ -86,28 +90,31 @@ void ofApp::draw(){
 	// drop out of the auto transform space back to OF screen space
 	transformer.pop();
 	
-	#ifdef HAVE_OFX_GUI
-		// draw the transform panel when in debug mode
-		if(isDebug()) {
-			panel.draw();
-		}
-	#endif
+#ifdef HAVE_OFX_GUI
+	// draw the transform panel when in debug mode
+	if(isDebug()) {
+		panel.draw();
+	}
+#endif
 	
 	// draw current scene info using the ofxBitmapString stream interface
 	// to ofDrawBitmapString
 	ofSetColor(200);
 	ofxBitmapString(12, ofGetHeight()-8)
-		<< "Current Scene: " << sceneManager.getCurrentSceneIndex()
-		<< " " << sceneManager.getCurrentSceneName() << endl;
+	<< "Current Scene: " << sceneManager.getCurrentSceneIndex()
+	<< " " << sceneManager.getCurrentSceneName() << endl;
 	
 	// go back to the auto transform space
 	//
 	// this is actually done automatically if the transformer is set but
 	// included here for completeness
 	transformer.push();
-
+	
+#ifdef HAVE_OFX_GUI
+	receiver.draw();
+#endif
 	// the warp editor is drawn automatically after this function
-
+	
 }
 
 
@@ -156,6 +163,7 @@ void ofApp::keyPressed(int key){
 		case 'g':
 			if (curlFlowScene != NULL) curlFlowScene->toggleGuiDraw = !curlFlowScene->toggleGuiDraw;
 			if (flowToolsScene != NULL) flowToolsScene->toggleGuiDraw = !flowToolsScene->toggleGuiDraw;
+			receiver.toggleGuiDraw = !receiver.toggleGuiDraw;
 			break;
 	}
 }

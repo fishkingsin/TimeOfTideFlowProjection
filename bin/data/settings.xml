@@ -120,3 +120,27 @@
 	<Rainbow>0</Rainbow>
 	<Base_Color>255, 255, 255, 255</Base_Color>
 </group>
+<Receiver>
+	<zactrack_receiver>
+		<debug>1</debug>
+		<port>7777</port>
+		<Invert_X>0</Invert_X>
+		<Invert_Y>0</Invert_Y>
+		<min_X>-3757.57</min_X>
+		<min_Y>-3757.57</min_Y>
+		<max_X>3487.32</max_X>
+		<max_Y>3589.37</max_Y>
+	</zactrack_receiver>
+</Receiver>
+<zactrack_receiver>
+	<zactrack_receiver>
+		<debug>1</debug>
+		<port>7777</port>
+		<Invert_X>0</Invert_X>
+		<Invert_Y>0</Invert_Y>
+		<min_X>-4183.67</min_X>
+		<min_Y>-4183.67</min_Y>
+		<max_X>4693.88</max_X>
+		<max_Y>4183.67</max_Y>
+	</zactrack_receiver>
+</zactrack_receiver>

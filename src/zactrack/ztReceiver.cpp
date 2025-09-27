@@ -12,8 +12,9 @@
 void ztReceiver::setup(){
 	// listen on the given port
 	ofLog() << "listening for osc messages on port " << PORT;
+	receiverPanel.setup("zactrack_receiver");
 	parameters.setName("zactrack receiver");
-	parameters.add(debug.set("debug", false));
+	parameters.add(toggleGuiDraw.set("toggleGuiDraw", false));
 	parameters.add(port.set("port", PORT));
 	parameters.add(invertX.set("Invert X", false));
 	parameters.add(invertY.set("Invert Y", false));
@@ -23,6 +24,12 @@ void ztReceiver::setup(){
 	parameters.add(maxY.set("max Y", -6000, -10000, 10000));
 	
 	receiver.setup(PORT);
+	currentMsgString = (currentMsgString + 1) % NUM_MSG_STRINGS;
+	
+	
+	receiverPanel.add(parameters);
+	if (!ofFile("zactrack_receiver-settings.xml")) { receiverPanel.saveToFile("zactrack_receiver-settings.xml"); }
+	receiverPanel.loadFromFile("zactrack_receiver-settings.xml");
 }
 
 //--------------------------------------------------------------
@@ -53,7 +60,7 @@ void ztReceiver::update(){
 							  ,
 							  ofMap(rawY, minY, maxY, 0, ofGetHeight()));
 
-				if (debug) {
+				if (toggleGuiDraw) {
 					ofLog() << "points " << i << " " << points[i].x << " " << points[i].y;
 					ofLog() << m.getAddress() << " args 1 " << m.getArgAsInt(0)
 					<< " args 2 " << m.getArgAsInt(1)
@@ -67,7 +74,7 @@ void ztReceiver::update(){
 			}
 		}
 		
-		if (hasMessage == false){
+		if (hasMessage == false && toggleGuiDraw){
 			
 			// unrecognized message: display on the bottom of the screen
 			string msgString;
@@ -109,7 +116,7 @@ void ztReceiver::update(){
 
 //--------------------------------------------------------------
 void ztReceiver::draw(){
-	if(debug) {
+	if(toggleGuiDraw) {
 		ofSetColor(255);
 		// draw recent unrecognized messages
 		for(int i = 0; i < NUM_MSG_STRINGS; i++){
@@ -125,5 +132,8 @@ void ztReceiver::draw(){
 			
 			ofDrawCircle(points[i].x, points[i].y, 10);
 		}
+	}
+	if (toggleGuiDraw) {
+		receiverPanel.draw();
 	}
 }

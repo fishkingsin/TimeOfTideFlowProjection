@@ -89,6 +89,4 @@ public:
 	deque<float>		deltaTimeDeque;
 	float				lastTime;
 	
-	ztReceiver receiver;
-	ActorManager actorManager;
 };

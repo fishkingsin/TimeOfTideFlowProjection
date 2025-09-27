@@ -62,12 +62,10 @@ void FlowToolsScene:: setup() {
 	
 	setupGui();
 	
-	ofAddListener(receiver.actorEvent, &actorManager, &ActorManager::onActorEvent);
-	
+		
 	
 	
 }
-
 
 //--------------------------------------------------------------
 void FlowToolsScene::setupGui() {
@@ -87,8 +85,6 @@ void FlowToolsScene::setupGui() {
 	gui.add(toggleParticleDraw.set("draw particles (P)", true));
 	toggleParticleDraw.addListener(this, &FlowToolsScene::toggleParticleDrawListener);
 	gui.add(toggleReset.set("reset (R)", false));
-	receiver.setup();
-	gui.add(receiver.parameters);
 	toggleReset.addListener(this, &FlowToolsScene::toggleResetListener);
 	
 	obsbstacleParameters.setName("obsbstacle");
@@ -165,8 +161,6 @@ void FlowToolsScene:: updateEnter() {
 
 // normal update
 void FlowToolsScene:: update() {
-	receiver.update();
-	actorManager.update();
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 	
 	simpleCam.update();
@@ -328,7 +322,6 @@ void FlowToolsScene::drawGui() {
 	ofPushStyle();
 	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 	gui.draw();
-	receiver.draw();
 	ofPopStyle();
 }
 

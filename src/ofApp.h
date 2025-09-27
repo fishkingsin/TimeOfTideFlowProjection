@@ -30,7 +30,11 @@ public:
 	// rendering transformer
 	ofxTransformer transformer;
 
+// Global actor event system
+ztReceiver receiver;
+ActorManager actorManager;
+
 #ifdef HAVE_OFX_GUI
-	ofxTransformPanel panel;
+ofxTransformPanel panel;
 #endif
 };
