@@ -11,6 +11,8 @@
 #include "Actor.hpp"
 #include "ztActorEventArgs.h"
 #include <unordered_map>
+#include "ActorSceneEventArgs.h"
+
 
 class ActorManager {
 public:
@@ -20,7 +22,8 @@ public:
 	void draw();
 	void onActorEvent(ztActorEventArgs &args);
 	void onActorIdel(Actor & actor);
+	void notifySceneActorEvent(ActorSceneEventType eventType, Actor& actor, const ztActorEventArgs* args = nullptr);
+	ofEvent<ActorSceneEventArgs> sceneActorEvent;
 	std::unordered_map<string, Actor> actors;
 	
 };
-

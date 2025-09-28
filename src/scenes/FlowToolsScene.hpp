@@ -20,8 +20,11 @@ enum visualizationTypes{ INPUT_FOR_DEN = 0, INPUT_FOR_VEL, FLOW_VEL, BRIDGE_VEL,
 const vector<string> visualizationNames({"input for density", "input for velocity", "optical flow", "bridge velocity", "bridge density", "bridge temperature", "bridge pressure", "obstacle", "obstacle edge", "fluid buoyancy", "fluid vorticity", "fluid divergence", "fluid temperature", "fluid pressure", "fluid velocity", "fluid density"});
 
 class FlowToolsScene : public ofxFadeScene {
-	
+
 public:
+    void onActorSceneEvent(ActorSceneEventArgs & args);
+    void addActorSceneEventListener(ActorManager* manager);
+    void removeActorSceneEventListener(ActorManager* manager);
 	
 	// set the scene name through the base class initializer
 	FlowToolsScene();

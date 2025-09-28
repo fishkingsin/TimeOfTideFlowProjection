@@ -6,6 +6,19 @@
 //
 
 #include "FlowToolsScene.hpp"
+#include "actor/ActorSceneEventArgs.h"
+
+void FlowToolsScene::onActorSceneEvent(ActorSceneEventArgs & args) {
+    // TODO: Handle actor scene event (enter, move, leave)
+}
+
+void FlowToolsScene::addActorSceneEventListener(ActorManager* manager) {
+    ofAddListener(manager->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
+}
+
+void FlowToolsScene::removeActorSceneEventListener(ActorManager* manager) {
+    ofRemoveListener(manager->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
+}
 
 #define MAX_NOISE_SCALE 100000
 
@@ -145,18 +158,18 @@ void FlowToolsScene::minimizeGui(ofxGuiGroup* _group) {
 // called when scene is entering, this is just a demo and this
 // implementation is not required for this class
 void FlowToolsScene:: updateEnter() {
-	// called on first enter update
-	if(isEnteringFirst()) {
-		ofLogNotice("FlowToolsScene") << "update enter";
-	}
+// called on first enter update
+if(isEnteringFirst()) {
+ofLogNotice("FlowToolsScene") << "update enter";
+}
 
-	// fade scene calculates normalized alpha value for us
-	ofxFadeScene::updateEnter();
-	
-	// finished entering?
-	if(!isEntering()) {
-		ofLogNotice("FlowToolsScene") << "update enter done";
-	}
+// fade scene calculates normalized alpha value for us
+ofxFadeScene::updateEnter();
+
+// finished entering?
+if(!isEntering()) {
+    ofLogNotice("FlowToolsScene") << "update enter done";
+}
 }
 
 // normal update
