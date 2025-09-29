@@ -8,10 +8,22 @@
 #include "ztActorEventArgs.h"
 
 enum class ActorSceneEventType {
-	Enter,
-	Move,
-	Leave
+    Enter,
+    Move,
+    Leave
 };
+
+// ostream operator for ActorSceneEventType
+inline std::ostream& operator<<(std::ostream& os, ActorSceneEventType type) {
+    switch (type) {
+        case ActorSceneEventType::Enter: os << "Enter"; break;
+        case ActorSceneEventType::Move: os << "Move"; break;
+        case ActorSceneEventType::Leave: os << "Leave"; break;
+        default: os << "Unknown"; break;
+    }
+    return os;
+}
+
 
 
 struct ActorSceneEventArgs {

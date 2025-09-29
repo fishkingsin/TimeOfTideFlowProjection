@@ -324,7 +324,7 @@ void CurlFlowScene::randomize() {
 
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 	// TODO: Handle actor scene event (enter, move, leave)
-	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->key;
+	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 }
 
 void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {

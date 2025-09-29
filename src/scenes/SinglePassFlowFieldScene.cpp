@@ -141,7 +141,7 @@ void SinglePassFlowFieldScene:: exit() {
 
 void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 	// TODO: Handle actor scene event (enter, move, leave) // print rich info 
-	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->key;
+	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 }
 
 void SinglePassFlowFieldScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
