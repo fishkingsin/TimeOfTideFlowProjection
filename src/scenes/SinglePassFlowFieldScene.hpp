@@ -39,6 +39,6 @@ public:
 	ofxAutoReloadedShader shaderDraw;
 	ofFbo fboBufferA; // with alpha
 	ofFbo fboImage; // with alpha
-	bool showGUI = false;
+	ofParameter<bool> toggleGuiDraw;
 	std::shared_ptr<ActorManager> actorManager;
 };

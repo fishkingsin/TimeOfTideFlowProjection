@@ -22,20 +22,20 @@ public:
 	void update();
 	void draw();
 	void keyPressed(int key);
-	
-	FlowToolsScene * flowToolsScene;
-	CurlFlowScene * curlFlowScene;
+
+	FlowToolsScene * flowToolsScene = nullptr;
+	CurlFlowScene * curlFlowScene = nullptr;
+	SinglePassFlowFieldScene * singlePassFlowFieldScene = nullptr;
 	ofxSceneManager sceneManager;
 	int lastScene;
 	// rendering transformer
 	ofxTransformer transformer;
-	
+
 	// Global actor event system
 	ztReceiver receiver;
 	ActorManager actorManager;
-	
+
 #ifdef HAVE_OFX_GUI
 	ofxTransformPanel panel;
 #endif
-	
 };

@@ -12,7 +12,7 @@ class CurlFlowScene : public ofxFadeScene {
 
 public:
 	// set the scene name through the base class initializer
-	CurlFlowScene(std::shared_ptr<ActorManager> actorManager);
+	CurlFlowScene(std::shared_ptr<ActorManager> _actorManager);
 	CurlFlowScene():ofxFadeScene("CurlFlow") {};
 	void setup();
 	void updateEnter();

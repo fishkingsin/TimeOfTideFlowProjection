@@ -30,8 +30,8 @@ void SinglePassFlowFieldScene:: setup() {
 	
 	
 	
-	densityWidth = 1920;
-	densityHeight = 1080;
+	densityWidth = ofGetWidth();
+	densityHeight = ofGetHeight();
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;
@@ -122,7 +122,7 @@ void SinglePassFlowFieldScene:: draw() {
 	
 	fboImage.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 	
-	if (showGUI) {
+	if (toggleGuiDraw) {
 		int width = windowWidth * 0.25;
 		int height = windowHeight * 0.25;
 		fboBufferA.draw(0, 0, width, height);

@@ -25,7 +25,8 @@ public:
     
 	
 	// set the scene name through the base class initializer
-	FlowToolsScene(std::shared_ptr<ActorManager> & managerPtr);
+	FlowToolsScene():ofxFadeScene("FlowTools") {} ;
+	FlowToolsScene(std::shared_ptr<ActorManager> & actorManager_);
 	void setup();
 	void updateEnter();
 	void update();

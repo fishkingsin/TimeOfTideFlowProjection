@@ -24,8 +24,8 @@ FlowToolsScene::FlowToolsScene(std::shared_ptr<ActorManager> & actorManager_)
 void FlowToolsScene::setup() {
 	shadertoy.load("shaders/bufferA.frag");
 	shadertoy.setAdvanceTime(true);
-	densityWidth = 1920;
-	densityHeight = 1080;
+	densityWidth = ofGetWidth();
+	densityHeight = ofGetHeight();
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;

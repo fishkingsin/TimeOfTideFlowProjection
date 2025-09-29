@@ -29,10 +29,14 @@ void ofApp::setup() {
 	// load scenes
 
 	//	sceneManager.add(new GPUCurlFlowScene());
-	sceneManager.add(new SinglePassFlowFieldScene());
+
 	std::shared_ptr<ActorManager> actorManagerPtr = std::make_shared<ActorManager>(actorManager);
-	flowToolsScene = (FlowToolsScene *)sceneManager.add(new FlowToolsScene(actorManagerPtr));
-	curlFlowScene = (CurlFlowScene *)sceneManager.add(new CurlFlowScene(actorManagerPtr)); // save pointer
+
+	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
+
+	flowToolsScene = static_cast<FlowToolsScene*>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
+
+	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
 	//	sceneManager.add(new LineScene());
 	sceneManager.setup(true); // true = setup all the scenes now (not on the fly)
 	ofSetLogLevel("ofxSceneManager", OF_LOG_VERBOSE); // lets see whats going on inside
@@ -191,6 +195,7 @@ void ofApp::keyPressed(int key) {
 	case 'g':
 		if (curlFlowScene != NULL) curlFlowScene->toggleGuiDraw = !curlFlowScene->toggleGuiDraw;
 		if (flowToolsScene != NULL) flowToolsScene->toggleGuiDraw = !flowToolsScene->toggleGuiDraw;
+		if (singlePassFlowFieldScene != NULL) singlePassFlowFieldScene->toggleGuiDraw = !singlePassFlowFieldScene->toggleGuiDraw;
 		receiver.toggleGuiDraw = !receiver.toggleGuiDraw;
 		break;
 	}
