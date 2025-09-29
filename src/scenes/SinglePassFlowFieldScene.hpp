@@ -9,12 +9,14 @@
 #include "ofxAppUtils.h"
 #include "ofxGui.h"
 #include "ofxAutoReloadedShader.h"
+#include "ActorManager.hpp"
 class SinglePassFlowFieldScene : public ofxFadeScene {
 	
 public:
 	
 	// set the scene name through the base class initializer
-	SinglePassFlowFieldScene();
+	SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
+	SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_);
 	void setup();
 	void updateEnter();
 	void update();
@@ -27,10 +29,16 @@ public:
 	void saveCtlGui();
 	void setupNoise();
 	void updateNoise();
+	
+	void onActorSceneEvent(ActorSceneEventArgs & args);
+	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
+	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
+	
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
 	ofxAutoReloadedShader shaderA;
 	ofxAutoReloadedShader shaderDraw;
 	ofFbo fboBufferA; // with alpha
 	ofFbo fboImage; // with alpha
 	bool showGUI = false;
+	std::shared_ptr<ActorManager> actorManager;
 };

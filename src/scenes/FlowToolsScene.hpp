@@ -20,21 +20,21 @@ enum visualizationTypes{ INPUT_FOR_DEN = 0, INPUT_FOR_VEL, FLOW_VEL, BRIDGE_VEL,
 const vector<string> visualizationNames({"input for density", "input for velocity", "optical flow", "bridge velocity", "bridge density", "bridge temperature", "bridge pressure", "obstacle", "obstacle edge", "fluid buoyancy", "fluid vorticity", "fluid divergence", "fluid temperature", "fluid pressure", "fluid velocity", "fluid density"});
 
 class FlowToolsScene : public ofxFadeScene {
-
+	
 public:
-    void onActorSceneEvent(ActorSceneEventArgs & args);
-    void addActorSceneEventListener(ActorManager* manager);
-    void removeActorSceneEventListener(ActorManager* manager);
+    
 	
 	// set the scene name through the base class initializer
-	FlowToolsScene();
+	FlowToolsScene(std::shared_ptr<ActorManager> & managerPtr);
 	void setup();
 	void updateEnter();
 	void update();
 	void updateExit();
 	void draw();
 	void exit();
-	
+	void onActorSceneEvent(ActorSceneEventArgs & args);
+	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
+	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	
 	int		densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
 
@@ -91,5 +91,5 @@ public:
 	void				drawGui();
 	deque<float>		deltaTimeDeque;
 	float				lastTime;
-	
+	shared_ptr<ActorManager> actorManager;
 };

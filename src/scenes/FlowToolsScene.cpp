@@ -8,28 +8,20 @@
 #include "FlowToolsScene.hpp"
 #include "actor/ActorSceneEventArgs.h"
 
-void FlowToolsScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-    // TODO: Handle actor scene event (enter, move, leave)
-}
-
-void FlowToolsScene::addActorSceneEventListener(ActorManager* manager) {
-    ofAddListener(manager->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
-}
-
-void FlowToolsScene::removeActorSceneEventListener(ActorManager* manager) {
-    ofRemoveListener(manager->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
-}
 
 #define MAX_NOISE_SCALE 100000
 
 // set the scene name through the base class initializer
-FlowToolsScene::FlowToolsScene() : ofxFadeScene("FlowToolsScene"){
+FlowToolsScene::FlowToolsScene(std::shared_ptr<ActorManager> & actorManager_)
+: ofxFadeScene("FlowToolsScene")
+, actorManager(actorManager_){
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
+	
 }
 
 // scene setup
-void FlowToolsScene:: setup() {
+void FlowToolsScene::setup() {
 	shadertoy.load("shaders/bufferA.frag");
 	shadertoy.setAdvanceTime(true);
 	densityWidth = 1920;
@@ -58,7 +50,9 @@ void FlowToolsScene:: setup() {
 	flows.push_back(&densityActorFlow);
 	flows.push_back(&velocityActorFlow);
 	
-	for (auto flow : flows) { flow->setVisualizationFieldSize(glm::vec2(simulationWidth / 2, simulationHeight / 2)); }
+	for (auto flow : flows) {
+		flow->setVisualizationFieldSize(glm::vec2(simulationWidth / 2, simulationHeight / 2));
+	}
 	
 	actorFlows.push_back(&densityActorFlow);
 	actorFlows.push_back(&velocityActorFlow);
@@ -74,10 +68,6 @@ void FlowToolsScene:: setup() {
 	lastTime = ofGetElapsedTimef();
 	
 	setupGui();
-	
-		
-	
-	
 }
 
 //--------------------------------------------------------------
@@ -88,7 +78,7 @@ void FlowToolsScene::setupGui() {
 	gui.setDefaultFillColor(ofColor(160, 160, 160, 160));
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	gui.add(guiMinFPS.set("minimum FPS", 0, 0, 60));
-//	gui.add(toggleFullScreen.set("fullscreen (F)", false));
+	//	gui.add(toggleFullScreen.set("fullscreen (F)", false));
 	toggleFullScreen.addListener(this, &FlowToolsScene::toggleFullScreenListener);
 	gui.add(toggleGuiDraw.set("show gui (G)", true));
 	gui.add(useCamera.set("useCamera", true));
@@ -122,10 +112,12 @@ void FlowToolsScene::setupGui() {
 		gui.add(flow->getParameters());
 	}
 	
-	if (!ofFile("FlowToolsScene-settings.xml")) { gui.saveToFile("FlowToolsScene-settings.xml"); }
+	if (!ofFile("FlowToolsScene-settings.xml")) {
+		gui.saveToFile("FlowToolsScene-settings.xml");
+	}
 	gui.loadFromFile("FlowToolsScene-settings.xml");
 	
-//	gui.minimizeAll();
+	//	gui.minimizeAll();
 	minimizeGui(&gui);
 	
 	toggleGuiDraw = true;
@@ -145,9 +137,9 @@ void FlowToolsScene::switchGuiColor(bool _switch) {
 }
 
 //--------------------------------------------------------------
-void FlowToolsScene::minimizeGui(ofxGuiGroup* _group) {
-	for (int i=0; i< _group->getNumControls(); i++) {
-		ofxGuiGroup * subGroup  = dynamic_cast<ofxGuiGroup*>(_group->getControl(i));
+void FlowToolsScene::minimizeGui(ofxGuiGroup * _group) {
+	for (int i = 0; i < _group->getNumControls(); i++) {
+		ofxGuiGroup * subGroup = dynamic_cast<ofxGuiGroup *>(_group->getControl(i));
 		if (subGroup) {
 			minimizeGui(subGroup);
 			_group->minimizeAll();
@@ -157,30 +149,33 @@ void FlowToolsScene::minimizeGui(ofxGuiGroup* _group) {
 
 // called when scene is entering, this is just a demo and this
 // implementation is not required for this class
-void FlowToolsScene:: updateEnter() {
-// called on first enter update
-if(isEnteringFirst()) {
-ofLogNotice("FlowToolsScene") << "update enter";
-}
-
-// fade scene calculates normalized alpha value for us
-ofxFadeScene::updateEnter();
-
-// finished entering?
-if(!isEntering()) {
-    ofLogNotice("FlowToolsScene") << "update enter done";
-}
+void FlowToolsScene::updateEnter() {
+	// called on first enter update
+	if (isEnteringFirst()) {
+		ofLogNotice("FlowToolsScene") << "update enter";
+	}
+	
+	// fade scene calculates normalized alpha value for us
+	ofxFadeScene::updateEnter();
+	
+	// finished entering?
+	if (!isEntering()) {
+		ofLogNotice("FlowToolsScene") << "update enter done";
+		
+		addActorSceneEventListener(actorManager);
+		
+	}
 }
 
 // normal update
-void FlowToolsScene:: update() {
+void FlowToolsScene::update() {
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 	
 	simpleCam.update();
 	if (simpleCam.isFrameNew()) {
 		cameraFbo.begin();
 		if (useCamera) {
-			simpleCam.draw(cameraFbo.getWidth(), 0, -cameraFbo.getWidth(), cameraFbo.getHeight());  // draw flipped
+			simpleCam.draw(cameraFbo.getWidth(), 0, -cameraFbo.getWidth(), cameraFbo.getHeight()); // draw flipped
 		} else {
 			ofEnableAlphaBlending();
 			ofClear(0, 0, 0, 10);
@@ -198,8 +193,10 @@ void FlowToolsScene:: update() {
 		opticalFlow.setInput(cameraFbo.getTexture());
 	}
 	
-	for (auto flow: actorFlows) { flow->update(dt); }
-
+	for (auto flow : actorFlows) {
+		flow->update(dt);
+	}
+	
 	opticalFlow.update();
 	
 	velocityBridgeFlow.setVelocity(opticalFlow.getVelocity());
@@ -214,13 +211,20 @@ void FlowToolsScene:: update() {
 	fluidFlow.addVelocity(velocityBridgeFlow.getVelocity());
 	fluidFlow.addDensity(densityBridgeFlow.getDensity());
 	fluidFlow.addTemperature(temperatureBridgeFlow.getTemperature());
-	for (auto flow: actorFlows) { if (flow->didChange()) { fluidFlow.addFlow(flow->getType(), flow->getTexture()); } }
+	for (auto flow : actorFlows) {
+		if (flow->didChange()) {
+			fluidFlow.addFlow(flow->getType(), flow->getTexture());
+		}
+	}
 	fluidFlow.update(dt);
 	
 	if (toggleParticleDraw) {
 		particleFlow.setSpeed(fluidFlow.getSpeed());
 		particleFlow.setFlowVelocity(opticalFlow.getVelocity());
-		for (auto flow: actorFlows) if (flow->didChange() && flow->getType() == FT_VELOCITY) { particleFlow.addFlowVelocity(flow->getTexture()); }
+		for (auto flow : actorFlows)
+			if (flow->didChange() && flow->getType() == FT_VELOCITY) {
+				particleFlow.addFlowVelocity(flow->getTexture());
+			}
 		particleFlow.setFluidVelocity(fluidFlow.getVelocity());
 		particleFlow.setObstacle(fluidFlow.getObstacle());
 		particleFlow.update(dt);
@@ -229,10 +233,10 @@ void FlowToolsScene:: update() {
 
 // called when scene is exiting, this is just a demo and this
 // implementation is not required for this class
-void FlowToolsScene:: updateExit() {
+void FlowToolsScene::updateExit() {
 	
 	// called on first exit update
-	if(isExitingFirst()) {
+	if (isExitingFirst()) {
 		ofLogNotice("FlowToolsScene") << "update exit";
 	}
 	
@@ -240,41 +244,73 @@ void FlowToolsScene:: updateExit() {
 	ofxFadeScene::updateExit();
 	
 	// finished exiting?
-	if(!isExiting()) {
+	if (!isExiting()) {
 		ofLogNotice("FlowToolsScene") << "update exit done";
+		removeActorSceneEventListener(actorManager);
 	}
 }
 
-
 // draw
-void FlowToolsScene:: draw() {
+void FlowToolsScene::draw() {
 	
 	if (toggleCameraDraw.get()) {
-//		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+		//		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
 		cameraFbo.draw(0, 0, windowWidth, windowHeight);
 	}
 	
 	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-	switch(visualizationMode.get()) {
-		case INPUT_FOR_DEN:	densityBridgeFlow.drawInput(0, 0, windowWidth, windowHeight); break;
-		case INPUT_FOR_VEL: opticalFlow.drawInput(0, 0, windowWidth, windowHeight); break;
-		case FLOW_VEL:		opticalFlow.draw(0, 0, windowWidth, windowHeight); break;
-		case BRIDGE_VEL:	velocityBridgeFlow.draw(0, 0, windowWidth, windowHeight); break;
-		case BRIDGE_DEN:	densityBridgeFlow.draw(0, 0, windowWidth, windowHeight); break;
-		case BRIDGE_TMP:	temperatureBridgeFlow.draw(0, 0, windowWidth, windowHeight); break;
-		case BRIDGE_PRS:	break;
-		case OBSTACLE:		fluidFlow.drawObstacle(0, 0, windowWidth, windowHeight); break;
-		case OBST_EDGE:		fluidFlow.drawObstacleOffset(0, 0, windowWidth, windowHeight); break;
-		case FLUID_BUOY:	fluidFlow.drawBuoyancy(0, 0, windowWidth, windowHeight); break;
-		case FLUID_VORT:	fluidFlow.drawVorticity(0, 0, windowWidth, windowHeight); break;
-		case FLUID_DIVE:	fluidFlow.drawDivergence(0, 0, windowWidth, windowHeight); break;
-		case FLUID_TMP:		fluidFlow.drawTemperature(0, 0, windowWidth, windowHeight); break;
-		case FLUID_PRS:		fluidFlow.drawPressure(0, 0, windowWidth, windowHeight); break;
-		case FLUID_VEL:		fluidFlow.drawVelocity(0, 0, windowWidth, windowHeight); break;
-		case FLUID_DEN:		fluidFlow.draw(0, 0, windowWidth, windowHeight); break;
-		default: break;
+	switch (visualizationMode.get()) {
+		case INPUT_FOR_DEN:
+			densityBridgeFlow.drawInput(0, 0, windowWidth, windowHeight);
+			break;
+		case INPUT_FOR_VEL:
+			opticalFlow.drawInput(0, 0, windowWidth, windowHeight);
+			break;
+		case FLOW_VEL:
+			opticalFlow.draw(0, 0, windowWidth, windowHeight);
+			break;
+		case BRIDGE_VEL:
+			velocityBridgeFlow.draw(0, 0, windowWidth, windowHeight);
+			break;
+		case BRIDGE_DEN:
+			densityBridgeFlow.draw(0, 0, windowWidth, windowHeight);
+			break;
+		case BRIDGE_TMP:
+			temperatureBridgeFlow.draw(0, 0, windowWidth, windowHeight);
+			break;
+		case BRIDGE_PRS:
+			break;
+		case OBSTACLE:
+			fluidFlow.drawObstacle(0, 0, windowWidth, windowHeight);
+			break;
+		case OBST_EDGE:
+			fluidFlow.drawObstacleOffset(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_BUOY:
+			fluidFlow.drawBuoyancy(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_VORT:
+			fluidFlow.drawVorticity(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_DIVE:
+			fluidFlow.drawDivergence(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_TMP:
+			fluidFlow.drawTemperature(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_PRS:
+			fluidFlow.drawPressure(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_VEL:
+			fluidFlow.drawVelocity(0, 0, windowWidth, windowHeight);
+			break;
+		case FLUID_DEN:
+			fluidFlow.draw(0, 0, windowWidth, windowHeight);
+			break;
+		default:
+			break;
 	}
-//	
+	//
 	if (toggleParticleDraw) {
 		ofEnableBlendMode(OF_BLENDMODE_ADD);
 		particleFlow.draw(0, 0, windowWidth, windowHeight);
@@ -289,27 +325,35 @@ void FlowToolsScene:: draw() {
 	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
 	ofPushStyle();
 	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+	//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
 	ofPopStyle();
 	ofDisableAlphaBlending();
 	
-//	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
+	//	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
 	
 	if (toggleGuiDraw) {
 		ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 		drawGui();
 	}
-	
-	
-	
 }
 
 // cleanup
-void FlowToolsScene:: exit() {
-	
+void FlowToolsScene::exit() {
 }
 
 
+void FlowToolsScene::onActorSceneEvent(ActorSceneEventArgs & args) {
+	// TODO: Handle actor scene event (enter, move, leave)
+	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->key;
+}
+
+void FlowToolsScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofAddListener(managerPtr->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
+}
+
+void FlowToolsScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofRemoveListener(managerPtr->sceneActorEvent, this, &FlowToolsScene::onActorSceneEvent);
+}
 
 //--------------------------------------------------------------
 void FlowToolsScene::drawGui() {
@@ -324,13 +368,12 @@ void FlowToolsScene::drawGui() {
 		deltaTimeDeque.pop_front();
 	
 	float longestTime = 0;
-	for (int i=0; i<deltaTimeDeque.size(); i++){
+	for (int i = 0; i < deltaTimeDeque.size(); i++) {
 		if (deltaTimeDeque[i] > longestTime)
 			longestTime = deltaTimeDeque[i];
 	}
 	
 	guiMinFPS.set(1.0 / longestTime);
-	
 	
 	ofPushStyle();
 	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -338,22 +381,21 @@ void FlowToolsScene::drawGui() {
 	ofPopStyle();
 }
 
-
 //--------------------------------------------------------------
-void FlowToolsScene::toggleResetListener(bool& _value) {
+void FlowToolsScene::toggleResetListener(bool & _value) {
 	if (_value) {
-		for (auto flow : flows) { flow->reset(); }
+		for (auto flow : flows) {
+			flow->reset();
+		}
 		fluidFlow.addObstacle(flowToolsLogo.getTexture());
 	}
 	_value = false;
 }
 
-
-void FlowToolsScene::obsbstacleFileNameListener(string& _value) {
+void FlowToolsScene::obsbstacleFileNameListener(string & _value) {
 	flowToolsLogo.load(_value);
 	fluidFlow.reset();
 	particleFlow.reset();
 	fluidFlow.addObstacle(flowToolsLogo.getTexture());
 	particleFlow.addObstacle(flowToolsLogo.getTexture());
-
 }

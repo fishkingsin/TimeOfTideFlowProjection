@@ -10,7 +10,9 @@
 #define MAX_NOISE_SCALE 100000
 
 // set the scene name through the base class initializer
-SinglePassFlowFieldScene::SinglePassFlowFieldScene() : ofxFadeScene("GPUCurlFlow"){
+SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_)
+: ofxFadeScene("GPUCurlFlow")
+, actorManager(actorManager_) {
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
 }
@@ -135,4 +137,17 @@ void SinglePassFlowFieldScene:: draw() {
 // cleanup
 void SinglePassFlowFieldScene:: exit() {
 	
+}
+
+void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
+	// TODO: Handle actor scene event (enter, move, leave) // print rich info 
+	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->key;
+}
+
+void SinglePassFlowFieldScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofAddListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
+}
+
+void SinglePassFlowFieldScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofRemoveListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
 }

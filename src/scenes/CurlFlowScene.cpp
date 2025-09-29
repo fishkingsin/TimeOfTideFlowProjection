@@ -10,20 +10,22 @@
 #define MAX_NOISE_SCALE 100000
 
 // set the scene name through the base class initializer
-CurlFlowScene::CurlFlowScene() : ofxFadeScene("CurlFlow"){
+CurlFlowScene::CurlFlowScene(std::shared_ptr<ActorManager> actorManager_)
+	: ofxFadeScene("CurlFlow")
+	, actorManager(actorManager_) {
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
 }
 
 // scene setup
-void CurlFlowScene:: setup() {
+void CurlFlowScene::setup() {
 	// Window size
 	int w = 1920;
 	int h = 1080;
-	
+
 	// GUI setup
 	gui.setup();
-	
+
 	//    guiDiscCount.set("Disc Count", 1000, 1, 5000);
 	//    gui.add(guiDiscCount);
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
@@ -32,53 +34,51 @@ void CurlFlowScene:: setup() {
 	gui.add(toggleGuiDraw.set("show gui (G)", false));
 	guiCenter.set("Center", 128, 0, 255);
 	gui.add(guiCenter);
-	
+
 	guiWidth.set("Width", 127, 0, 255);
 	gui.add(guiWidth);
-	
+
 	guiFrequency1.set("Frequency1", 0.3f, 0.0f, 2.0f);
 	gui.add(guiFrequency1);
 	guiFrequency2.set("Frequency2", 0.3f, 0.0f, 2.0f);
 	gui.add(guiFrequency2);
 	guiFrequency3.set("Frequency3", 0.3f, 0.0f, 2.0f);
 	gui.add(guiFrequency3);
-	
+
 	guiPhase1.set("Phase1", 0.0f, 0.0f, 10.0f);
 	gui.add(guiPhase1);
 	guiPhase2.set("Phase2", 2.0f, 0.0f, 10.0f);
 	gui.add(guiPhase2);
 	guiPhase3.set("Phase3", 4.0f, 0.0f, 10.0f);
 	gui.add(guiPhase3);
-	
+
 	guiSpeed.set("Speed", 0.5f, 0.0f, 2.0f);
 	gui.add(guiSpeed);
-	
+
 	guiFade.set("Fade", 0.0f, 0.0f, 1.0f);
 	gui.add(guiFade);
-	
-	
+
 	noiseScale.set("noiseScale", 500.0f, 1.0f, 1000.0f);
 	gui.add(noiseScale);
-	
-	
+
 	guiStep.set("Step", 1000.0f, 10.0f, 3000.0f);
 	gui.add(guiStep);
 	gui.add(xVol.set("xVol", 0.0f, -10.0f, 10.0f));
 	gui.add(yVol.set("yVol", 0.0f, -10.0f, 10.0f));
-	
+
 	guiParticleSize.set("Particle Size", 1.5f, 0.1f, 10.0f);
 	gui.add(guiParticleSize);
-	
+
 	guiRainbow.set("Rainbow", true);
 	gui.add(guiRainbow);
-	
-	guiBaseColor.set("Base Color", ofColor::white, ofColor(0,0,0), ofColor(255,255,255));
+
+	guiBaseColor.set("Base Color", ofColor::white, ofColor(0, 0, 0), ofColor(255, 255, 255));
 	gui.add(guiBaseColor);
-	
+
 	// Mobile detection omitted; use desktop defaults
-	
+
 	discCount = 10000;
-	
+
 	// Color generation parameters
 	center = 128;
 	width = 127;
@@ -88,7 +88,7 @@ void CurlFlowScene:: setup() {
 	phase1 = 0;
 	phase2 = 2;
 	phase3 = 4;
-	
+
 	// Generate color arrays
 	red.resize(discCount);
 	grn.resize(discCount);
@@ -98,7 +98,7 @@ void CurlFlowScene:: setup() {
 		grn[s] = round(sin(frequency2 * s + phase2) * width + center);
 		blu[s] = round(sin(frequency3 * s + phase3) * width + center);
 	}
-	
+
 	// Initialize discs
 	discs.clear();
 	for (int i = 0; i < discCount; i++) {
@@ -109,7 +109,9 @@ void CurlFlowScene:: setup() {
 		d.color = ofColor(red[i], grn[i], blu[i]);
 		discs.push_back(d);
 	}
-	if (!ofFile("CurlFlowScene-settings.xml")) { gui.saveToFile("CurlFlowScene-settings.xml"); }
+	if (!ofFile("CurlFlowScene-settings.xml")) {
+		gui.saveToFile("CurlFlowScene-settings.xml");
+	}
 	gui.loadFromFile("CurlFlowScene-settings.xml");
 	// Variables for controls
 	discCount = guiDiscCount;
@@ -128,13 +130,13 @@ void CurlFlowScene:: setup() {
 	particle_size = guiParticleSize;
 	rainbow = guiRainbow;
 	baseColor = guiBaseColor;
-	
+
 	ofBackground(0, 0, 0);
 	ofSetFrameRate(60);
 	ofSetCircleResolution(6);
-	
+
 	rgbaFboFloat.allocate(ofGetWindowWidth(), ofGetWindowHeight(), GL_RGBA32F_ARB); // with alpha, 32 bits red, 32 bits green, 32 bits blue, 32 bits alpha, from 0 to 1 in 'infinite' steps
-	
+
 	rgbaFboFloat.begin();
 	ofClear(0, 0, 0, 255);
 	rgbaFboFloat.end();
@@ -143,23 +145,23 @@ void CurlFlowScene:: setup() {
 
 // called when scene is entering, this is just a demo and this
 // implementation is not required for this class
-void CurlFlowScene:: updateEnter() {
+void CurlFlowScene::updateEnter() {
 	// called on first enter update
-	if(isEnteringFirst()) {
+	if (isEnteringFirst()) {
 		ofLogNotice("CurlFlowScene") << "update enter";
 	}
 
 	// fade scene calculates normalized alpha value for us
 	ofxFadeScene::updateEnter();
-	
+
 	// finished entering?
-	if(!isEntering()) {
+	if (!isEntering()) {
 		ofLogNotice("CurlFlowScene") << "update enter done";
 	}
 }
 
 // normal update
-void CurlFlowScene:: update() {
+void CurlFlowScene::update() {
 	guiFPS = (int)(ofGetFrameRate() + 0.5);
 	// Sync all variables with GUI
 	discCount = guiDiscCount;
@@ -178,51 +180,48 @@ void CurlFlowScene:: update() {
 	particle_size = guiParticleSize;
 	rainbow = guiRainbow;
 	baseColor = guiBaseColor;
-	
+
 	move();
-	
+
 	// Update velocities using curl noise
 	for (int i = 0; i < discs.size(); i++) {
 		ofVec2f curl = computeCurl(discs[i].pos.x / step, discs[i].pos.y / step);
 		discs[i].vel = curl;
 		if (flow) {
-			discs[i].vel.x += xVol ;
-			discs[i].vel.y += yVol ;
+			discs[i].vel.x += xVol;
+			discs[i].vel.y += yVol;
 		}
 	}
-	
-	
-	
 }
 
 // called when scene is exiting, this is just a demo and this
 // implementation is not required for this class
-void CurlFlowScene:: updateExit() {
-	
+void CurlFlowScene::updateExit() {
+
 	// called on first exit update
-	if(isExitingFirst()) {
+	if (isExitingFirst()) {
 		ofLogNotice("CurlFlowScene") << "update exit";
 	}
-	
+
 	// fade scene calculates normalized alpha value for us
 	ofxFadeScene::updateExit();
-	
+
 	// finished exiting?
-	if(!isExiting()) {
+	if (!isExiting()) {
 		ofLogNotice("CurlFlowScene") << "update exit done";
 	}
 }
 
 // draw
-void CurlFlowScene:: draw() {
+void CurlFlowScene::draw() {
 	ofEnableAlphaBlending();
 	ofPushStyle();
-	
+
 	rgbaFboFloat.begin();
 	ofFill();
 	ofSetColor(0, 0, 0, fade * 255);
-	ofDrawRectangle(0,0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
-	
+	ofDrawRectangle(0, 0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
+
 	// Draw discs
 	for (int i = 0; i < discs.size(); i++) {
 		if (rainbow) {
@@ -233,10 +232,10 @@ void CurlFlowScene:: draw() {
 		ofDrawCircle(discs[i].pos, particle_size);
 	}
 	rgbaFboFloat.end();
-	
-	ofSetColor(255, 255, 255, 255*alpha);
+
+	ofSetColor(255, 255, 255, 255 * alpha);
 	rgbaFboFloat.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-	
+
 	// Draw GUI
 	if (toggleGuiDraw) {
 		gui.draw();
@@ -245,23 +244,19 @@ void CurlFlowScene:: draw() {
 }
 
 // cleanup
-void CurlFlowScene:: exit() {
-	
+void CurlFlowScene::exit() {
 }
-
-
 
 //--------------------------------------------------------------
 void CurlFlowScene::move() {
 	int w = ofGetWidth();
 	int h = ofGetHeight();
 	for (int i = 0; i < discs.size(); i++) {
-		Disc& d = discs[i];
+		Disc & d = discs[i];
 		// Boundary logic
-		if (d.pos.x < d.radius || d.pos.x > w - d.radius ||
-			d.pos.y < d.radius || d.pos.y > h - d.radius) {
+		if (d.pos.x < d.radius || d.pos.x > w - d.radius || d.pos.y < d.radius || d.pos.y > h - d.radius) {
 			if (flow) {
-				
+
 				if ((abs(xVol) > abs(yVol)) && (d.pos.x < d.radius || d.pos.x > w - d.radius)) {
 					d.pos.x = d.radius;
 					d.pos.y = ofRandom(h);
@@ -280,7 +275,7 @@ void CurlFlowScene::move() {
 
 //--------------------------------------------------------------
 ofVec2f CurlFlowScene::computeCurl(float x, float y) {
-	float eps = noiseScale/MAX_NOISE_SCALE;
+	float eps = noiseScale / MAX_NOISE_SCALE;
 	// dNoise/dy
 	float n1 = ofNoise(x, y + eps);
 	float n2 = ofNoise(x, y - eps);
@@ -300,7 +295,7 @@ void CurlFlowScene::reset() {
 	particle_size = 0.5f;
 	rainbow = false;
 	fade = 0.05f;
-	
+
 	clearBackground();
 }
 
@@ -309,8 +304,8 @@ void CurlFlowScene::clearBackground() {
 	rgbaFboFloat.begin();
 	ofFill();
 	ofSetColor(0, 0, 0, 255);
-	ofDrawRectangle(0,0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
-	
+	ofDrawRectangle(0, 0, rgbaFboFloat.getWidth(), rgbaFboFloat.getHeight());
+
 	rgbaFboFloat.end();
 }
 
@@ -326,3 +321,17 @@ void CurlFlowScene::randomize() {
 	guiBaseColor = ofColor(red[c], grn[c], blu[c]);
 	guiFade = (particle_size >= 2) ? ofRandom(0.1f) : ofRandom(0.01f);
 }
+
+void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
+	// TODO: Handle actor scene event (enter, move, leave)
+	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->key;
+}
+
+void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofAddListener(managerPtr->sceneActorEvent, this, &CurlFlowScene::onActorSceneEvent);
+}
+
+void CurlFlowScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
+	ofRemoveListener(managerPtr->sceneActorEvent, this, &CurlFlowScene::onActorSceneEvent);
+}
+
