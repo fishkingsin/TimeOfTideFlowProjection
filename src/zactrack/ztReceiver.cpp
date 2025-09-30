@@ -117,6 +117,7 @@ void ztReceiver::update(){
 //--------------------------------------------------------------
 void ztReceiver::draw(){
 	if(toggleGuiDraw) {
+		ofPushStyle();
 		ofSetColor(255);
 		// draw recent unrecognized messages
 		for(int i = 0; i < NUM_MSG_STRINGS; i++){
@@ -132,6 +133,7 @@ void ztReceiver::draw(){
 			
 			ofDrawCircle(points[i].x, points[i].y, 10);
 		}
+		ofPopStyle();
 	}
 	if (toggleGuiDraw) {
 		receiverPanel.draw();

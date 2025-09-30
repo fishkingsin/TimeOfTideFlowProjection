@@ -80,7 +80,7 @@ void FlowToolsScene::setupGui() {
 	gui.add(guiMinFPS.set("minimum FPS", 0, 0, 60));
 	//	gui.add(toggleFullScreen.set("fullscreen (F)", false));
 	toggleFullScreen.addListener(this, &FlowToolsScene::toggleFullScreenListener);
-	gui.add(toggleGuiDraw.set("show gui (G)", true));
+	gui.add(toggleGuiDraw.set("show gui (G)", false));
 	gui.add(useCamera.set("useCamera", true));
 	gui.add(useShader.set("useShader", true));
 	gui.add(toggleCameraDraw.set("draw camera (C)", true));
@@ -120,7 +120,6 @@ void FlowToolsScene::setupGui() {
 	//	gui.minimizeAll();
 	minimizeGui(&gui);
 	
-	toggleGuiDraw = true;
 }
 
 //--------------------------------------------------------------
@@ -169,8 +168,9 @@ void FlowToolsScene::updateEnter() {
 
 // normal update
 void FlowToolsScene::update() {
+	ofPushStyle();
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
-	
+	ofSetColor(255);
 	simpleCam.update();
 	if (simpleCam.isFrameNew()) {
 		cameraFbo.begin();
@@ -229,6 +229,7 @@ void FlowToolsScene::update() {
 		particleFlow.setObstacle(fluidFlow.getObstacle());
 		particleFlow.update(dt);
 	}
+	ofPopStyle();
 }
 
 // called when scene is exiting, this is just a demo and this
@@ -252,12 +253,12 @@ void FlowToolsScene::updateExit() {
 
 // draw
 void FlowToolsScene::draw() {
-	
+	ofPushStyle();
+	ofSetColor(255);
 	if (toggleCameraDraw.get()) {
 		//		ofEnableBlendMode(OF_BLENDMODE_DISABLED);
 		cameraFbo.draw(0, 0, windowWidth, windowHeight);
 	}
-	
 	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 	switch (visualizationMode.get()) {
 		case INPUT_FOR_DEN:
@@ -321,9 +322,12 @@ void FlowToolsScene::draw() {
 		densityActorFlow.draw(0, 0, windowWidth, windowHeight);
 		velocityActorFlow.draw(0, 0, windowWidth, windowHeight);
 	}
+	ofPopStyle();
+	
+	ofPushStyle();
 	ofEnableAlphaBlending();
 	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
-	ofPushStyle();
+	
 	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 	//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
 	ofPopStyle();
@@ -332,7 +336,7 @@ void FlowToolsScene::draw() {
 	//	flowToolsLogo.draw(0, 0, windowWidth, windowHeight);
 	
 	if (toggleGuiDraw) {
-		ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+		
 		drawGui();
 	}
 }
@@ -393,20 +397,20 @@ void FlowToolsScene::toggleResetListener(bool & _value) {
 }
 
 void FlowToolsScene::obsbstacleFileNameListener(string & _value) {
-flowToolsLogo.load(_value);
-fluidFlow.reset();
-particleFlow.reset();
-fluidFlow.addObstacle(flowToolsLogo.getTexture());
-particleFlow.addObstacle(flowToolsLogo.getTexture());
+	flowToolsLogo.load(_value);
+	fluidFlow.reset();
+	particleFlow.reset();
+	fluidFlow.addObstacle(flowToolsLogo.getTexture());
+	particleFlow.addObstacle(flowToolsLogo.getTexture());
 }
 
 void FlowToolsScene::onCueConfigEvent(CueEventArgs & args) {
-    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 2) return;
-    // Apply parameters to GUI controls
-    for (const auto& kv : args.parameters) {
-        if (kv.first == "param0") visualizationScale = kv.second;
-        if (kv.first == "param1") guiFPS = static_cast<int>(kv.second);
-        // Extend mapping as needed
-    }
-    ofLogNotice() << "[FlowToolsScene] Config updated from cue";
+	if (args.cueType != CueType::ConfigUpdate || args.sceneId != 2) return;
+	// Apply parameters to GUI controls
+	for (const auto& kv : args.parameters) {
+		if (kv.first == "param0") visualizationScale = kv.second;
+		if (kv.first == "param1") guiFPS = static_cast<int>(kv.second);
+		// Extend mapping as needed
+	}
+	ofLogNotice() << "[FlowToolsScene] Config updated from cue";
 }

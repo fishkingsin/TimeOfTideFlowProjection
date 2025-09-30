@@ -142,6 +142,6 @@
 		<min_Y>-6291.85</min_Y>
 		<max_X>7687.74</max_X>
 		<max_Y>7687.74</max_Y>
-		<toggleGuiDraw>1</toggleGuiDraw>
+		<toggleGuiDraw>0</toggleGuiDraw>
 	</zactrack_receiver>
 </zactrack_receiver>
