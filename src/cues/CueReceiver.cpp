@@ -5,7 +5,7 @@
 //  Created by James Kong on 22/9/2025.
 //
 
-#include "CueReceiver.hpp"
+#include "CueReceiver.h"
 
 
 #define ADDRESS_PREFIX "/cue/scene"
@@ -34,20 +34,41 @@ void CueReceiver::update(){
 		receiver.getNextMessage(m);
 		bool hasMessage = false;
 		for (int i = 0 ; i < MAX_TRACKER; i++) {
-			int index = i + 1; // offset from zt start from 1
-			string key = ADDRESS_PREFIX + ofToString(i + 1);
-			if (m.getAddress().starts_with(key)) {
-				
+			int sceneId = i + 1;
+			std::string sceneChangeAddr = "/cue/scene" + ofToString(sceneId) + "/change";
+			std::string configUpdateAddr = "/cue/scene" + ofToString(sceneId) + "/config";
+			
+			if (m.getAddress() == sceneChangeAddr) {
 				if (debug) {
-					
-					ofLog() << m.getAddress() << " args 1 " << m.getArgAsInt(0)
-					<< " args 2 " << m.getArgAsInt(1)
-					<< " args 3 " << m.getArgAsInt(2);
+					ofLog() << "[CueReceiver] Scene Change: " << m.getAddress();
 				}
-				
 				hasMessage = true;
 				CueEventArgs args;
+				args.cueType = CueType::SceneChange;
+				args.sceneId = sceneId;
 				ofNotifyEvent(cueEvent, args);
+				break;
+			}
+			else if (m.getAddress() == configUpdateAddr) {
+				if (debug) {
+					ofLog() << "[CueReceiver] Config Update: " << m.getAddress();
+				}
+				hasMessage = true;
+				CueEventArgs args;
+				args.cueType = CueType::ConfigUpdate;
+				args.sceneId = sceneId;
+				// Extract parameters from OSC arguments
+				for (size_t j = 0; j < m.getNumArgs(); ++j) {
+					std::string paramName = "param" + std::to_string(j);
+					if (m.getArgType(j) == OFXOSC_TYPE_FLOAT) {
+						args.parameters[paramName] = m.getArgAsFloat(j);
+					} else if (m.getArgType(j) == OFXOSC_TYPE_INT32) {
+						args.parameters[paramName] = static_cast<float>(m.getArgAsInt32(j));
+					}
+					// Extend as needed for named parameters
+				}
+				ofNotifyEvent(cueEvent, args);
+				break;
 			}
 		}
 		

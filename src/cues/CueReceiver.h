@@ -1,5 +1,5 @@
 //
-//  CueReceiver.hpp
+//  CueReceiver.h
 //  TimeOfTideFlowProjection
 //
 //  Created by James Kong on 22/9/2025.

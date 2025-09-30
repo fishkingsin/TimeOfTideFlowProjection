@@ -149,5 +149,16 @@ void SinglePassFlowFieldScene::addActorSceneEventListener(std::shared_ptr<ActorM
 }
 
 void SinglePassFlowFieldScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
-	ofRemoveListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
+ofRemoveListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
+}
+
+void SinglePassFlowFieldScene::onCueConfigEvent(CueEventArgs & args) {
+    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 3) return;
+    // Example: apply param0 to frame count, param1 to densityWidth
+    for (const auto& kv : args.parameters) {
+        if (kv.first == "param0") frame = static_cast<int>(kv.second);
+        if (kv.first == "param1") densityWidth = static_cast<int>(kv.second);
+        // Extend mapping as needed
+    }
+    ofLogNotice() << "[SinglePassFlowFieldScene] Config updated from cue";
 }

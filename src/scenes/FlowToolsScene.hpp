@@ -13,6 +13,7 @@
 #include "ztReceiver.hpp"
 #include "ActorManager.hpp"
 #include "ofxShadertoy.h"
+#include "CueEventArgs.h"
 using namespace flowTools;
 
 enum visualizationTypes{ INPUT_FOR_DEN = 0, INPUT_FOR_VEL, FLOW_VEL, BRIDGE_VEL, BRIDGE_DEN, BRIDGE_TMP, BRIDGE_PRS, OBSTACLE, OBST_EDGE, FLUID_BUOY, FLUID_VORT, FLUID_DIVE, FLUID_TMP, FLUID_PRS, FLUID_VEL, FLUID_DEN };
@@ -22,7 +23,8 @@ const vector<string> visualizationNames({"input for density", "input for velocit
 class FlowToolsScene : public ofxFadeScene {
 	
 public:
-    
+	
+	void onCueConfigEvent(CueEventArgs & args);
 	
 	// set the scene name through the base class initializer
 	FlowToolsScene():ofxFadeScene("FlowTools") {} ;
@@ -38,7 +40,7 @@ public:
 	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	
 	int		densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
-
+	
 	
 	vector< ftFlow* >		flows;
 	ftOpticalFlow			opticalFlow;

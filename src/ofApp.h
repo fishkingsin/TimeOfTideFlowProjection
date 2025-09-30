@@ -12,7 +12,8 @@
 	#include "ofxTransformPanel.h"
 #endif
 #include "ActorManager.hpp"
-
+#include "CueReceiver.h"
+#include "CueEventArgs.h"
 class FlowToolsScene;
 
 class ofApp : public ofxApp {
@@ -22,6 +23,7 @@ public:
 	void update();
 	void draw();
 	void keyPressed(int key);
+	void onCueEvent(CueEventArgs & args);
 
 	FlowToolsScene * flowToolsScene = nullptr;
 	CurlFlowScene * curlFlowScene = nullptr;
@@ -32,7 +34,8 @@ public:
 	ofxTransformer transformer;
 
 	// Global actor event system
-	ztReceiver receiver;
+	ztReceiver actorReceiver;
+	CueReceiver cueReceiver;
 	ActorManager actorManager;
 
 #ifdef HAVE_OFX_GUI

@@ -1043,3 +1043,4 @@ dkms.conf
 # Raspberry Pi Pico disassembler file
 *.dis
 bin/TimeOfTideFlowProjectionDebug.app
+.claude/*

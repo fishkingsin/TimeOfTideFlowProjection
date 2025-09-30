@@ -311,20 +311,33 @@ void CurlFlowScene::clearBackground() {
 
 //--------------------------------------------------------------
 void CurlFlowScene::randomize() {
-	// Randomize noise field by reseeding (ofNoise is deterministic, so skip)
-	clearBackground();
-	guiSpeed = 0.1f + ofRandom(0.9f);
-	guiStep = ofRandom(10, 3000);
-	guiParticleSize = 0.1f + ofRandom(4.9f);
-	guiRainbow = false;
-	int c = int(ofRandom(discCount));
-	guiBaseColor = ofColor(red[c], grn[c], blu[c]);
-	guiFade = (particle_size >= 2) ? ofRandom(0.1f) : ofRandom(0.01f);
+// Randomize noise field by reseeding (ofNoise is deterministic, so skip)
+clearBackground();
+guiSpeed = 0.1f + ofRandom(0.9f);
+guiStep = ofRandom(10, 3000);
+guiParticleSize = 0.1f + ofRandom(4.9f);
+guiRainbow = false;
+int c = int(ofRandom(discCount));
+guiBaseColor = ofColor(red[c], grn[c], blu[c]);
+guiFade = (particle_size >= 2) ? ofRandom(0.1f) : ofRandom(0.01f);
+}
+
+void CurlFlowScene::onCueConfigEvent(CueEventArgs & args) {
+    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 1) return;
+    // Apply parameters to GUI controls
+    for (const auto& kv : args.parameters) {
+        if (kv.first == "param0") guiSpeed = kv.second;
+        if (kv.first == "param1") guiFade = kv.second;
+        if (kv.first == "param2") guiStep = kv.second;
+        if (kv.first == "param3") guiParticleSize = kv.second;
+        // Extend mapping as needed
+    }
+    ofLogNotice() << "[CurlFlowScene] Config updated from cue";
 }
 
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-	// TODO: Handle actor scene event (enter, move, leave)
-	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+// TODO: Handle actor scene event (enter, move, leave)
+ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 }
 
 void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
@@ -334,4 +347,3 @@ void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & m
 void CurlFlowScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
 	ofRemoveListener(managerPtr->sceneActorEvent, this, &CurlFlowScene::onActorSceneEvent);
 }
-

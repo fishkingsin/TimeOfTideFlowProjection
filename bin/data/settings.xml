@@ -138,9 +138,10 @@
 		<port>7777</port>
 		<Invert_X>0</Invert_X>
 		<Invert_Y>0</Invert_Y>
-		<min_X>-4183.67</min_X>
-		<min_Y>-4183.67</min_Y>
-		<max_X>4693.88</max_X>
-		<max_Y>4183.67</max_Y>
+		<min_X>-5781.65</min_X>
+		<min_Y>-6291.85</min_Y>
+		<max_X>7687.74</max_X>
+		<max_Y>7687.74</max_Y>
+		<toggleGuiDraw>1</toggleGuiDraw>
 	</zactrack_receiver>
 </zactrack_receiver>

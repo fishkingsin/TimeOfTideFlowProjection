@@ -10,12 +10,15 @@
 #include "ofxGui.h"
 #include "ofxAutoReloadedShader.h"
 #include "ActorManager.hpp"
+#include "CueEventArgs.h"
 class SinglePassFlowFieldScene : public ofxFadeScene {
 	
 public:
-	
-	// set the scene name through the base class initializer
-	SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
+
+void onCueConfigEvent(CueEventArgs & args);
+
+// set the scene name through the base class initializer
+SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_);
 	void setup();
 	void updateEnter();

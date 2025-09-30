@@ -393,9 +393,20 @@ void FlowToolsScene::toggleResetListener(bool & _value) {
 }
 
 void FlowToolsScene::obsbstacleFileNameListener(string & _value) {
-	flowToolsLogo.load(_value);
-	fluidFlow.reset();
-	particleFlow.reset();
-	fluidFlow.addObstacle(flowToolsLogo.getTexture());
-	particleFlow.addObstacle(flowToolsLogo.getTexture());
+flowToolsLogo.load(_value);
+fluidFlow.reset();
+particleFlow.reset();
+fluidFlow.addObstacle(flowToolsLogo.getTexture());
+particleFlow.addObstacle(flowToolsLogo.getTexture());
+}
+
+void FlowToolsScene::onCueConfigEvent(CueEventArgs & args) {
+    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 2) return;
+    // Apply parameters to GUI controls
+    for (const auto& kv : args.parameters) {
+        if (kv.first == "param0") visualizationScale = kv.second;
+        if (kv.first == "param1") guiFPS = static_cast<int>(kv.second);
+        // Extend mapping as needed
+    }
+    ofLogNotice() << "[FlowToolsScene] Config updated from cue";
 }

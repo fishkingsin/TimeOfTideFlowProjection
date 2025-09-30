@@ -8,12 +8,14 @@
 #include "ofxAppUtils.h"
 #include "ofxGui.h"
 #include "ActorManager.hpp"
+#include "CueEventArgs.h"
 class CurlFlowScene : public ofxFadeScene {
-
+	
 public:
 	// set the scene name through the base class initializer
 	CurlFlowScene(std::shared_ptr<ActorManager> _actorManager);
 	CurlFlowScene():ofxFadeScene("CurlFlow") {};
+	void onCueConfigEvent(CueEventArgs & args);
 	void setup();
 	void updateEnter();
 	void update();
@@ -23,7 +25,7 @@ public:
 	void onActorSceneEvent(ActorSceneEventArgs & args);
 	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
-
+	
 	// --- Curl Noise Port Members ---
 	struct Disc {
 		ofVec2f pos;
@@ -31,19 +33,19 @@ public:
 		float radius;
 		ofColor color;
 	};
-
+	
 	std::vector<Disc> discs;
 	std::vector<int> red, grn, blu;
-
+	
 	std::shared_ptr<ActorManager> actorManager;
-
+	
 	int discCount;
 	bool flow;
-
+	
 	// Color generation parameters
 	float center, width, frequency1, frequency2, frequency3;
 	float phase1, phase2, phase3;
-
+	
 	// Variables for controls
 	float speed;
 	float fade;
@@ -51,7 +53,7 @@ public:
 	float particle_size;
 	bool rainbow;
 	ofColor baseColor;
-
+	
 	// GUI
 	ofxPanel gui;
 	ofParameter<bool> toggleGuiDraw;
@@ -65,14 +67,14 @@ public:
 	ofParameter<float> guiSpeed, guiFade, guiStep, guiParticleSize, xVol, yVol;
 	ofParameter<bool> guiRainbow;
 	ofParameter<ofColor> guiBaseColor;
-
+	
 	// Utility
 	void move();
 	ofVec2f computeCurl(float x, float y);
 	void reset();
 	void clearBackground();
 	void randomize();
-
+	
 	//32 bits red, 32 bits green, 32 bits blue, from 0 to 1 in 'infinite' steps
 	ofFbo rgbaFboFloat; // with alpha
 };
