@@ -249,8 +249,8 @@ void CurlFlowScene::exit() {
 
 //--------------------------------------------------------------
 void CurlFlowScene::move() {
-	int w = ofGetWidth();
-	int h = ofGetHeight();
+	int w = ofGetWindowWidth();
+	int h = ofGetWindowHeight();
 	for (int i = 0; i < discs.size(); i++) {
 		Disc & d = discs[i];
 		// Boundary logic

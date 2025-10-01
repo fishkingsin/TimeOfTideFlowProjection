@@ -19,6 +19,8 @@ void ofApp::onCueEvent(CueEventArgs & args) {
 }
 
 void ofApp::setup() {
+	ofEnableArbTex();
+	ofEnableAntiAliasing();
 	cueReceiver.setup();
 	actorReceiver.setup();
 	ofAddListener(cueReceiver.cueEvent, this, &ofApp::onCueEvent);
@@ -51,10 +53,10 @@ void ofApp::setup() {
 	
 	std::shared_ptr<ActorManager> actorManagerPtr = std::make_shared<ActorManager>(actorManager);
 	
-	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
+	
 	
 	flowToolsScene = static_cast<FlowToolsScene*>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
-	
+	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
 	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
 	ofAddListener(cueReceiver.cueEvent, curlFlowScene, &CurlFlowScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, flowToolsScene, &FlowToolsScene::onCueConfigEvent);

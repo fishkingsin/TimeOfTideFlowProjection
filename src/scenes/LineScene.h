@@ -84,7 +84,7 @@ class LineScene : public ofxFadeScene {
 			
 			ofEnableAlphaBlending();
 			ofSetColor(0, 0, 0, 255 * (1.0f - alpha));	// alpha member variable for fade in/out
-			ofRectangle(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
+			ofRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 			ofDisableAlphaBlending();
 		}
 		

@@ -24,8 +24,8 @@ FlowToolsScene::FlowToolsScene(std::shared_ptr<ActorManager> & actorManager_)
 void FlowToolsScene::setup() {
 	shadertoy.load("shaders/bufferA.frag");
 	shadertoy.setAdvanceTime(true);
-	densityWidth = ofGetWidth();
-	densityHeight = ofGetHeight();
+	densityWidth = 1280;
+	densityHeight = 720;
 	// process all but the density on 16th resolution
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;
@@ -62,7 +62,7 @@ void FlowToolsScene::setup() {
 	particleFlow.addObstacle(flowToolsLogo.getTexture());
 	
 	simpleCam.setup(densityWidth, densityHeight, true);
-	cameraFbo.allocate(densityWidth, densityHeight);
+	cameraFbo.allocate(densityWidth, densityHeight, GL_RGBA);
 	ftUtil::zero(cameraFbo);
 	
 	lastTime = ofGetElapsedTimef();
@@ -185,7 +185,7 @@ void FlowToolsScene::update() {
 				ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 				shadertoy.end();
 			}
-			ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
+			ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 100 * densityActorFlow.getRadius());
 			ofDisableAlphaBlending();
 		}
 		cameraFbo.end();
@@ -328,7 +328,7 @@ void FlowToolsScene::draw() {
 	ofEnableAlphaBlending();
 	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
 	
-	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 	//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
 	ofPopStyle();
 	ofDisableAlphaBlending();

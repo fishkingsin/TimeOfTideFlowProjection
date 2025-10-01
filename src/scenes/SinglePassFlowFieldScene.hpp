@@ -42,6 +42,8 @@ SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	ofxAutoReloadedShader shaderDraw;
 	ofFbo fboBufferA; // with alpha
 	ofFbo fboImage; // with alpha
+	ofxPanel gui;
 	ofParameter<bool> toggleGuiDraw;
+	ofParameter<int> guiFPS;
 	std::shared_ptr<ActorManager> actorManager;
 };
