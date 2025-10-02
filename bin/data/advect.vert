@@ -3,7 +3,7 @@
 in vec2 Position;
 out vec2 vPosition;
 
-uniform sampler2D Sampler;
+uniform sampler2DRect Sampler;
 uniform float Time;
 const float UINT_MAX = 4294967295.0;
 

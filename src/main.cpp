@@ -3,7 +3,7 @@
 #include "testApp.h"
 
 #define USE_PROGRAMMABLE_GL
-#define DEBUG 0
+#define DEBUG 1
 //========================================================================
 int main() {
 

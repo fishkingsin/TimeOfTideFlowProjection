@@ -18,7 +18,8 @@ void Actor::setup(){
 //--------------------------------------------------------------
 void Actor::setPosition(ofPoint point) {
 	lastTime = ofGetElapsedTimef();
-	position = point;
+	mps = !mps;
+	position[mps] = point;
 	alive = true;
 }
 void Actor::update() {
@@ -39,7 +40,7 @@ void Actor::draw(float radius) {
 	if (!alive) {
 		return;
 	}
-	ofPoint point = position;
+	ofPoint point = position[mps];
 	ofDrawCircle(point.x, point.y, radius);
 
 	

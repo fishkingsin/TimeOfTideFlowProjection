@@ -26,6 +26,9 @@ void ActorManager::setup(){
 
 //--------------------------------------------------------------
 void ActorManager::update() {
+	for (auto actor = actors.begin(); actor != actors.end(); ++actor) {
+		actor->second->update();
+	}
 }
 
 

@@ -57,7 +57,7 @@ void ofApp::setup() {
 	
 	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
 	flowToolsScene = static_cast<FlowToolsScene*>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
-//	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
+	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
 	ofAddListener(cueReceiver.cueEvent, curlFlowScene, &CurlFlowScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, flowToolsScene, &FlowToolsScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, singlePassFlowFieldScene, &SinglePassFlowFieldScene::onCueConfigEvent);
@@ -67,7 +67,7 @@ void ofApp::setup() {
 	
 	// start with a specific scene
 	// set now to true in order to ignore the scene fade and change now
-	sceneManager.gotoScene("CurlFlow", true);
+	sceneManager.gotoScene("GPUCurlFlow", true);
 	lastScene = sceneManager.getCurrentSceneIndex();
 	
 	// overlap scenes when transitioning

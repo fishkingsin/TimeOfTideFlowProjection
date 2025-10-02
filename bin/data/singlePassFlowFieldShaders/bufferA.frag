@@ -4,7 +4,7 @@ uniform float     iTime;                 // shader playback time (in seconds)
 uniform float     iTimeDelta;            // render time (in seconds)
 uniform float     iFrameRate;            // shader frame rate
 uniform int       iFrame;                // shader playback frame
-uniform sampler2D iChannel0;
+uniform sampler2DRect iChannel0;
 uniform vec4 iMouse;
 out vec4 oFragColor;
 // Feel free to modify the number of iterations in the FBM function.
@@ -92,7 +92,7 @@ vec2 sc(vec2 pos) {
 			// which is stored in the .xy component of the buffer to get a velocity vector
 			// relative to the sampled point, then checks whether that vector points to the
 			// center of the current pixel or not.
-			vec2 res = texture(iChannel0, (pos + vec2(i,j)) * invRes).xy;
+			vec2 res = texture(iChannel0, pos + vec2(i,j)).xy;
 			if(all(lessThan(abs(res - pos), vec2(0.5)))) return res;
 		}
 	}
@@ -133,7 +133,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	frmAdj = min(1.0, 144.0 * iTimeDelta);
 	tm = iTime * tScale;
 	invRes = 1.0 / iResolution.xy;
-	vec2 uv = fragCoord * invRes;
+	vec2 uv = fragCoord;
 	
 	// Tracer state is calculated here. Decay by a small amount every frame
 	// until it reaches zero.

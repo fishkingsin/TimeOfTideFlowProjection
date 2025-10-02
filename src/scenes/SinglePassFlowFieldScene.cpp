@@ -19,7 +19,6 @@ SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager>
 
 // scene setup
 void SinglePassFlowFieldScene:: setup() {
-	ofDisableArbTex();
 	ofEnableAlphaBlending();
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	
