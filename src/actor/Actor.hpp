@@ -15,12 +15,14 @@ public:
 	void setup();
 	void setPosition(ofPoint point);
 	void update();
-	void draw();
-	ofPoint position;
+	void draw(float radius);
+	ofPoint position[2];
+	bool mps;
 	string id;
 	float idleTime;
 	float lastTime;
 	bool alive;
 	ofEvent<Actor> actorIdel;
+	
 };
 

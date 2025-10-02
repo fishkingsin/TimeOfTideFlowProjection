@@ -39,8 +39,9 @@ void FlowToolsScene::setup() {
 	fluidFlow.setup(simulationWidth, simulationHeight, densityWidth, densityHeight);
 	particleFlow.setup(simulationWidth, simulationHeight, densityWidth, densityHeight);
 	densityActorFlow.setup(densityWidth, densityHeight, FT_DENSITY);
+	densityActorFlow.setActorManager(actorManager);
 	velocityActorFlow.setup(simulationWidth, simulationHeight, FT_VELOCITY);
-	
+	densityActorFlow.setActorManager(actorManager);
 	flows.push_back(&opticalFlow);
 	flows.push_back(&velocityBridgeFlow);
 	flows.push_back(&densityBridgeFlow);
@@ -61,7 +62,7 @@ void FlowToolsScene::setup() {
 	fluidFlow.addObstacle(flowToolsLogo.getTexture());
 	particleFlow.addObstacle(flowToolsLogo.getTexture());
 	
-	simpleCam.setup(densityWidth, densityHeight, true);
+	//simpleCam.setup(densityWidth, densityHeight, true);
 	cameraFbo.allocate(densityWidth, densityHeight);
 	ftUtil::zero(cameraFbo);
 	
@@ -171,27 +172,37 @@ void FlowToolsScene::update() {
 	ofPushStyle();
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 	ofSetColor(255);
-	simpleCam.update();
-	if (simpleCam.isFrameNew()) {
+	//	simpleCam.update();
+	
+	
+	if (useCamera) {
 		cameraFbo.begin();
-		if (useCamera) {
+		if (simpleCam.isFrameNew()) {
 			simpleCam.draw(cameraFbo.getWidth(), 0, -cameraFbo.getWidth(), cameraFbo.getHeight()); // draw flipped
-		} else {
-			ofEnableAlphaBlending();
-			ofClear(0, 0, 0, 10);
-			if (useShader) {
-				shadertoy.setDimensions(ofGetWindowWidth(), ofGetWindowHeight());
-				shadertoy.begin();
-				ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-				shadertoy.end();
-			}
-			ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
-			ofDisableAlphaBlending();
 		}
 		cameraFbo.end();
 		
 		opticalFlow.setInput(cameraFbo.getTexture());
+	} else {
+		cameraFbo.begin();
+		ofEnableAlphaBlending();
+		ofClear(0, 0, 0, 10);
+		if (useShader) {
+			shadertoy.setDimensions(ofGetWindowWidth(), ofGetWindowHeight());
+			shadertoy.begin();
+			ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+			shadertoy.end();
+		}
+		
+		ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
+		
+		ofDisableAlphaBlending();
+		cameraFbo.end();
+		
+		opticalFlow.setInput(cameraFbo.getTexture());
 	}
+	
+	
 	
 	for (auto flow : actorFlows) {
 		flow->update(dt);

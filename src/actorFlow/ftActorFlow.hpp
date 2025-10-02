@@ -10,6 +10,8 @@
 #include "ftUtil.h"
 #include "ftFlow.h"
 #include "ftActorShader.h"
+#include "Actor.hpp"
+#include "ActorManager.hpp"
 
 namespace flowTools {
 	
@@ -39,6 +41,8 @@ namespace flowTools {
 		void setSpeed(float _value)				{ pSpeed.set(_value); }
 		
 		void setName(string _name)				{ parameters.setName(_name); }
+		void setActorManager(shared_ptr<ActorManager> actorManagerPtr);
+		shared_ptr<ActorManager> actorManager;
 		
 	protected:
 		ofParameter<bool>		pPersistent;
@@ -74,5 +78,7 @@ namespace flowTools {
 		glm::vec4	loadValue(ftFlowForceType _type);
 		
 	};
+
+	
 }
 

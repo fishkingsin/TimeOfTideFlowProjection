@@ -36,7 +36,7 @@ public:
 	// Global actor event system
 	ztReceiver actorReceiver;
 	CueReceiver cueReceiver;
-	ActorManager actorManager;
+	shared_ptr<ActorManager> actorManagerPtr;
 
 #ifdef HAVE_OFX_GUI
 	ofxTransformPanel panel;

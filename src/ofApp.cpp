@@ -27,8 +27,10 @@ void ofApp::setup() {
 	// setup for nice jaggy-less rendering
 	ofSetVerticalSync(true);
 	ofBackground(0, 0, 0);
-	
-	ofAddListener(actorReceiver.actorEvent, &actorManager, &ActorManager::onActorEvent);
+	ActorManager actorManager;
+	actorManager.setup();
+	actorManagerPtr = std::make_shared<ActorManager>(actorManager);
+	ofAddListener(actorReceiver.actorEvent, actorManagerPtr.get(), &ActorManager::onActorEvent);
 	
 	// setup the render size (working area)
 	
@@ -49,13 +51,13 @@ void ofApp::setup() {
 	
 	//	sceneManager.add(new GPUCurlFlowScene());
 	
-	std::shared_ptr<ActorManager> actorManagerPtr = std::make_shared<ActorManager>(actorManager);
 	
-	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
 	
-	flowToolsScene = static_cast<FlowToolsScene*>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
+	
 	
 	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
+	flowToolsScene = static_cast<FlowToolsScene*>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
+//	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
 	ofAddListener(cueReceiver.cueEvent, curlFlowScene, &CurlFlowScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, flowToolsScene, &FlowToolsScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, singlePassFlowFieldScene, &SinglePassFlowFieldScene::onCueConfigEvent);
@@ -94,6 +96,8 @@ void ofApp::update() {
 	}
 #endif
 	actorReceiver.update();
+	actorManagerPtr->update();
+	cueReceiver.update();
 }
 
 //--------------------------------------------------------------
@@ -135,6 +139,8 @@ void ofApp::draw() {
 	
 #ifdef HAVE_OFX_GUI
 	actorReceiver.draw();
+	
+//	actorManager.draw(10);
 #endif
 	// the warp editor is drawn automatically after this function
 }
@@ -181,7 +187,7 @@ void ofApp::keyPressed(int key) {
 			flowToolsScene->toggleGuiDraw = !flowToolsScene->toggleGuiDraw;
 			break;
 		case 'F':
-			flowToolsScene->toggleFullScreen.set(!flowToolsScene->toggleFullScreen.get());
+			ofToggleFullscreen();
 			break;
 		case 'C':
 			flowToolsScene->toggleCameraDraw.set(!flowToolsScene->toggleCameraDraw.get());

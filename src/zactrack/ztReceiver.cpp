@@ -7,7 +7,7 @@
 
 #include "ztReceiver.hpp"
 
-#define ADDRESS_PREFIX "/position "
+#define ADDRESS_PREFIX "/zactrack"
 //--------------------------------------------------------------
 void ztReceiver::setup(){
 	// listen on the given port

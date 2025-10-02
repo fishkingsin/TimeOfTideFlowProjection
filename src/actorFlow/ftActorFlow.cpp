@@ -148,6 +148,10 @@ namespace flowTools {
 		bMouseDragged = false;
 		bFlowChanged = false;
 	}
+
+	void ftActorFlow::setActorManager(shared_ptr<ActorManager> actorManagerPtr) {
+		actorManager = actorManagerPtr;
+	}
 	
 }
 

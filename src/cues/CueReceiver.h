@@ -17,7 +17,7 @@
 #include "ofxGui.h"
 #include "CueEventArgs.h"
 // listening port
-#define PORT 7778
+#define PORT_2 7778
 
 // max 50 tracker in zone
 #define MAX_TRACKER 50 // default value

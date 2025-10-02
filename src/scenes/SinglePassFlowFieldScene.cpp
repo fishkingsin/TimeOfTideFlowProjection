@@ -38,8 +38,8 @@ void SinglePassFlowFieldScene:: setup() {
 	windowWidth = ofGetWindowWidth();
 	windowHeight = ofGetWindowHeight();
 	
-	fboBufferA.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
-	fboImage.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
+	fboBufferA.allocate(densityWidth, densityHeight, GL_RGBA);
+	fboImage.allocate(densityWidth, densityHeight, GL_RGBA);
 }
 
 // called when scene is entering, this is just a demo and this

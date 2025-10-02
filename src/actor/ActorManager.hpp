@@ -19,11 +19,11 @@ public:
 	
 	void setup();
 	void update();
-	void draw();
+	void draw(float radius);
 	void onActorEvent(ztActorEventArgs &args);
 	void onActorIdel(Actor & actor);
-	void notifySceneActorEvent(ActorSceneEventType eventType, Actor& actor, const ztActorEventArgs* args = nullptr);
+	void notifySceneActorEvent(ActorSceneEventType eventType, shared_ptr<Actor> actor, const ztActorEventArgs* args = nullptr);
 	ofEvent<ActorSceneEventArgs> sceneActorEvent;
-	std::unordered_map<string, Actor> actors;
-	
+	std::unordered_map<string, std::shared_ptr<Actor>> actors;
+	ofParameter<bool> debug;
 };

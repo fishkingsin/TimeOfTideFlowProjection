@@ -28,10 +28,10 @@ inline std::ostream& operator<<(std::ostream& os, ActorSceneEventType type) {
 
 struct ActorSceneEventArgs {
     ActorSceneEventType eventType;
-    Actor* actor;
+    shared_ptr<Actor> actor;
     ztActorEventArgs actorEventArgs;
-    ActorSceneEventArgs(ActorSceneEventType type, Actor* a, const ztActorEventArgs& args)
+    ActorSceneEventArgs(ActorSceneEventType type, shared_ptr<Actor> a, const ztActorEventArgs& args)
         : eventType(type), actor(a), actorEventArgs(args) {}
-    ActorSceneEventArgs(ActorSceneEventType type, Actor* a)
+    ActorSceneEventArgs(ActorSceneEventType type, shared_ptr<Actor> a)
         : eventType(type), actor(a), actorEventArgs() {}
 };

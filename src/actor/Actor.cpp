@@ -35,12 +35,12 @@ void Actor::update() {
 }
 
 //--------------------------------------------------------------
-void Actor::draw() {
+void Actor::draw(float radius) {
 	if (!alive) {
 		return;
 	}
 	ofPoint point = position;
-	ofDrawCircle(point.x, point.y, 5);
+	ofDrawCircle(point.x, point.y, radius);
 
 	
 }

@@ -12,7 +12,7 @@
 //--------------------------------------------------------------
 void CueReceiver::setup(){
 	// listen on the given port
-	receiver.setup(PORT);
+	receiver.setup(PORT_2);
 	debug = false;
 }
 
