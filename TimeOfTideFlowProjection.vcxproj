@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|x64">
+			<Configuration>Release</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|ARM64">
+			<Configuration>Debug</Configuration>
+			<Platform>ARM64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|ARM64">
+			<Configuration>Release</Configuration>
+			<Platform>ARM64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|ARM64EC">
+			<Configuration>Debug</Configuration>
+			<Platform>ARM64EC</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|ARM64EC">
+			<Configuration>Release</Configuration>
+			<Platform>ARM64EC</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Condition="'$(Platform)'=='x64' or '$(Platform)'=='ARM64'">
+		<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
+		<WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+		<TargetPlatformVersion>$(WindowsTargetPlatformVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Platform)'=='ARM64EC'">
+		<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '11.0'))</LatestTargetPlatformVersion>
+		<WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+		<TargetPlatformVersion>$(WindowsTargetPlatformVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+		<Keyword>Win32Proj</Keyword>
+		<RootNamespace>TimeOfTideFlowProjection</RootNamespace>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64' or '$(Configuration)|$(Platform)'=='Debug|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64EC'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>v143</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Release|ARM64EC'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<PlatformToolset>v143</PlatformToolset>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Release|ARM64EC'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64' or '$(Configuration)|$(Platform)'=='Debug|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64EC'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64' or '$(Configuration)|$(Platform)'=='Debug|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64EC'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<TargetName>$(ProjectName)_debug</TargetName>
+		<LinkIncremental>true</LinkIncremental>
+		<GenerateManifest>true</GenerateManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Release|ARM64EC'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+		<LinkIncremental>false</LinkIncremental>
+	</PropertyGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64' or '$(Configuration)|$(Platform)'=='Debug|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64EC'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions);OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actor;src\actorFlow;src\cues;src\scenes;src\zactrack;..\..\..\addons\ofxAppUtils\src;..\..\..\addons\ofxAutoReloadedShader\src;..\..\..\addons\ofxFlowTools\src;..\..\..\addons\ofxFlowTools\src\core;..\..\..\addons\ofxFlowTools\src\core\bridge;..\..\..\addons\ofxFlowTools\src\core\bridge\shaders;..\..\..\addons\ofxFlowTools\src\core\fluid;..\..\..\addons\ofxFlowTools\src\core\fluid\shaders;..\..\..\addons\ofxFlowTools\src\core\opticalflow;..\..\..\addons\ofxFlowTools\src\core\shaders;..\..\..\addons\ofxFlowTools\src\core\shaders\blend;..\..\..\addons\ofxFlowTools\src\core\shaders\blur;..\..\..\addons\ofxFlowTools\src\core\shaders\color;..\..\..\addons\ofxFlowTools\src\core\shaders\velocity;..\..\..\addons\ofxFlowTools\src\core\visualization;..\..\..\addons\ofxFlowTools\src\core\visualization\shaders;..\..\..\addons\ofxFlowTools\src\extensions;..\..\..\addons\ofxFlowTools\src\extensions\average;..\..\..\addons\ofxFlowTools\src\extensions\mouse;..\..\..\addons\ofxFlowTools\src\extensions\particles;..\..\..\addons\ofxFlowTools\src\extensions\shaders;..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src;..\..\..\addons\ofxShadertoy\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<ObjectFileName>$(IntDir)\Build\%(RelativeDir)\$(Configuration)\</ObjectFileName>
+			<LanguageStandard>stdcpplatest</LanguageStandard>
+			<AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+		</ClCompile>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Release|ARM64EC'">
+		<ClCompile>
+			<WholeProgramOptimization>false</WholeProgramOptimization>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions);OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;src\actor;src\actorFlow;src\cues;src\scenes;src\zactrack;..\..\..\addons\ofxAppUtils\src;..\..\..\addons\ofxAutoReloadedShader\src;..\..\..\addons\ofxFlowTools\src;..\..\..\addons\ofxFlowTools\src\core;..\..\..\addons\ofxFlowTools\src\core\bridge;..\..\..\addons\ofxFlowTools\src\core\bridge\shaders;..\..\..\addons\ofxFlowTools\src\core\fluid;..\..\..\addons\ofxFlowTools\src\core\fluid\shaders;..\..\..\addons\ofxFlowTools\src\core\opticalflow;..\..\..\addons\ofxFlowTools\src\core\shaders;..\..\..\addons\ofxFlowTools\src\core\shaders\blend;..\..\..\addons\ofxFlowTools\src\core\shaders\blur;..\..\..\addons\ofxFlowTools\src\core\shaders\color;..\..\..\addons\ofxFlowTools\src\core\shaders\velocity;..\..\..\addons\ofxFlowTools\src\core\visualization;..\..\..\addons\ofxFlowTools\src\core\visualization\shaders;..\..\..\addons\ofxFlowTools\src\extensions;..\..\..\addons\ofxFlowTools\src\extensions\average;..\..\..\addons\ofxFlowTools\src\extensions\mouse;..\..\..\addons\ofxFlowTools\src\extensions\particles;..\..\..\addons\ofxFlowTools\src\extensions\shaders;..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity;..\..\..\addons\ofxGui\src;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src;..\..\..\addons\ofxShadertoy\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)\Build\%(RelativeDir)\$(Configuration)\</ObjectFileName>
+			<LanguageStandard>stdcpplatest</LanguageStandard>
+			<AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+		</ClCompile>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>true</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
+		<PostBuildEvent>
+			<Command>
+            xcopy /Y /E "$(ProjectDir)dll\x64\*.dll" "$(TargetDir)"
+        </Command>
+		</PostBuildEvent>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Platform)'=='ARM64'">
+		<PostBuildEvent>
+			<Command>
+            xcopy /Y /E "$(ProjectDir)dll\ARM64\*.dll" "$(TargetDir)"
+        </Command>
+		</PostBuildEvent>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Platform)'=='ARM64EC'">
+		<PostBuildEvent>
+			<Command>
+            xcopy /Y /E "$(ProjectDir)dll\ARM64EC\*.dll" "$(TargetDir)"
+        </Command>
+		</PostBuildEvent>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+		<ClCompile>
+			<LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">stdc17</LanguageStandard_C>
+			<BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">true</BuildStlModules>
+			<DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">OldStyle</DebugInformationFormat>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup>
+		<ClCompile Include="src\main.cpp" />
+		<ClCompile Include="src\ofApp.cpp" />
+		<ClCompile Include="src\actorFlow\ftActorFlow.cpp" />
+		<ClCompile Include="src\actor\Actor.cpp" />
+		<ClCompile Include="src\actor\ActorManager.cpp" />
+		<ClCompile Include="src\cues\CueReceiver.cpp" />
+		<ClCompile Include="src\scenes\CurlFlowScene.cpp" />
+		<ClCompile Include="src\scenes\FlowToolsScene.cpp" />
+		<ClCompile Include="src\scenes\GPUCurlFlowScene.cpp" />
+		<ClCompile Include="src\scenes\OctaveNoise.cpp" />
+		<ClCompile Include="src\scenes\SinglePassFlowFieldScene.cpp" />
+		<ClCompile Include="src\testApp.cpp" />
+		<ClCompile Include="src\zactrack\ztActorEvent.cpp" />
+		<ClCompile Include="src\zactrack\ztReceiver.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxApp.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxParticle.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxQuadWarper.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxScene.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxSceneManager.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxTransformer.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAppUtils\src\ofxTransformPanel.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxAutoReloadedShader\src\ofxAutoReloadedShader.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\core\fluid\ftFluidFlow.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\core\ftFlow.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\core\ftUtil.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\extensions\average\ftAverageFlow.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\extensions\average\ftAverageFlowWatcher.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\extensions\mouse\ftMouseFlow.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftParticleFlow.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxButton.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxColorPicker.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxGuiGroup.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxInputField.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxLabel.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxPanel.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscBundle.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscMessage.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscParameterSync.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscReceiver.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscSender.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxShadertoy\src\ofxShadertoy.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h" />
+		<ClInclude Include="src\actorFlow\ftActorFlow.hpp" />
+		<ClInclude Include="src\actorFlow\ftActorShader.h" />
+		<ClInclude Include="src\actor\Actor.hpp" />
+		<ClInclude Include="src\actor\ActorManager.hpp" />
+		<ClInclude Include="src\actor\ActorSceneEventArgs.h" />
+		<ClInclude Include="src\cues\CueEventArgs.h" />
+		<ClInclude Include="src\cues\CueReceiver.h" />
+		<ClInclude Include="src\scenes\CurlFlowScene.hpp" />
+		<ClInclude Include="src\scenes\FlowToolsScene.hpp" />
+		<ClInclude Include="src\scenes\GPUCurlFlowScene.hpp" />
+		<ClInclude Include="src\scenes\LineScene.h" />
+		<ClInclude Include="src\scenes\OctaveNoise.h" />
+		<ClInclude Include="src\scenes\SinglePassFlowFieldScene.hpp" />
+		<ClInclude Include="src\scenes\scenes.h" />
+		<ClInclude Include="src\testApp.h" />
+		<ClInclude Include="src\zactrack\ztActorEvent.hpp" />
+		<ClInclude Include="src\zactrack\ztActorEventArgs.h" />
+		<ClInclude Include="src\zactrack\ztReceiver.hpp" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\matrix_funcs.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxApp.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxAppUtils.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxBitmapString.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxMovingAverage.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxParticle.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxParticleManager.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxQuadWarper.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxScene.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxSceneManager.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxTimer.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxTransformer.h" />
+		<ClInclude Include="..\..\..\addons\ofxAppUtils\src\ofxTransformPanel.h" />
+		<ClInclude Include="..\..\..\addons\ofxAutoReloadedShader\src\ofxAutoReloadedShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\ftBridgeFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\ftCombinedBridgeFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\ftDensityBridgeFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\ftTemperatureBridgeFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\ftVelocityBridgeFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\shaders\ftBridgeShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\shaders\ftDensityBridgeShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\bridge\shaders\ftTemperatureBridgeShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\ftFluidFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftAdvectShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftBuoyancyShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftDiffuseShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftDivergenceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftGradientShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftJacobiDiffusionShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftJacobiPressureShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftObstacleOffsetShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftVorticityCurlShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\fluid\shaders\ftVorticityForceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\ftFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\ftPingPongFbo.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\ftShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\ftUtil.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\opticalflow\ftOpticalFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\opticalflow\ftOpticalFlowShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\blend\ftAddBooleanShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\blend\ftAddMultipliedShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\blend\ftAddWeightedShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\blur\ftGaussianBlurShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\blur\ftTrailShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftBCShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftDarkenShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftEOGShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftHSLShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftHSVShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftMonoShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftRed2LuminanceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\color\ftRGB2LuminanceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\velocity\ftClampLengthShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\shaders\velocity\ftMultiplyForceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualization.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualizationField.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualizationPressureField.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualizationTemperatureField.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualizationVelocityDots.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\ftVisualizationVelocityField.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftPressureFieldShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftTemperatureFieldShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftToScalarShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftVelocityDotsShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftVelocityFieldShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\core\visualization\shaders\ftVTFieldShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\average\ftAverageFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\average\ftAverageFlowWatcher.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\average\ftPixelFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\mouse\ftMouseFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\mouse\ftMouseShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftAgeLifespanMassSizeParticleShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftDrawParticleShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftInitPositionShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftMoveParticleShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\particles\ftParticleFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftColorizeGradientShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftColorizeLuminanceShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftColorizeVelocityShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftDecayShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftDilateShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftEaseShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftErodeShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftInverseWarpShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftNormalizationShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\shaders\ftTimeBlurShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSplitVelocityFlow.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSplitVelocityShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSvFieldShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSvFromVelocity.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSvToScalarShader.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSvVisualization.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\extensions\splitvelocity\ftSvVisualizationField.h" />
+		<ClInclude Include="..\..\..\addons\ofxFlowTools\src\ofxFlowTools.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxButton.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxColorPicker.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxGui.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxGuiGroup.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxGuiUtils.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxInputField.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxLabel.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxPanel.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
+		<ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOsc.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscArg.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscBundle.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscMessage.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscParameterSync.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscReceiver.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscSender.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscException.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
+		<ClInclude Include="..\..\..\addons\ofxShadertoy\src\ofxShadertoy.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+			<Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc">
+			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64' or '$(Configuration)|$(Platform)'=='Debug|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64EC'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+			<AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
+		</ResourceCompile>
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties RESOURCE_FILE="icon.rc" />
+		</VisualStudio>
+	</ProjectExtensions>
+</Project>
