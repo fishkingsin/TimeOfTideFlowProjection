@@ -5,14 +5,12 @@
 //  Created by James Kong on 21/9/2025.
 //
 
-
+#include "OctaveNoise.h"
 #include "ofxAppUtils.h"
 #include "ofxGui.h"
-#include "OctaveNoise.h"
 class GPUCurlFlowScene : public ofxFadeScene {
-	
+
 public:
-	
 	// set the scene name through the base class initializer
 	GPUCurlFlowScene();
 	void setup();
@@ -22,22 +20,22 @@ public:
 	void draw();
 	void exit();
 	void drawGUI();
-	
+
 	void setupCtlGui(int x, int y);
 	void saveCtlGui();
 	void setupNoise();
 	void updateNoise();
-	
+
 	ofShader curl;
-	
+
 	void genCurl();
-	
+
 	void setupTranformFeedback();
-	
+
 	void advect();
-	
-	void imgMinMax(ofFloatImage &img);
-	
+
+	void imgMinMax(ofFloatImage & img);
+
 	ofxPanel ctlGui;
 	string ctlGuiFile = "gui.ctls.xml";
 	ofxIntSlider numOctaves;
@@ -50,47 +48,48 @@ public:
 	ofxFloatSlider curlAmt;
 	ofxFloatSlider advectDt;
 	ofxFloatSlider drawAlpha;
-	ofParameter<bool>	toggleGuiDraw;
-	
+	ofParameter<bool> toggleGuiDraw;
+
 	void noiseParamIntChanged(int & v);
 	void noiseParamFloatChanged(float & v);
 	void noiseParamBoolChanged(bool & v);
 	bool noiseDirty;
-	
+
 	ofxIntSlider overlayAlpha;
 	ofFbo fboBuffer;
-	
-	
+
 	OctaveNoise noiseGen;
 	ofFloatImage noiseImage;
 	ofFbo curlTarget;
 	ofFloatImage curlDrawImage;
 	ofFloatImage curlData;
-	
-	
+
 	float step;
 	float dt;
-	
+
 	ofShader advectShader;
-	
+
 	GLuint vaoVec[2];
 	GLuint advectProgram;
-	
+
 	GLuint ParticleBufferB;
 	GLuint ParticleBufferA;
-	
+
 	GLuint SlotPosition;
+#if defined(_WIN32) || defined(_WIN64)
+	unsigned int curvao;
+#else
 	u_int curvao;
-	
-	
+#endif
+
 	int partcnt = 1000000;
 	vector<ofVec2f> particles;
-	
+
 	float update_time;
 	float width, height;
-	
+
 	int drawMode = 0;
 	int drawModeMax = 3;
-	
+
 	bool drawGui;
 };

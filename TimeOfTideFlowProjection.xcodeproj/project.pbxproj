@@ -340,6 +340,7 @@
 		"1A4259E8-244A-4FFC-8BB1-A9B0CD08375D" /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1AB6FFE12E8F9E4800EDF84A /* flowFieldParticle */,
 				"BF70B92A-6D23-4108-8E52-1C483C97ABB7" /* CurlFlowScene.cpp */,
 				"F9A22954-5D85-4746-A991-66312CD9D510" /* CurlFlowScene.hpp */,
 				"FBF31BB6-26F4-405E-8DA5-F58303F3008C" /* FlowToolsScene.cpp */,
@@ -354,6 +355,13 @@
 				"079093A6-481B-424D-8A87-629E5C67D17D" /* scenes.h */,
 			);
 			path = scenes;
+			sourceTree = "<group>";
+		};
+		1AB6FFE12E8F9E4800EDF84A /* flowFieldParticle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = flowFieldParticle;
 			sourceTree = "<group>";
 		};
 		"290776D5-9B77-4881-904E-BDDB3F36253F" /* particles */ = {
