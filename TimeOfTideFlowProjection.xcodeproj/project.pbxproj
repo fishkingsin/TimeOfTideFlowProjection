@@ -15,6 +15,8 @@
 		"0FC6940C-A659-4ED7-8D6B-56219ED89F4F" /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "0AD0BCF6-2C07-4E31-8EE3-E6C410546667" /* ofxOscSender.cpp */; };
 		"1037CD50-3214-4B92-9DFF-B55DAA035DF4" /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "16C30C0E-EB6D-472B-8945-64F773ACF202" /* NetworkingUtils.cpp */; };
 		"188B52EC-B6CB-4D45-90EB-B9B1EE882629" /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "96FD1599-E256-48C5-9107-447F23283C84" /* ofxGuiGroup.cpp */; };
+		1ADDADDB2E8FBD90005A443A /* FlowFieldParticlesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */; };
+		1ADDADDE2E8FBDC2005A443A /* FlowFieldParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDADDD2E8FBDC2005A443A /* FlowFieldParticles.cpp */; };
 		"1F33EB87-5209-49F1-A365-8DBDA74937C5" /* ftParticleFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "4BD45AD6-6E7F-44E5-9C67-850B0DDEC46C" /* ftParticleFlow.cpp */; };
 		"200E98F3-4790-4234-8F33-19F7CB35CB4F" /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "DF1B1122-DAC8-469A-9E4F-B9C96C92C581" /* ofxBaseGui.cpp */; };
 		"204B0438-F422-4AF1-BBC0-CC9163CF2CED" /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "4EF4F7BE-D543-4FFC-8F73-8C808DB1E8A7" /* ofxSlider.cpp */; };
@@ -108,6 +110,10 @@
 		191CD6FA2847E21E0085CBB6 /* of.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = of.entitlements; sourceTree = "<group>"; };
 		191EF70929D778A400F35F26 /* openFrameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openFrameworks; path = ../../../libs/openFrameworks; sourceTree = SOURCE_ROOT; };
 		"1A130F91-A62B-4DB0-BA94-B4B76C4575D0" /* CueEventArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CueEventArgs.h; sourceTree = "<group>"; };
+		1ADDADD92E8FBD90005A443A /* FlowFieldParticlesScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticlesScene.hpp; sourceTree = "<group>"; };
+		1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlowFieldParticlesScene.cpp; sourceTree = "<group>"; };
+		1ADDADDC2E8FBDC2005A443A /* FlowFieldParticles.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticles.hpp; sourceTree = "<group>"; };
+		1ADDADDD2E8FBDC2005A443A /* FlowFieldParticles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlowFieldParticles.cpp; sourceTree = "<group>"; };
 		"1D1540FC-D70D-49E0-952D-3B3221E947C8" /* ftBridgeShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftBridgeShader.h; sourceTree = "<group>"; };
 		"1D830C97-9C8C-4BF0-9166-E200AAB1FE1A" /* ftMultiplyForceShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftMultiplyForceShader.h; sourceTree = "<group>"; };
 		"21687208-F026-4F92-9499-C8C2F1130BE5" /* ftSvVisualization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ftSvVisualization.h; sourceTree = "<group>"; };
@@ -340,7 +346,7 @@
 		"1A4259E8-244A-4FFC-8BB1-A9B0CD08375D" /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				1AB6FFE12E8F9E4800EDF84A /* flowFieldParticle */,
+				1AB6FFE12E8F9E4800EDF84A /* FlowFieldParticles */,
 				"BF70B92A-6D23-4108-8E52-1C483C97ABB7" /* CurlFlowScene.cpp */,
 				"F9A22954-5D85-4746-A991-66312CD9D510" /* CurlFlowScene.hpp */,
 				"FBF31BB6-26F4-405E-8DA5-F58303F3008C" /* FlowToolsScene.cpp */,
@@ -357,11 +363,15 @@
 			path = scenes;
 			sourceTree = "<group>";
 		};
-		1AB6FFE12E8F9E4800EDF84A /* flowFieldParticle */ = {
+		1AB6FFE12E8F9E4800EDF84A /* FlowFieldParticles */ = {
 			isa = PBXGroup;
 			children = (
+				1ADDADD92E8FBD90005A443A /* FlowFieldParticlesScene.hpp */,
+				1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */,
+				1ADDADDC2E8FBDC2005A443A /* FlowFieldParticles.hpp */,
+				1ADDADDD2E8FBDC2005A443A /* FlowFieldParticles.cpp */,
 			);
-			path = flowFieldParticle;
+			path = FlowFieldParticles;
 			sourceTree = "<group>";
 		};
 		"290776D5-9B77-4881-904E-BDDB3F36253F" /* particles */ = {
@@ -966,6 +976,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				"0E4A76E6-A06F-4EB2-B8B8-9B8BC7401DAD" /* Actor.cpp in Sources */,
 				"291AB9E4-13DD-4A59-B8FE-DFD1CE8A7E90" /* ActorManager.cpp in Sources */,
+				1ADDADDE2E8FBDC2005A443A /* FlowFieldParticles.cpp in Sources */,
 				"C475C778-3A66-4B3C-AEC1-C705A4FB3F1B" /* ftActorFlow.cpp in Sources */,
 				"50845D37-BFF4-4716-880C-D8FB947BC3B8" /* CueReceiver.cpp in Sources */,
 				"5DD9D631-0565-4C63-A3AA-3F50CAD434BF" /* CurlFlowScene.cpp in Sources */,
@@ -1007,6 +1018,7 @@
 				"89C2D711-FB02-4028-BAE0-047F351187D4" /* OscOutboundPacketStream.cpp in Sources */,
 				"0136C234-694B-4C4F-9475-C9CD507D5FCB" /* OscPrintReceivedElements.cpp in Sources */,
 				"6D29D102-C9F2-4288-9EE3-ADE06E9D985F" /* OscReceivedElements.cpp in Sources */,
+				1ADDADDB2E8FBD90005A443A /* FlowFieldParticlesScene.cpp in Sources */,
 				"D440F9C4-6BF1-46E4-AC1B-5EB170DE57AE" /* OscTypes.cpp in Sources */,
 				"8F047369-B9C3-4B1C-A785-D197FD664E35" /* ofxOscBundle.cpp in Sources */,
 				"648C019A-9155-47FE-902B-F2EBE871ADAB" /* ofxOscMessage.cpp in Sources */,

@@ -14,6 +14,7 @@
 #include "ActorManager.hpp"
 #include "CueReceiver.h"
 #include "CueEventArgs.h"
+#include "FlowFieldParticlesScene.hpp"
 class FlowToolsScene;
 
 class ofApp : public ofxApp {
@@ -28,6 +29,7 @@ public:
 	FlowToolsScene * flowToolsScene = nullptr;
 	CurlFlowScene * curlFlowScene = nullptr;
 	SinglePassFlowFieldScene * singlePassFlowFieldScene = nullptr;
+	FlowFieldParticlesScene * flowFieldParticlesScene = nullptr;
 	ofxSceneManager sceneManager;
 	int lastScene;
 	// rendering transformer

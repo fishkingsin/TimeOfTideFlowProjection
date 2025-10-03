@@ -24,8 +24,8 @@ void SinglePassFlowFieldScene:: setup() {
 	
 	
 	
-	shaderA.load("singlePassFlowFieldShaders/bufferA");
-	shaderDraw.load("singlePassFlowFieldShaders/image");
+	shaderA.load("shaders/singlePassFlowField/bufferA");
+	shaderDraw.load("shaders/singlePassFlowField/image");
 	
 	
 	
