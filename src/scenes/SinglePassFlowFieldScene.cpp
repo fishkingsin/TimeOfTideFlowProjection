@@ -128,6 +128,12 @@ void SinglePassFlowFieldScene:: draw() {
 	}
 
 	ofPopStyle();
+	
+	ofPushStyle();
+	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
+	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+	//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+	ofPopStyle();
 	ofDisableAlphaBlending();
 	
 }

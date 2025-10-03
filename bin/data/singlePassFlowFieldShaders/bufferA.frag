@@ -7,6 +7,8 @@ uniform int       iFrame;                // shader playback frame
 uniform sampler2DRect iChannel0;
 uniform vec4 iMouse;
 out vec4 oFragColor;
+// 2023 myth0genesis
+
 // Feel free to modify the number of iterations in the FBM function.
 // ztot and iztot will compensate for it and normalize the result from -1.0 to 1.0.
 const int iters = 2;
@@ -18,13 +20,13 @@ const float tScale = 0.275;
 const float scale = 3.5;
 
 // Particle velocity.
-const float pVel = 0.2;
+const float pVel = 0.6;
 
 // Tracer decay rate.
-const float decay = 0.001;
+const float decay = 0.01;
 
 // Particle spawn rate.
-const float spawnRate = 0.001;
+const float spawnRate = 0.00005;
 
 // Distance (in pixels) sampled around point.
 const int smpDst = 2;
@@ -38,6 +40,7 @@ const float imf = 1.0 / float(0xFFFFFFFFU);
 const mat3 m3 = mat3( 0.3338,  0.56034, -0.71817,
 					 -0.87887, 0.32651, -0.15323,
 					  0.15162, 0.69596,  0.61339) * 1.93;
+
 
 float tm;
 vec2 invRes;
@@ -144,7 +147,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	vec3 ssRes = ss(fragCoord, scRes);
 	
 	// The color of the tracer is added to the current frame's color.
-	fragColor = vec4(ssRes + vec3(0.0, 0.0, r), 1.0);
+	fragColor = vec4(ssRes + vec3(0.0, 0.0, r *0.98), 1.0);
 }
 
 
@@ -152,6 +155,5 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 void main( void ) {
 	vec4 color = vec4(0.0,0.0,0.0,1.0);
 	mainImage( color, gl_FragCoord.xy );
-	color.w = 1.0;
 	oFragColor = color;
 }
