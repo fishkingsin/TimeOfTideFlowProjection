@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Transform>
+	<position>0, 0, 0</position>
+	<translate>0</translate>
+	<mirrorX>0</mirrorX>
+	<mirrorY>0</mirrorY>
+	<centering>0</centering>
+	<aspect>0</aspect>
+	<warp>0</warp>
+</Transform>

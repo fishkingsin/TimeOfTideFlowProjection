@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<group>
+	<average_FPS>60</average_FPS>
+	<Flow>1</Flow>
+	<Center>128</Center>
+	<Width>127</Width>
+	<Frequency1>0.3</Frequency1>
+	<Frequency2>0.3</Frequency2>
+	<Frequency3>0.3</Frequency3>
+	<Phase1>0</Phase1>
+	<Phase2>2</Phase2>
+	<Phase3>4</Phase3>
+	<Speed>0.05</Speed>
+	<Fade>0.04</Fade>
+	<noiseScale>410.59</noiseScale>
+	<Step>204.35</Step>
+	<xVol>0</xVol>
+	<yVol>4.8</yVol>
+	<Particle_Size>0.5</Particle_Size>
+	<Rainbow>0</Rainbow>
+	<Base_Color>255, 255, 255, 255</Base_Color>
+</group>
