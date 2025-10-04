@@ -1044,3 +1044,5 @@ dkms.conf
 *.dis
 bin/TimeOfTideFlowProjectionDebug.app
 .claude/*
+TimeOfTideFlowProjection.xcodeproj/project.xcworkspace/xcuserdata/*
+TimeOfTideFlowProjection.xcodeproj/project.xcworkspace/xcuserdata/james.xcuserdatad/UserInterfaceState.xcuserstate
