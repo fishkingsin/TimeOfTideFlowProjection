@@ -22,6 +22,12 @@
 		<ClCompile Include="src\scenes\CurlFlowScene.cpp">
 			<Filter>src\scenes</Filter>
 		</ClCompile>
+		<ClCompile Include="src\scenes\FlowFieldParticles\FlowFieldParticles.cpp">
+			<Filter>src\scenes\FlowFieldParticles</Filter>
+		</ClCompile>
+		<ClCompile Include="src\scenes\FlowFieldParticles\FlowFieldParticlesScene.cpp">
+			<Filter>src\scenes\FlowFieldParticles</Filter>
+		</ClCompile>
 		<ClCompile Include="src\scenes\FlowToolsScene.cpp">
 			<Filter>src\scenes</Filter>
 		</ClCompile>
@@ -163,133 +169,136 @@
 			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\actorFlow">
-			<UniqueIdentifier>{CB11E800--B85-2-44-83-9-7AB-DA07BBF1C233}</UniqueIdentifier>
+			<UniqueIdentifier>{C5D45429--B55-A-44-01-A-C00-E5DA70EE94DE}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\actor">
-			<UniqueIdentifier>{98241933--F9F-2-40-BE-A-454-86B541960AD2}</UniqueIdentifier>
+			<UniqueIdentifier>{0D0A8177--361-1-4E-2C-A-1DD-D1D56C11062A}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\cues">
-			<UniqueIdentifier>{EA472CBB--A2B-E-42-C0-A-A4A-3F953674C077}</UniqueIdentifier>
+			<UniqueIdentifier>{F8501873--D0B-D-41-E6-8-D6A-D5D545345202}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\scenes">
-			<UniqueIdentifier>{1BF97923--548-0-41-17-8-625-133D159AD0C5}</UniqueIdentifier>
+			<UniqueIdentifier>{6FBCF7B7--AB8-3-4D-18-9-23C-A3BDC7A58CD1}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="src\scenes\FlowFieldParticles">
+			<UniqueIdentifier>{DB196713--1B8-9-4C-AB-B-8AD-70DA81DBB685}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\zactrack">
-			<UniqueIdentifier>{65385F85--018-1-4E-A7-8-D26-0D9E951A9DD9}</UniqueIdentifier>
+			<UniqueIdentifier>{7A633700--16A-F-47-45-A-6F2-791FC73CDE39}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons">
-			<UniqueIdentifier>{71C29187--0D8-1-40-80-A-3F2-B4DE8B7C62E6}</UniqueIdentifier>
+			<UniqueIdentifier>{B49F8162--488-C-43-64-A-107-A8AA7EDC7370}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxAppUtils">
-			<UniqueIdentifier>{5AFCF5BF--1F8-1-41-C3-9-4BD-50A1D2E156D7}</UniqueIdentifier>
+			<UniqueIdentifier>{6323168C--A5D-C-49-3C-A-0A3-2757D17A2DA5}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxAppUtils\src">
-			<UniqueIdentifier>{1CEB5B87--161-0-4D-BF-B-E84-D61516843A7D}</UniqueIdentifier>
+			<UniqueIdentifier>{85C4AECB--1B2-3-4F-8F-A-330-0D935A1A4A45}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxAutoReloadedShader">
-			<UniqueIdentifier>{F9BF5DA6--D30-7-4B-47-8-7B7-1AFD140DB89B}</UniqueIdentifier>
+			<UniqueIdentifier>{A0BCD4EB--35E-4-49-B9-A-C4A-C12CAB3B4908}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxAutoReloadedShader\src">
-			<UniqueIdentifier>{FC8079AA--062-7-46-51-A-20E-BF2E65B70741}</UniqueIdentifier>
+			<UniqueIdentifier>{C1D95ADF--D7D-6-49-1C-9-E24-74B8A2582C1E}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools">
-			<UniqueIdentifier>{66B116C2--3F7-5-41-74-A-A7C-19DE5D5C592A}</UniqueIdentifier>
+			<UniqueIdentifier>{86569298--D55-8-42-12-B-3B3-9AFDD6CE3593}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src">
-			<UniqueIdentifier>{1F33E202--E05-1-40-D9-B-831-9ECFB0ED2F6F}</UniqueIdentifier>
+			<UniqueIdentifier>{5811B936--D49-4-48-49-A-157-79C5210262EB}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core">
-			<UniqueIdentifier>{ADD306BC--4B5-6-4A-87-B-4B7-616E65A4FE00}</UniqueIdentifier>
+			<UniqueIdentifier>{693535B3--E80-8-4E-8B-B-B84-136E61096BDF}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\bridge">
-			<UniqueIdentifier>{D625937A--5C3-D-48-96-9-97F-9FE7BEC2734E}</UniqueIdentifier>
+			<UniqueIdentifier>{D560205C--D66-2-4D-DD-A-4EB-2E7FA0FF1B42}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\bridge\shaders">
-			<UniqueIdentifier>{4403FB30--AED-8-41-9C-B-DD8-824D855C0F54}</UniqueIdentifier>
+			<UniqueIdentifier>{FEC8CE0A--709-A-43-7F-A-82E-CBC003F17F15}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\fluid">
-			<UniqueIdentifier>{43BE917D--036-F-4B-12-9-41B-BA48736CF00A}</UniqueIdentifier>
+			<UniqueIdentifier>{BA201DE4--667-5-42-DA-8-729-B1797107F1B6}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\fluid\shaders">
-			<UniqueIdentifier>{EED2FB45--0C7-E-44-A8-B-812-71A4D56DF227}</UniqueIdentifier>
+			<UniqueIdentifier>{21F23AF5--06D-0-4E-EA-A-52C-4CA895F1B224}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\opticalflow">
-			<UniqueIdentifier>{F1EB0B12--605-9-47-66-A-50E-E0DECB45BD2C}</UniqueIdentifier>
+			<UniqueIdentifier>{0A7487F8--F97-A-41-25-8-AA6-B1F158741A87}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\shaders">
-			<UniqueIdentifier>{183EBDEF--1D8-8-43-6E-B-1D4-9B02DD79A6D5}</UniqueIdentifier>
+			<UniqueIdentifier>{74F9DC86--268-E-46-34-B-A9C-AC450E24A586}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\shaders\blend">
-			<UniqueIdentifier>{52AA53C7--3CF-D-42-09-9-8A7-D22ED41F2601}</UniqueIdentifier>
+			<UniqueIdentifier>{92F3E3FD--BA2-0-4C-60-A-979-26612A2A949F}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\shaders\blur">
-			<UniqueIdentifier>{55CAAF9B--A52-2-45-B5-A-C85-3B146E19C5E4}</UniqueIdentifier>
+			<UniqueIdentifier>{1AC4C15B--742-E-45-86-B-DAB-CD7920D759F9}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\shaders\color">
-			<UniqueIdentifier>{41D746BD--338-0-4D-C6-B-916-785DE3D8E0AB}</UniqueIdentifier>
+			<UniqueIdentifier>{CF9A18C3--A5B-2-43-F3-A-C07-CA15F0D658D9}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\shaders\velocity">
-			<UniqueIdentifier>{80B14A94--C2F-F-4D-7C-8-284-0EEAEE563A08}</UniqueIdentifier>
+			<UniqueIdentifier>{20F2BE0C--16E-A-4E-F6-9-8B2-033994BAF213}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\visualization">
-			<UniqueIdentifier>{3904C556--08A-6-45-F5-9-B60-17C783473C1A}</UniqueIdentifier>
+			<UniqueIdentifier>{E37B42C0--BFA-6-47-EA-8-8F8-75DE3622A7B0}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\core\visualization\shaders">
-			<UniqueIdentifier>{B5BD618C--051-8-46-1A-A-9E1-6BC7645D2860}</UniqueIdentifier>
+			<UniqueIdentifier>{5B4C8EC6--DEF-4-4A-68-A-AED-65BDA464F60E}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions">
-			<UniqueIdentifier>{5BD3FC41--D7F-A-41-DA-9-7FE-8123038FD666}</UniqueIdentifier>
+			<UniqueIdentifier>{6F92B54E--3D1-D-45-7B-A-A89-A0207A5A4541}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions\average">
-			<UniqueIdentifier>{BF0E0AFE--6F5-F-45-FE-A-FEE-347A5A6B8000}</UniqueIdentifier>
+			<UniqueIdentifier>{0C0B15EC--F1E-1-4A-25-B-01F-877B95F87361}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions\mouse">
-			<UniqueIdentifier>{7529F3E8--FF5-2-4F-A4-8-C35-805143157390}</UniqueIdentifier>
+			<UniqueIdentifier>{4525CDAF--935-7-44-87-8-087-57792E49071B}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions\particles">
-			<UniqueIdentifier>{2C0517A5--58A-F-47-E3-A-F16-53A76A661EDD}</UniqueIdentifier>
+			<UniqueIdentifier>{02F3635F--163-5-44-80-A-981-9239DB1D0095}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions\shaders">
-			<UniqueIdentifier>{FFFB138D--B1C-C-47-DD-9-E3A-404ACC69F9E2}</UniqueIdentifier>
+			<UniqueIdentifier>{30D83782--83C-4-49-29-A-A6E-3D2A9AB2F006}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxFlowTools\src\extensions\splitvelocity">
-			<UniqueIdentifier>{FED4E653--0EC-4-44-A5-A-E9C-13AD618ED9DA}</UniqueIdentifier>
+			<UniqueIdentifier>{FC90FF41--14C-B-4D-CB-B-DAB-D5E77E864E14}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxGui">
-			<UniqueIdentifier>{6D7520AD--29B-3-40-BD-9-791-85DB38B5298D}</UniqueIdentifier>
+			<UniqueIdentifier>{E71A9DFA--D86-7-4E-E5-9-842-5B54849C6E37}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxGui\src">
-			<UniqueIdentifier>{777A3B61--1EE-2-48-57-A-1EA-ABF8EB6C6383}</UniqueIdentifier>
+			<UniqueIdentifier>{8BE37682--B84-8-45-06-B-BDF-B5AACF9FEBAC}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc">
-			<UniqueIdentifier>{60B89A5D--8DD-0-45-49-A-D98-87B64B640190}</UniqueIdentifier>
+			<UniqueIdentifier>{10EF2923--7A4-0-42-23-A-37C-1F753A73C71B}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\src">
-			<UniqueIdentifier>{7C55FD43--C32-2-4C-88-A-6D7-D4305ACBADC6}</UniqueIdentifier>
+			<UniqueIdentifier>{BC403868--5AE-F-42-6A-A-9EA-8B9A0FAE10B4}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs">
-			<UniqueIdentifier>{8C81458B--C35-C-4C-32-B-C83-5EB16D62DA42}</UniqueIdentifier>
+			<UniqueIdentifier>{8F80DA3A--B80-4-4D-DC-8-5D5-183921CA32E9}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs\oscpack">
-			<UniqueIdentifier>{728F0AE2--BB2-A-48-F4-B-FFB-EB11FF98D826}</UniqueIdentifier>
+			<UniqueIdentifier>{32698A8E--09C-4-4D-9B-B-43A-0699D68DCADA}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs\oscpack\src">
-			<UniqueIdentifier>{E69D3D41--E95-9-46-42-B-837-FF13C0230924}</UniqueIdentifier>
+			<UniqueIdentifier>{A20EEB84--CD1-1-47-E3-8-2C3-44D82633445F}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs\oscpack\src\ip">
-			<UniqueIdentifier>{4DF87117--714-2-45-1D-A-9DE-D6127F44AA93}</UniqueIdentifier>
+			<UniqueIdentifier>{6C674F62--758-2-4D-4F-A-A21-6BAB99D5C1B2}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs\oscpack\src\ip\win32">
-			<UniqueIdentifier>{FA00FD0A--557-F-41-6B-8-526-3D92C4741C5B}</UniqueIdentifier>
+			<UniqueIdentifier>{C7BC223D--4B7-4-4A-AB-8-09E-2DC320B552D1}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxOsc\libs\oscpack\src\osc">
-			<UniqueIdentifier>{E5A9ADE7--94D-3-4B-F0-B-0CC-73CFC808F6E4}</UniqueIdentifier>
+			<UniqueIdentifier>{2C9C63EE--72D-3-47-58-8-C3B-73120A0928D6}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxShadertoy">
-			<UniqueIdentifier>{CDDD4784--ACB-7-42-12-9-799-9CAFDF15F2D1}</UniqueIdentifier>
+			<UniqueIdentifier>{B853DD46--C74-A-45-44-A-346-64CB0A240A1E}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="addons\ofxShadertoy\src">
-			<UniqueIdentifier>{17EEDC96--8AB-3-4F-09-9-277-120472FD3389}</UniqueIdentifier>
+			<UniqueIdentifier>{FC5928F5--80A-5-42-BF-B-881-12CEE3D87C98}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -319,6 +328,12 @@
 		</ClInclude>
 		<ClInclude Include="src\scenes\CurlFlowScene.hpp">
 			<Filter>src\scenes</Filter>
+		</ClInclude>
+		<ClInclude Include="src\scenes\FlowFieldParticles\FlowFieldParticles.hpp">
+			<Filter>src\scenes\FlowFieldParticles</Filter>
+		</ClInclude>
+		<ClInclude Include="src\scenes\FlowFieldParticles\FlowFieldParticlesScene.hpp">
+			<Filter>src\scenes\FlowFieldParticles</Filter>
 		</ClInclude>
 		<ClInclude Include="src\scenes\FlowToolsScene.hpp">
 			<Filter>src\scenes</Filter>
