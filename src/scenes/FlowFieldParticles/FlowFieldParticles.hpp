@@ -64,7 +64,6 @@ private:
 	ofParameter<float> arrowLength;
 	ofParameter<int> iter1;
 	ofParameter<int> iter2;
-	ofParameter<int> vectorFieldMode;
 	ofParameter<float> scaleParam;
 	ofParameter<float> velocityX;
 	ofParameter<float> velocityY;

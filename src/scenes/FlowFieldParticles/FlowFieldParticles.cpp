@@ -28,6 +28,7 @@ void FlowFieldParticles::setup() {
 	parametersA.add(scaleParam.set("scale", 5.0f, 0.1f, 20.0f));
 	parametersA.add(velocityX.set("velocity_x", 0.1f, -5.0f, 5.0f));
 	parametersA.add(velocityY.set("velocity_y", 0.2f, -5.0f, 5.0f));
+	parametersA.add(scaleParam.set("scale", 0.5, 0, 100));
 	parametersA.add(mode2Speed.set("mode_2_speed", 2.5f, 0.0f, 10.0f));
 	parametersA.add(mode1Detail.set("mode_1_detail", 200.0f, 1.0f, 500.0f));
 	parametersA.add(mode1Twist.set("mode_1_twist", 50.0f, 0.0f, 200.0f));
