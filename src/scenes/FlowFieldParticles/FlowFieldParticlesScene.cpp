@@ -88,18 +88,25 @@ void FlowFieldParticlesScene::updateExit() {
 }
 
 void FlowFieldParticlesScene::draw() {
-    ofBackground(255, 255, 255);
-
+	ofPushStyle();
+	ofClear(0, 0);
 	flowFieldParticlesShaders.begin();
-
 	// Upload uniforms
 	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 	flowFieldParticlesShaders.end();
+	ofPopStyle();
+	
+	ofPushStyle();
+	ofEnableAlphaBlending();
+	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
+	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+	ofDisableAlphaBlending();
+	ofPopStyle();
+	
 	if (toggleGuiDraw) {
 		flowFieldParticlesShaders.drawDebug();
 		gui.draw();
 	}
-
 }
 
 void FlowFieldParticlesScene::exit() {

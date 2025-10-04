@@ -16,7 +16,6 @@ int main() {
 	if (DEBUG) {
 		windowSettings.setSize(1280, 720);
 		windowSettings.windowMode = OF_WINDOW;
-		windowSettings.decorated = false;
 	} else {
 		windowSettings.setSize(1920, 1080);
 		windowSettings.windowMode = OF_GAME_MODE;

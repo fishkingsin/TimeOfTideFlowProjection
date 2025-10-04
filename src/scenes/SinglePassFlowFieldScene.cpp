@@ -120,21 +120,24 @@ void SinglePassFlowFieldScene:: draw() {
 	ofSetColor(255, 255, 255, 255*alpha);
 	
 	fboImage.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+	ofPopStyle();
+	
 	
 	if (toggleGuiDraw) {
 		int width = windowWidth * 0.25;
 		int height = windowHeight * 0.25;
 		fboBufferA.draw(0, 0, width, height);
 	}
-
-	ofPopStyle();
+	
+	ofDisableAlphaBlending();
 	
 	ofPushStyle();
+	ofEnableAlphaBlending();
 	ofSetColor(0, 0, 0, 255 * (1.0 - alpha));
-	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-	//	ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
-	ofPopStyle();
+	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 	ofDisableAlphaBlending();
+	ofPopStyle();
+	
 	
 }
 

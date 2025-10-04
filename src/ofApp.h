@@ -43,4 +43,6 @@ public:
 #ifdef HAVE_OFX_GUI
 	ofxTransformPanel panel;
 #endif
+	long sceneChangeTime;
+	long lastSceneChangeTime;
 };
