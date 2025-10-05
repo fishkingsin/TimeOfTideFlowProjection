@@ -148,14 +148,15 @@
 			<smpDst>2</smpDst>
 		</buffer_C>
 		<buffer_D>
-			<damping>0.95117</damping>
+			<damping>0.917128</damping>
 		</buffer_D>
 		<image>
 			<baseColor>0.0691489, 0.244681, 0.425532</baseColor>
 			<colorised>0.395833</colorised>
-			<luminance>1.2629</luminance>
+			<luminance>1.80436</luminance>
 			<overrideColor>1, 0.5, 0</overrideColor>
-			<tolerance>0.5</tolerance>
+			<tolerance>0.506348</tolerance>
+			<debugMode>0</debugMode>
 		</image>
 		<positions>
 			<position0>0, 297.818, 0</position0>

@@ -11,7 +11,7 @@
 
 // set the scene name through the base class initializer
 SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_)
-: ofxFadeScene("GPUCurlFlow")
+: ofxFadeScene("SinglePassFlowField")
 , actorManager(actorManager_) {
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
@@ -19,16 +19,6 @@ SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager>
 
 // scene setup
 void SinglePassFlowFieldScene:: setup() {
-	ofEnableAlphaBlending();
-	ofSetLogLevel(OF_LOG_VERBOSE);
-	
-	
-	
-	shaderA.load("shaders/singlePassFlowField/bufferA");
-	shaderDraw.load("shaders/singlePassFlowField/image");
-	
-	
-	
 	densityWidth = ofGetWidth();
 	densityHeight = ofGetHeight();
 	// process all but the density on 16th resolution
@@ -36,9 +26,43 @@ void SinglePassFlowFieldScene:: setup() {
 	simulationHeight = densityHeight / 2;
 	windowWidth = ofGetWindowWidth();
 	windowHeight = ofGetWindowHeight();
+
+	singlePassFlowFieldShaders.setup();
+	singlePassFlowFieldShaders.setDimensions(densityWidth, densityHeight);
+	singlePassFlowFieldShaders.load("shaders/singlePassFlowField/bufferA.frag", ofxShadertoy::Buffer::BufferA);
+	singlePassFlowFieldShaders.load("shaders/singlePassFlowField/bufferB.frag", ofxShadertoy::Buffer::BufferB);
+	singlePassFlowFieldShaders.load("shaders/singlePassFlowField/bufferC.frag", ofxShadertoy::Buffer::BufferC);
+	singlePassFlowFieldShaders.load("shaders/singlePassFlowField/bufferD.frag", ofxShadertoy::Buffer::BufferD);
+	singlePassFlowFieldShaders.load("shaders/singlePassFlowField/image.frag", ofxShadertoy::Buffer::Image);
+	singlePassFlowFieldShaders.applyTexture(ofxShadertoy::Buffer::BufferA);
+	singlePassFlowFieldShaders.applyTexture(ofxShadertoy::Buffer::BufferB);
+	singlePassFlowFieldShaders.applyTexture(ofxShadertoy::Buffer::BufferC);
+	singlePassFlowFieldShaders.applyTexture(ofxShadertoy::Buffer::BufferD);
+	singlePassFlowFieldShaders.applyTexture(ofxShadertoy::Buffer::Image);
 	
-	fboBufferA.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
-	fboImage.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
+	
+	gui.setup();
+	gui.add(toggleGuiDraw.set("debug", false));
+	
+	gui.add(singlePassFlowFieldShaders.parameters);
+	if (!ofFile("FlowFieldParticlesScene-settings.xml")) {
+		gui.saveToFile("FlowFieldParticlesScene-settings.xml");
+	}
+	gui.loadFromFile("FlowFieldParticlesScene-settings.xml");
+	minimizeGui(&gui);
+}
+
+
+
+//--------------------------------------------------------------
+void SinglePassFlowFieldScene::minimizeGui(ofxGuiGroup * _group) {
+	for (int i = 0; i < _group->getNumControls(); i++) {
+		ofxGuiGroup * subGroup = dynamic_cast<ofxGuiGroup *>(_group->getControl(i));
+		if (subGroup) {
+			minimizeGui(subGroup);
+			_group->minimizeAll();
+		}
+	}
 }
 
 // called when scene is entering, this is just a demo and this
@@ -62,34 +86,34 @@ void SinglePassFlowFieldScene:: updateEnter() {
 void SinglePassFlowFieldScene:: update() {
 	frame += 1 ;
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
-	
-	// apply noiseshader to fbo
-	fboBufferA.begin();
-	shaderA.begin();
-	shaderA.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderA.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderA.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderA.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderA.setUniform1f("iTimeDelta", dt);
-	shaderA.setUniform4f("iMouse", ofGetMouseX(), ofGetMouseY(), ofGetMousePressed(), 1.0);
-	shaderA.setUniform1i("iFrame", frame);
-	shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1);
-	fboImage.draw(0 ,0);
-	shaderA.end();
-	fboBufferA.end();
-	
-	fboImage.begin();
-	shaderDraw.begin();
-	shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderDraw.setUniform1i("iFrame", frame);
-	shaderDraw.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1 );
-	
-	fboBufferA.draw(0, 0);
-	shaderDraw.end();
-	fboImage.end();
+//	
+//	// apply noiseshader to fbo
+//	fboBufferA.begin();
+//	shaderA.begin();
+//	shaderA.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+//	shaderA.setUniform1f("texCoordWidthScale", densityWidth);
+//	shaderA.setUniform1f("texCoordHeightScale", densityHeight);
+//	shaderA.setUniform1f("iTime", ofGetElapsedTimef());
+//	shaderA.setUniform1f("iTimeDelta", dt);
+//	shaderA.setUniform4f("iMouse", ofGetMouseX(), ofGetMouseY(), ofGetMousePressed(), 1.0);
+//	shaderA.setUniform1i("iFrame", frame);
+//	shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1);
+//	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+//	shaderA.end();
+//	fboBufferA.end();
+//	
+//	fboImage.begin();
+//	shaderDraw.begin();
+//	shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+//	shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
+//	shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
+//	shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
+//	shaderDraw.setUniform1i("iFrame", frame);
+//	shaderDraw.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1 );
+//	
+//	fboBufferA.draw(0, 0);
+//	shaderDraw.end();
+//	fboImage.end();
 	
 	
 }
@@ -114,22 +138,16 @@ void SinglePassFlowFieldScene:: updateExit() {
 
 // draw
 void SinglePassFlowFieldScene:: draw() {
-	ofEnableAlphaBlending();
 	ofPushStyle();
-	
-	ofSetColor(255, 255, 255, 255*alpha);
-	
-	fboImage.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+	ofClear(0, 0);
+	singlePassFlowFieldShaders.begin();
+	// Upload uniforms
+	ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+	singlePassFlowFieldShaders.end();
 	ofPopStyle();
 	
 	
-	if (toggleGuiDraw) {
-		int width = windowWidth * 0.25;
-		int height = windowHeight * 0.25;
-		fboBufferA.draw(0, 0, width, height);
-	}
 	
-	ofDisableAlphaBlending();
 	
 	ofPushStyle();
 	ofEnableAlphaBlending();
@@ -138,7 +156,10 @@ void SinglePassFlowFieldScene:: draw() {
 	ofDisableAlphaBlending();
 	ofPopStyle();
 	
-	
+	if (toggleGuiDraw) {
+		singlePassFlowFieldShaders.drawDebug();
+		gui.draw();
+	}
 }
 
 

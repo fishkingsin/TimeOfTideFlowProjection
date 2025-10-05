@@ -11,14 +11,16 @@
 #include "ofxAutoReloadedShader.h"
 #include "ActorManager.hpp"
 #include "CueEventArgs.h"
+#include "SinglePassFlowFieldShaders.hpp"
+#include "ofxShadertoy.h"
 class SinglePassFlowFieldScene : public ofxFadeScene {
 	
 public:
 
-void onCueConfigEvent(CueEventArgs & args);
+	void onCueConfigEvent(CueEventArgs & args);
 
-// set the scene name through the base class initializer
-SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
+	// set the scene name through the base class initializer
+	SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowField") {};
 	SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_);
 	void setup();
 	void updateEnter();
@@ -36,12 +38,10 @@ SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	void onActorSceneEvent(ActorSceneEventArgs & args);
 	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
-	
+	void minimizeGui(ofxGuiGroup * _group);
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
-	ofxAutoReloadedShader shaderA;
-	ofxAutoReloadedShader shaderDraw;
-	ofFbo fboBufferA; // with alpha
-	ofFbo fboImage; // with alpha
+	SinglePassFlowFieldShaders singlePassFlowFieldShaders;
 	ofParameter<bool> toggleGuiDraw;
 	std::shared_ptr<ActorManager> actorManager;
+	ofxPanel gui;
 };

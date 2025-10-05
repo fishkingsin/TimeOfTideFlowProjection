@@ -15,6 +15,7 @@
 		"0FC6940C-A659-4ED7-8D6B-56219ED89F4F" /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "0AD0BCF6-2C07-4E31-8EE3-E6C410546667" /* ofxOscSender.cpp */; };
 		"1037CD50-3214-4B92-9DFF-B55DAA035DF4" /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "16C30C0E-EB6D-472B-8945-64F773ACF202" /* NetworkingUtils.cpp */; };
 		"188B52EC-B6CB-4D45-90EB-B9B1EE882629" /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "96FD1599-E256-48C5-9107-447F23283C84" /* ofxGuiGroup.cpp */; };
+		1A1812592E92D9440017407E /* SinglePassFlowFieldShaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1812582E92D9440017407E /* SinglePassFlowFieldShaders.cpp */; };
 		1ADDADDB2E8FBD90005A443A /* FlowFieldParticlesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */; };
 		1ADDADDE2E8FBDC2005A443A /* FlowFieldParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDADDD2E8FBDC2005A443A /* FlowFieldParticles.cpp */; };
 		"1F33EB87-5209-49F1-A365-8DBDA74937C5" /* ftParticleFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "4BD45AD6-6E7F-44E5-9C67-850B0DDEC46C" /* ftParticleFlow.cpp */; };
@@ -110,6 +111,8 @@
 		191CD6FA2847E21E0085CBB6 /* of.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = of.entitlements; sourceTree = "<group>"; };
 		191EF70929D778A400F35F26 /* openFrameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openFrameworks; path = ../../../libs/openFrameworks; sourceTree = SOURCE_ROOT; };
 		"1A130F91-A62B-4DB0-BA94-B4B76C4575D0" /* CueEventArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CueEventArgs.h; sourceTree = "<group>"; };
+		1A1812572E92D9440017407E /* SinglePassFlowFieldShaders.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SinglePassFlowFieldShaders.hpp; sourceTree = "<group>"; };
+		1A1812582E92D9440017407E /* SinglePassFlowFieldShaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SinglePassFlowFieldShaders.cpp; sourceTree = "<group>"; };
 		1ADDADD92E8FBD90005A443A /* FlowFieldParticlesScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticlesScene.hpp; sourceTree = "<group>"; };
 		1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlowFieldParticlesScene.cpp; sourceTree = "<group>"; };
 		1ADDADDC2E8FBDC2005A443A /* FlowFieldParticles.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticles.hpp; sourceTree = "<group>"; };
@@ -343,6 +346,17 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		1A1812532E92D3FD0017407E /* SinglePassFlowField */ = {
+			isa = PBXGroup;
+			children = (
+				"6D78FECD-1C57-45D3-8F55-D443C378EB11" /* SinglePassFlowFieldScene.cpp */,
+				"C7EAEFC2-88C0-45B5-B7BB-5AA5FDB9E742" /* SinglePassFlowFieldScene.hpp */,
+				1A1812572E92D9440017407E /* SinglePassFlowFieldShaders.hpp */,
+				1A1812582E92D9440017407E /* SinglePassFlowFieldShaders.cpp */,
+			);
+			path = SinglePassFlowField;
+			sourceTree = "<group>";
+		};
 		"1A4259E8-244A-4FFC-8BB1-A9B0CD08375D" /* scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,8 +370,7 @@
 				"783CA397-A8F2-4EBB-96DC-E293ED39694B" /* LineScene.h */,
 				"A9FE8FD7-8F59-4BB6-B2A8-9A279452FEC5" /* OctaveNoise.cpp */,
 				"C9C45098-F4C3-4AC2-A527-6A8F0C5A6790" /* OctaveNoise.h */,
-				"6D78FECD-1C57-45D3-8F55-D443C378EB11" /* SinglePassFlowFieldScene.cpp */,
-				"C7EAEFC2-88C0-45B5-B7BB-5AA5FDB9E742" /* SinglePassFlowFieldScene.hpp */,
+				1A1812532E92D3FD0017407E /* SinglePassFlowField */,
 				"079093A6-481B-424D-8A87-629E5C67D17D" /* scenes.h */,
 			);
 			path = scenes;
@@ -997,6 +1010,7 @@
 				"7F7CD652-45D9-45AE-B020-F47629ACEA2A" /* ofxAutoReloadedShader.cpp in Sources */,
 				"B6C8FA82-F27E-4932-858E-99274E0E76FA" /* ftFluidFlow.cpp in Sources */,
 				"4D87C047-B762-429E-8004-263655455699" /* ftFlow.cpp in Sources */,
+				1A1812592E92D9440017407E /* SinglePassFlowFieldShaders.cpp in Sources */,
 				"9FB1A899-98F3-4481-A64B-F645DBAE294E" /* ftUtil.cpp in Sources */,
 				"0F7CC447-19ED-45A0-9EDF-A29F0FE84EE4" /* ftAverageFlow.cpp in Sources */,
 				"2EE3EFC5-AD57-47DE-B910-C3B5B0CA6085" /* ftAverageFlowWatcher.cpp in Sources */,

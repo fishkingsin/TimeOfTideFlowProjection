@@ -13,5 +13,6 @@
 #include "CurlFlowScene.hpp"
 #include "LineScene.h"
 #include "FlowToolsScene.hpp"
+#include "FlowFieldParticlesScene.hpp"
 #include "GPUCurlFlowScene.hpp"
 #include "SinglePassFlowFieldScene.hpp"

@@ -1,13 +1,5 @@
-OF_GLSL_SHADER_HEADER
-uniform vec3      iResolution;           // viewport resolution (in pixels)
-uniform float     iTime;                 // shader playback time (in seconds)
 uniform float     iTimeDelta;            // render time (in seconds)
-uniform float     iFrameRate;            // shader frame rate
-uniform int       iFrame;                // shader playback frame
-uniform sampler2DRect iChannel0;
-uniform vec4 iMouse;
-out vec4 oFragColor;
-// 2023 myth0genesis
+
 
 // Feel free to modify the number of iterations in the FBM function.
 // ztot and iztot will compensate for it and normalize the result from -1.0 to 1.0.
@@ -26,7 +18,7 @@ const float pVel = 0.6;
 const float decay = 0.01;
 
 // Particle spawn rate.
-const float spawnRate = 0.00005;
+const float spawnRate = 0.0005;
 
 // Distance (in pixels) sampled around point.
 const int smpDst = 2;
@@ -148,12 +140,4 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	
 	// The color of the tracer is added to the current frame's color.
 	fragColor = vec4(ssRes + vec3(0.0, 0.0, r *0.98), 1.0);
-}
-
-
-
-void main( void ) {
-	vec4 color = vec4(0.0,0.0,0.0,1.0);
-	mainImage( color, gl_FragCoord.xy );
-	oFragColor = color;
 }

@@ -14,7 +14,7 @@
 #include "ActorManager.hpp"
 #include "CueReceiver.h"
 #include "CueEventArgs.h"
-#include "FlowFieldParticlesScene.hpp"
+
 class FlowToolsScene;
 
 class ofApp : public ofxApp {
