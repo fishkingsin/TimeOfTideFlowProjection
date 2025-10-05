@@ -51,7 +51,10 @@ void FlowFieldParticles::setup() {
 
 	parametersImage.setName("image");
 	parametersImage.add(baseColor.set("baseColor", ofVec3f(0.2126, 0.7152, 1), ofVec3f::zero(), ofVec3f::one()));
+	parametersImage.add(overrideColor.set("overrideColor", ofVec3f(1, 0.5, 0), ofVec3f::zero(), ofVec3f::one()));
 	parametersImage.add(colorised.set("colorised", 0, 0, 1));
+	parametersImage.add(luminance.set("luminance", 0.5, 0, 2));
+	parametersImage.add(tolerance.set("tolerance", 0.5, 0, 1));
 	
 	parameters.setName("shadertoy");
 	parameters.add(parametersA);

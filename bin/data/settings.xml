@@ -125,60 +125,64 @@
 			<vector_mode>1</vector_mode>
 			<arrow_density>4.5</arrow_density>
 			<arrow_length>0.45</arrow_length>
-			<iterationTime1>10</iterationTime1>
-			<iterationTime2>30</iterationTime2>
+			<iterationTime1>19</iterationTime1>
+			<iterationTime2>19</iterationTime2>
 			<scale>2.27656</scale>
 			<velocity_x>0.1</velocity_x>
 			<velocity_y>0.2</velocity_y>
-			<mode_2_speed>0.364583</mode_2_speed>
+			<mode_2_speed>0.116577</mode_2_speed>
 			<mode_1_detail>200</mode_1_detail>
-			<mode_1_twist>100</mode_1_twist>
+			<mode_1_twist>35.6649</mode_1_twist>
 			<isArraw>0</isArraw>
 			<mode1_phase>1</mode1_phase>
 			<mode1_rg_amp>0.5</mode1_rg_amp>
 			<mode1_rg_bias>0.5</mode1_rg_bias>
 			<mode1_b_amp>0.3</mode1_b_amp>
 			<mode1_b_bias>0.5</mode1_b_bias>
+			<noiseScale>1.88668</noiseScale>
 		</buffer_A>
 		<buffer_B>
-			<particleSpeedScale>0.390625</particleSpeedScale>
+			<particleSpeedScale>0.454366</particleSpeedScale>
 		</buffer_B>
 		<buffer_C>
-			<smpDst>1</smpDst>
+			<smpDst>2</smpDst>
 		</buffer_C>
 		<buffer_D>
-			<damping>0.996</damping>
+			<damping>0.95117</damping>
 		</buffer_D>
 		<image>
-			<baseColor>0.2126, 0.218085, 0.218085</baseColor>
-			<colorised>0.635417</colorised>
+			<baseColor>0.0691489, 0.244681, 0.425532</baseColor>
+			<colorised>0.395833</colorised>
+			<luminance>1.2629</luminance>
+			<overrideColor>1, 0.5, 0</overrideColor>
+			<tolerance>0.5</tolerance>
 		</image>
 		<positions>
-			<position0>615.984, 147.505, 0</position0>
-			<position1>0, 256.435, 0</position1>
-			<position2>0, 145.863, 0</position2>
-			<position3>0, 105.822, 0</position3>
-			<position4>0, 495.729, 0</position4>
-			<position5>0, 266.787, 0</position5>
-			<position6>0, 666.112, 0</position6>
-			<position7>0, 308.679, 0</position7>
-			<position8>0, 266.702, 0</position8>
-			<position9>0, 57.9663, 0</position9>
-			<position10>0, 435.58, 0</position10>
-			<position11>0, 646.494, 0</position11>
-			<position12>0, 692.042, 0</position12>
-			<position13>0, 567.797, 0</position13>
-			<position14>0, 413.742, 0</position14>
-			<position15>0, 667.034, 0</position15>
-			<position16>0, 457.169, 0</position16>
-			<position17>0, 361.446, 0</position17>
-			<position18>0, 660.271, 0</position18>
-			<position19>0, 108.881, 0</position19>
-			<position20>0, 125.024, 0</position20>
-			<position21>0, 334.737, 0</position21>
-			<position22>0, 36.8332, 0</position22>
-			<position23>0, 416.116, 0</position23>
-			<position24>0, 298.879, 0</position24>
+			<position0>0, 297.818, 0</position0>
+			<position1>0, 221.471, 0</position1>
+			<position2>0, 664.349, 0</position2>
+			<position3>0, 47.1709, 0</position3>
+			<position4>0, 250.538, 0</position4>
+			<position5>0, 397.954, 0</position5>
+			<position6>0, 26.6165, 0</position6>
+			<position7>0, 596.673, 0</position7>
+			<position8>0, 54.2737, 0</position8>
+			<position9>0, 303.19, 0</position9>
+			<position10>0, 346.565, 0</position10>
+			<position11>0, 277.399, 0</position11>
+			<position12>0, 72.6038, 0</position12>
+			<position13>0, 419.769, 0</position13>
+			<position14>0, 612.254, 0</position14>
+			<position15>0, 362.699, 0</position15>
+			<position16>0, 108.639, 0</position16>
+			<position17>0, 632.566, 0</position17>
+			<position18>0, 663.705, 0</position18>
+			<position19>0, 108.998, 0</position19>
+			<position20>0, 30.9349, 0</position20>
+			<position21>0, 35.615, 0</position21>
+			<position22>0, 39.513, 0</position22>
+			<position23>0, 592.352, 0</position23>
+			<position24>0, 513.805, 0</position24>
 		</positions>
 	</shadertoy>
 </group>

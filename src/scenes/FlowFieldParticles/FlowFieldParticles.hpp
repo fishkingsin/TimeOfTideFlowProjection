@@ -91,7 +91,10 @@ private:
 	
 	// image
 	ofParameter<ofVec3f> baseColor;
+	ofParameter<ofVec3f> overrideColor;
 	ofParameter<float> colorised;
+	ofParameter<float> luminance;
+	ofParameter<float> tolerance;
 
 	ofParameterGroup positionsGroup;
 	ofParameter<ofVec3f> positionsParameter[MAX_POS];
