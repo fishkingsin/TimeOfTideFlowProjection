@@ -9,8 +9,8 @@
 
 void FlowFieldParticles::setup() {
 	enableWatchFiles();
-	densityWidth = 1920;
-	densityHeight = 1080;
+	densityWidth = ofGetWidth();
+	densityHeight = ofGetHeight();
 	simulationWidth = densityWidth / 2;
 	simulationHeight = densityHeight / 2;
 	windowWidth = ofGetWindowWidth();

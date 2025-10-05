@@ -20,8 +20,8 @@ CurlFlowScene::CurlFlowScene(std::shared_ptr<ActorManager> _actorManager)
 // scene setup
 void CurlFlowScene::setup() {
 	// Window size
-	int w = 1920;
-	int h = 1080;
+	int w = ofGetWidth();
+	int h = ofGetHeight();
 
 	// GUI setup
 	gui.setup();

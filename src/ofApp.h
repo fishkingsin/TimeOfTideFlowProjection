@@ -45,4 +45,5 @@ public:
 #endif
 	long sceneChangeTime;
 	long lastSceneChangeTime;
+	bool isShowingGui();
 };

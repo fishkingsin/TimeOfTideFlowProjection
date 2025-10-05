@@ -81,9 +81,11 @@ void ofApp::update() {
 	cueReceiver.update();
 
 	// every 3 min change to next scene
-	if (ofGetElapsedTimeMillis() - lastSceneChangeTime > sceneChangeTime) {
-		sceneManager.nextScene();
-		lastSceneChangeTime = ofGetElapsedTimeMillis();
+	if (!isShowingGui()) {
+		if (ofGetElapsedTimeMillis() - lastSceneChangeTime > sceneChangeTime) {
+			sceneManager.nextScene();
+			lastSceneChangeTime = ofGetElapsedTimeMillis();
+		}
 	}
 }
 
@@ -240,4 +242,15 @@ void ofApp::onCueEvent(CueEventArgs & args) {
 		ofLogNotice() << "[ofApp] Scene changed to " << sceneName;
 	}
 	// Optionally handle config update cues here
+}
+
+bool ofApp::isShowingGui() {
+	// store all point as instance
+	bool isGuiVisible = false;
+	if (curlFlowScene != NULL) isGuiVisible = curlFlowScene->toggleGuiDraw || isGuiVisible;
+	if (flowToolsScene != NULL) isGuiVisible = flowToolsScene->toggleGuiDraw || isGuiVisible;
+	if (singlePassFlowFieldScene != NULL) isGuiVisible = singlePassFlowFieldScene->toggleGuiDraw || isGuiVisible;
+	if (flowFieldParticlesScene != NULL) isGuiVisible = flowFieldParticlesScene->toggleGuiDraw || isGuiVisible;
+	isGuiVisible = actorReceiver.toggleGuiDraw || isGuiVisible;
+	return isGuiVisible;
 }

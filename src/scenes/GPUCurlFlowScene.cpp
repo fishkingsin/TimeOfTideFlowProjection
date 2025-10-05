@@ -52,8 +52,8 @@ void GPUCurlFlowScene:: setup() {
 	setupTranformFeedback();
 
 	drawGui = true;
-	int densityWidth = 1920;
-	int densityHeight = 1080;
+	int densityWidth = ofGetWidth();
+	int densityHeight = ofGetHeight();
 	
 	fboBuffer.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
 }
