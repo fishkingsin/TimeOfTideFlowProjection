@@ -12,7 +12,7 @@
 void ztReceiver::setup(){
 	// listen on the given port
 	ofLog() << "listening for osc messages on port " << PORT;
-	receiverPanel.setup("zactrack_receiver");
+	gui.setup("zactrack_receiver");
 	parameters.setName("zactrack receiver");
 	parameters.add(toggleGuiDraw.set("toggleGuiDraw", false));
 	parameters.add(port.set("port", PORT));
@@ -27,9 +27,20 @@ void ztReceiver::setup(){
 	currentMsgString = (currentMsgString + 1) % NUM_MSG_STRINGS;
 	
 	
-	receiverPanel.add(parameters);
-	if (!ofFile("zactrack_receiver-settings.xml")) { receiverPanel.saveToFile("zactrack_receiver-settings.xml"); }
-	receiverPanel.loadFromFile("zactrack_receiver-settings.xml");
+	gui.add(parameters);
+	if (!ofFile("zactrack_receiver-settings.xml")) { gui.saveToFile("zactrack_receiver-settings.xml"); }
+	gui.loadFromFile("zactrack_receiver-settings.xml");
+	minimizeGui(&gui);
+}
+
+void ztReceiver::minimizeGui(ofxGuiGroup * _group) {
+	for (int i = 0; i < _group->getNumControls(); i++) {
+		ofxGuiGroup * subGroup = dynamic_cast<ofxGuiGroup *>(_group->getControl(i));
+		if (subGroup) {
+			minimizeGui(subGroup);
+			_group->minimizeAll();
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -136,6 +147,6 @@ void ztReceiver::draw(){
 		ofPopStyle();
 	}
 	if (toggleGuiDraw) {
-		receiverPanel.draw();
+		gui.draw();
 	}
 }

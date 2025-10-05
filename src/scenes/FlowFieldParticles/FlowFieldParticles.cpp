@@ -20,15 +20,15 @@ void FlowFieldParticles::setup() {
 
 	parametersA.setName("buffer A");
 	// Shader GUI parameters (defaults match original shader constants)
+
 	parametersA.add(vector_mode.set("vector_mode", 0, 0, 1));
 	parametersA.add(arrowDensity.set("arrow_density", 4.5f, 0.5f, 20.0f));
 	parametersA.add(arrowLength.set("arrow_length", 0.45f, 0.05f, 2.0f));
 	parametersA.add(iter1.set("iterationTime1", 10, 1, 64));
 	parametersA.add(iter2.set("iterationTime2", 10, 1, 64));
-	parametersA.add(scaleParam.set("scale", 5.0f, 0.1f, 20.0f));
+	parametersA.add(scaleParam.set("noiseScale", 5.0f, 0.1f, 20.0f));
 	parametersA.add(velocityX.set("velocity_x", 0.1f, -5.0f, 5.0f));
 	parametersA.add(velocityY.set("velocity_y", 0.2f, -5.0f, 5.0f));
-	parametersA.add(scaleParam.set("scale", 0.5, 0, 100));
 	parametersA.add(mode2Speed.set("mode_2_speed", 2.5f, 0.0f, 10.0f));
 	parametersA.add(mode1Detail.set("mode_1_detail", 200.0f, 1.0f, 500.0f));
 	parametersA.add(mode1Twist.set("mode_1_twist", 50.0f, 0.0f, 200.0f));
@@ -59,6 +59,23 @@ void FlowFieldParticles::setup() {
 	parameters.add(parametersC);
 	parameters.add(parametersD);
 	parameters.add(parametersImage);
+	positionsGroup.setName("positions");
+	for (int i = 0; i < MAX_POS; i++) {
+		positionsGroup.add(positionsParameter[i]
+						   .set(
+								"position" + ofToString(i)
+								// random init position
+								,
+								ofVec3f(0,
+										ofRandom(ofGetHeight()),
+										0)
+								,
+								ofVec3f::zero()
+								,
+								ofVec3f(ofGetWidth(), ofGetHeight(), 1)));
+	}
+	parameters.add(positionsGroup);
+
 }
 
 bool FlowFieldParticles::load(string shaderfilename, Buffer buffer) {
@@ -137,6 +154,7 @@ void FlowFieldParticles::setupAdditionalShaderUniforms(const ofShader & bufShade
 		bufShader.setUniforms(parametersA);
 		break;
 	case ofxShadertoy::Buffer::BufferB:
+		bufShader.setUniform3fv("positions", &positions[0].x, MAX_POS);
 		bufShader.setUniforms(parametersB);
 			break;
 		case ofxShadertoy::Buffer::BufferC:
@@ -161,11 +179,25 @@ void FlowFieldParticles::drawDebug() {
 	fboB.draw(ofGetWindowWidth() - displayWidth, displayHeight, displayWidth, displayHeight);
 	fboC.draw(ofGetWindowWidth() - displayWidth, displayHeight * 2, displayWidth, displayHeight);
 	fboD.draw(ofGetWindowWidth() - displayWidth, displayHeight * 3, displayWidth, displayHeight);
+	
+	ofPushStyle();
+	ofSetColor(255, 0, 0);
+	for (int i = 0; i < MAX_POS; i++) {
+		ofDrawCircle(
+					 positions[i].x * (densityWidth / ofGetWindowWidth()),
+					 positions[i].y * (densityHeight / ofGetWindowHeight()), 5);
+	}
+	ofPopStyle();
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 //
 void FlowFieldParticles::_update(ofEventArgs & e) {
+	
+	// sync positionsParameter to positions
+	for (int i = 0; i < MAX_POS; i++) {
+		positions[i] = positionsParameter[i].get();
+	}
 	if (loadShaderNextFrame) {
 		reloadShaders();
 		loadShaderNextFrame = false;

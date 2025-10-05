@@ -13,7 +13,7 @@ uniform float arrow_length;
 
 uniform int iterationTime1;
 uniform int iterationTime2;
-uniform float scale;
+uniform float noiseScale;
 
 uniform float velocity_x;
 uniform float velocity_y;
@@ -155,7 +155,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
 	vec2 p = fragCoord.xy / iResolution.xy-0.5 ;
 	p.x *= iResolution.x/iResolution.y;
-    p *= scale;
+    p *= noiseScale;
     
     vec2 uv = fragCoord.xy / iResolution.xy;
     vec3 col;

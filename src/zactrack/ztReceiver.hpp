@@ -32,6 +32,7 @@ public:
 	void setup();
 	void update();
 	void draw();
+	void minimizeGui(ofxGuiGroup * _group);
 	ofxOscReceiver receiver;
 	
 	ofPoint points[MAX_TRACKER];
@@ -50,7 +51,7 @@ public:
 	ofParameter<float>		maxX;
 	ofParameter<float>		maxY;
 	ofEvent<ztActorEventArgs> actorEvent;
-	ofxPanel receiverPanel;
+	ofxPanel gui;
 };
 
 #endif /* ztReceiver_hpp */

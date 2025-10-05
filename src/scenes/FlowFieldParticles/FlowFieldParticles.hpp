@@ -10,6 +10,7 @@
 
 #include "ofxShadertoy.h"
 #include <stdio.h>
+#define MAX_POS 25
 
 class FlowFieldParticles: public ofxShadertoy {
 public:
@@ -92,6 +93,9 @@ private:
 	ofParameter<ofVec3f> baseColor;
 	ofParameter<float> colorised;
 
+	ofParameterGroup positionsGroup;
+	ofParameter<ofVec3f> positionsParameter[MAX_POS];
+	ofVec3f positions[MAX_POS];
 	
 };
 

@@ -46,6 +46,18 @@ void FlowFieldParticlesScene::setup() {
 		gui.saveToFile("FlowFieldParticlesScene-settings.xml");
 	}
 	gui.loadFromFile("FlowFieldParticlesScene-settings.xml");
+	minimizeGui(&gui);
+}
+
+//--------------------------------------------------------------
+void FlowFieldParticlesScene::minimizeGui(ofxGuiGroup * _group) {
+	for (int i = 0; i < _group->getNumControls(); i++) {
+		ofxGuiGroup * subGroup = dynamic_cast<ofxGuiGroup *>(_group->getControl(i));
+		if (subGroup) {
+			minimizeGui(subGroup);
+			_group->minimizeAll();
+		}
+	}
 }
 
 // called when scene is entering, this is just a demo and this

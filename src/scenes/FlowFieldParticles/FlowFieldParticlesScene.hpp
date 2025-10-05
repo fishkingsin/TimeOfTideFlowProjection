@@ -28,7 +28,7 @@ public:
 	void onActorSceneEvent(ActorSceneEventArgs & args);
 	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
-	
+	void minimizeGui(ofxGuiGroup * _group);
 	std::shared_ptr<ActorManager> actorManager;
 	ofxPanel gui;
 	ofParameter<bool> toggleGuiDraw;
