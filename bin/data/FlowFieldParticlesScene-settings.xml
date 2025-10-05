@@ -6,33 +6,33 @@
 			<vector_mode>1</vector_mode>
 			<arrow_density>4.5</arrow_density>
 			<arrow_length>0.45</arrow_length>
-			<iterationTime1>4</iterationTime1>
-			<iterationTime2>5</iterationTime2>
-			<scale>9.92975</scale>
-			<velocity_x>0.147298</velocity_x>
-			<velocity_y>0.251465</velocity_y>
-			<mode_2_speed>0.459798</mode_2_speed>
-			<mode_1_detail>73.3241</mode_1_detail>
-			<mode_1_twist>118.583</mode_1_twist>
+			<iterationTime1>10</iterationTime1>
+			<iterationTime2>30</iterationTime2>
+			<scale>2.27656</scale>
+			<velocity_x>0.1</velocity_x>
+			<velocity_y>0.2</velocity_y>
+			<mode_2_speed>0.364583</mode_2_speed>
+			<mode_1_detail>200</mode_1_detail>
+			<mode_1_twist>100</mode_1_twist>
 			<isArraw>0</isArraw>
-			<mode1_phase>1.69116</mode1_phase>
-			<mode1_rg_amp>0.685832</mode1_rg_amp>
-			<mode1_rg_bias>1.06</mode1_rg_bias>
-			<mode1_b_amp>2</mode1_b_amp>
-			<mode1_b_bias>1.07562</mode1_b_bias>
+			<mode1_phase>1</mode1_phase>
+			<mode1_rg_amp>0.5</mode1_rg_amp>
+			<mode1_rg_bias>0.5</mode1_rg_bias>
+			<mode1_b_amp>0.3</mode1_b_amp>
+			<mode1_b_bias>0.5</mode1_b_bias>
 		</buffer_A>
 		<buffer_B>
-			<particleSpeedScale>0.155355</particleSpeedScale>
+			<particleSpeedScale>0.390625</particleSpeedScale>
 		</buffer_B>
 		<buffer_C>
 			<smpDst>1</smpDst>
 		</buffer_C>
 		<buffer_D>
-			<damping>0.997371</damping>
+			<damping>0.996</damping>
 		</buffer_D>
 		<image>
-			<baseColor>0.419361, 0.318297, 0.531063</baseColor>
-			<colorised>0.629374</colorised>
+			<baseColor>0.2126, 0.218085, 0.218085</baseColor>
+			<colorised>0.635417</colorised>
 		</image>
 	</shadertoy>
 </group>
