@@ -1,3 +1,4 @@
+#define TESTING 1
 #define PI 3.14159265359
 
 // Hash without Sine

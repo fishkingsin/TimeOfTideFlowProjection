@@ -32,7 +32,7 @@ void FlowFieldParticles::setup() {
 	parametersA.add(mode2Speed.set("mode_2_speed", 2.5f, 0.0f, 10.0f));
 	parametersA.add(mode1Detail.set("mode_1_detail", 200.0f, 1.0f, 500.0f));
 	parametersA.add(mode1Twist.set("mode_1_twist", 50.0f, 0.0f, 200.0f));
-	parametersA.add(showArrows.set("isArraw", false));
+	parametersA.add(showArrows.set("isArraw", 0, 0, 1));
 	// Mode 1 color uniforms (match bufferA.frag)
 	parametersA.add(mode1Phase.set("mode1_phase", 1.0f, -6.283f, 6.283f)); // phase ~ [-2π,2π]
 	parametersA.add(mode1RgAmp.set("mode1_rg_amp", 0.5f, 0.0f, 2.0f)); // amplitude for R,G
@@ -55,7 +55,7 @@ void FlowFieldParticles::setup() {
 	parametersImage.add(colorised.set("colorised", 0, 0, 1));
 	parametersImage.add(luminance.set("luminance", 0.5, 0, 2));
 	parametersImage.add(tolerance.set("tolerance", 0.5, 0, 1));
-	
+	parametersImage.add(debugMode.set("debugMode", 0, 0, 4));
 	parameters.setName("shadertoy");
 	parameters.add(parametersA);
 	parameters.add(parametersB);

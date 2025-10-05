@@ -22,7 +22,7 @@ uniform float mode_2_speed;
 uniform float mode_1_detail;
 uniform float mode_1_twist;
 
-uniform bool isArraw;
+uniform int isArraw;
 
 // Parameterized uniforms for mode 1 color (was hard-coded)
 uniform float mode1_phase;    // default 1.0 (phase added to p.x+p.y for R,G)
@@ -172,7 +172,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	col = getRGB(fld,vector_mode) * 0.85;
 	fviz = fieldviz(p,vector_mode);
 	
-	if(isArraw == true){
+	if(isArraw == 1){
 		#if 1
 		col = max(col, 1.-fviz*vec3(1.));
 		#else

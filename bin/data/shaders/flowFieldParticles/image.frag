@@ -1,4 +1,4 @@
-#define TESTING 0
+uniform int debugMode;
 uniform vec3 baseColor;
 uniform vec3 overrideColor;
 uniform float colorised;
@@ -40,9 +40,26 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 	// increas luminance
 	fragColor.rgb *= (1.0 + luminance);
 	
+//	
+//	float Y = slideValY * iResolution.y;
+//	float X = slideValX * iResolution.x;
+//	
+	switch (debugMode) {
+		case 1:
+			fragColor = texture(iChannel0, uv);
+			break;
+		case 2:
+			fragColor = texture(iChannel1, uv);
+			break;
+		case 3:
+			fragColor = texture(iChannel2, uv);
+			break;
+		case 4:
+			fragColor = texture(iChannel3, uv);
+			break;
+	}
 	
-	float Y = slideValY * iResolution.y;
-	float X = slideValX * iResolution.x;
+	/*
 	if (TESTING==1){
 		if(uv.x < X && uv.y > Y){
 			fragColor = texture(iChannel0, uv);
@@ -61,6 +78,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 		}
 	}
 	
-	
+	*/
 	
 }

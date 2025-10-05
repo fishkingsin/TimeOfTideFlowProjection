@@ -71,7 +71,7 @@ private:
 	ofParameter<float> mode2Speed;
 	ofParameter<float> mode1Detail;
 	ofParameter<float> mode1Twist;
-	ofParameter<bool> showArrows;
+	ofParameter<int> showArrows;
 	// Mode 1 color parameterization (matches bufferA.frag new uniforms)
 	ofParameter<float> mode1Phase; // maps to mode1_phase
 	ofParameter<float> mode1RgAmp; // maps to mode1_rg_amp
@@ -95,6 +95,7 @@ private:
 	ofParameter<float> colorised;
 	ofParameter<float> luminance;
 	ofParameter<float> tolerance;
+	ofParameter<int> debugMode;
 
 	ofParameterGroup positionsGroup;
 	ofParameter<ofVec3f> positionsParameter[MAX_POS];
