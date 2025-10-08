@@ -45,6 +45,9 @@ const mat3 m3 = mat3( 0.3338,  0.56034, -0.71817,
 float tm;
 vec2 invRes;
 float frmAdj;
+#define MAX_POS 25
+uniform vec3 positions[MAX_POS];
+
 
 // My own 128-bit bijective hash https://www.shadertoy.com/view/mstXD2
 vec4 bjhash128(vec4 p0) {
@@ -115,6 +118,17 @@ vec3 ss(vec2 pos, vec2 scr) {
 	
 	// The velocity field.
 	vec2 v = gFBM(vec3(uv1, -3875.27)) * pVel * frmAdj;
+	
+	for (int i = 0 ; i < MAX_POS; i ++) {
+		vec3 pos = positions[i];
+		// Mouse velocity offset when clicked.
+		if (pos.z > 0.0) {
+			vec2 position = pos.xy * invRes.x;
+			float md = distance(position, uv0);
+			float vFac = smoothstep(0.2, 0.0, md);
+			v = mix(v, (uv0 - position) * impulse, vFac);
+		}
+	}
 	
 	// Mouse velocity offset when clicked.
 	if (iMouse.z > 0.0) {

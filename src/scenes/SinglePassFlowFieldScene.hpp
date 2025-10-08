@@ -11,14 +11,15 @@
 #include "ofxAutoReloadedShader.h"
 #include "ActorManager.hpp"
 #include "CueEventArgs.h"
+#define MAX_POS 25
 class SinglePassFlowFieldScene : public ofxFadeScene {
 	
 public:
-
-void onCueConfigEvent(CueEventArgs & args);
-
-// set the scene name through the base class initializer
-SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
+	
+	void onCueConfigEvent(CueEventArgs & args);
+	
+	// set the scene name through the base class initializer
+	SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_);
 	void setup();
 	void updateEnter();
@@ -37,6 +38,7 @@ SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	void addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	void removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr);
 	
+	
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
 	ofxAutoReloadedShader shaderA;
 	ofxAutoReloadedShader shaderDraw;
@@ -44,4 +46,10 @@ SinglePassFlowFieldScene():ofxFadeScene("SinglePassFlowFieldScene") {};
 	ofFbo fboImage; // with alpha
 	ofParameter<bool> toggleGuiDraw;
 	std::shared_ptr<ActorManager> actorManager;
+	ofxPanel gui;
+	
+	ofParameterGroup positionsGroup;
+	ofParameter<ofVec3f> positionsParameter[MAX_POS];
+	ofVec3f positions[MAX_POS];
+	void minimizeGui(ofxGuiGroup * _group);
 };

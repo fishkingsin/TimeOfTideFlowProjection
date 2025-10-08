@@ -48,7 +48,7 @@ void ofApp::setup() {
 
 	// start with a specific scene
 	// set now to true in order to ignore the scene fade and change now
-	sceneManager.gotoScene("FlowFieldParticles", true);
+	sceneManager.gotoScene("SinglePassFlowFieldScene", true);
 	lastScene = sceneManager.getCurrentSceneIndex();
 
 	// overlap scenes when transitioning

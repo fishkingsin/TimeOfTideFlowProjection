@@ -11,7 +11,7 @@
 
 // set the scene name through the base class initializer
 SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager> actorManager_)
-: ofxFadeScene("GPUCurlFlow")
+: ofxFadeScene("SinglePassFlowFieldScene")
 , actorManager(actorManager_) {
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
@@ -39,7 +39,50 @@ void SinglePassFlowFieldScene:: setup() {
 	
 	fboBufferA.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
 	fboImage.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
+	
+	
+	gui.setup();
+	gui.add(toggleGuiDraw.set("debug", false));
+	
+	
+	minimizeGui(&gui);
+	positionsGroup.setName("positions");
+	for (int i = 0; i < MAX_POS; i++) {
+		positionsGroup.add(positionsParameter[i]
+						   .set(
+								"position" + ofToString(i)
+								// random init position
+								,
+								ofVec3f(0,
+										ofRandom(ofGetHeight()),
+										0)
+								,
+								ofVec3f::zero()
+								,
+								ofVec3f(ofGetWidth(), ofGetHeight(), 1)));
+	}
+	gui.add(positionsGroup);
+	
+	
+	if (!ofFile("SinglePassFlowFieldScene-settings.xml")) {
+		gui.saveToFile("SinglePassFlowFieldScene-settings.xml");
+	}
+	gui.loadFromFile("SinglePassFlowFieldScene-settings.xml");
+	
+	minimizeGui(&gui);
 }
+
+//--------------------------------------------------------------
+void SinglePassFlowFieldScene::minimizeGui(ofxGuiGroup * _group) {
+	for (int i = 0; i < _group->getNumControls(); i++) {
+		ofxGuiGroup * subGroup = dynamic_cast<ofxGuiGroup *>(_group->getControl(i));
+		if (subGroup) {
+			minimizeGui(subGroup);
+			_group->minimizeAll();
+		}
+	}
+}
+
 
 // called when scene is entering, this is just a demo and this
 // implementation is not required for this class
@@ -48,7 +91,7 @@ void SinglePassFlowFieldScene:: updateEnter() {
 	if(isEnteringFirst()) {
 		ofLogNotice("SinglePassFlowFieldScene") << "update enter";
 	}
-
+	
 	// fade scene calculates normalized alpha value for us
 	ofxFadeScene::updateEnter();
 	
@@ -60,6 +103,9 @@ void SinglePassFlowFieldScene:: updateEnter() {
 
 // normal update
 void SinglePassFlowFieldScene:: update() {
+	for (int i = 0; i < MAX_POS; i++) {
+		positions[i] = positionsParameter[i].get();
+	}
 	frame += 1 ;
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 	
@@ -74,6 +120,7 @@ void SinglePassFlowFieldScene:: update() {
 	shaderA.setUniform4f("iMouse", ofGetMouseX(), ofGetMouseY(), ofGetMousePressed(), 1.0);
 	shaderA.setUniform1i("iFrame", frame);
 	shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1);
+	shaderA.setUniform3fv("positions", &positions[0].x, MAX_POS);
 	fboImage.draw(0 ,0);
 	shaderA.end();
 	fboBufferA.end();
@@ -123,12 +170,6 @@ void SinglePassFlowFieldScene:: draw() {
 	ofPopStyle();
 	
 	
-	if (toggleGuiDraw) {
-		int width = windowWidth * 0.25;
-		int height = windowHeight * 0.25;
-		fboBufferA.draw(0, 0, width, height);
-	}
-	
 	ofDisableAlphaBlending();
 	
 	ofPushStyle();
@@ -139,6 +180,22 @@ void SinglePassFlowFieldScene:: draw() {
 	ofPopStyle();
 	
 	
+	
+	if (toggleGuiDraw) {
+		
+		int width = windowWidth * 0.25;
+		int height = windowHeight * 0.25;
+		fboBufferA.draw(windowWidth - width, 0, width, height);
+		ofPushStyle();
+		ofSetColor(255, 0, 0);
+		for (int i = 0; i < MAX_POS; i++) {
+			ofDrawCircle(
+						 positions[i].x * (densityWidth / ofGetWindowWidth()),
+						 positions[i].y * (densityHeight / ofGetWindowHeight()), 5);
+		}
+		ofPopStyle();
+		gui.draw();
+	}
 }
 
 
@@ -148,7 +205,7 @@ void SinglePassFlowFieldScene:: exit() {
 }
 
 void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-	// TODO: Handle actor scene event (enter, move, leave) // print rich info 
+	// TODO: Handle actor scene event (enter, move, leave) // print rich info
 	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 }
 
@@ -157,16 +214,16 @@ void SinglePassFlowFieldScene::addActorSceneEventListener(std::shared_ptr<ActorM
 }
 
 void SinglePassFlowFieldScene::removeActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
-ofRemoveListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
+	ofRemoveListener(managerPtr->sceneActorEvent, this, &SinglePassFlowFieldScene::onActorSceneEvent);
 }
 
 void SinglePassFlowFieldScene::onCueConfigEvent(CueEventArgs & args) {
-    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 3) return;
-    // Example: apply param0 to frame count, param1 to densityWidth
-    for (const auto& kv : args.parameters) {
-        if (kv.first == "param0") frame = static_cast<int>(kv.second);
-        if (kv.first == "param1") densityWidth = static_cast<int>(kv.second);
-        // Extend mapping as needed
-    }
-    ofLogNotice() << "[SinglePassFlowFieldScene] Config updated from cue";
+	if (args.cueType != CueType::ConfigUpdate || args.sceneId != 3) return;
+	// Example: apply param0 to frame count, param1 to densityWidth
+	for (const auto& kv : args.parameters) {
+		if (kv.first == "param0") frame = static_cast<int>(kv.second);
+		if (kv.first == "param1") densityWidth = static_cast<int>(kv.second);
+		// Extend mapping as needed
+	}
+	ofLogNotice() << "[SinglePassFlowFieldScene] Config updated from cue";
 }
