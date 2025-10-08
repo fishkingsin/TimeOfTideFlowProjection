@@ -50,6 +50,7 @@ void ActorManager::onActorEvent(ztActorEventArgs &args) {
 		}
 		Actor actor;
 		actor.id = args.key;
+		actor.index = args.index;
 		actor.setPosition(args.point);
 		ofAddListener(actor.actorIdel, this, &ActorManager::onActorIdel);
 		auto actor_ptr = std::make_shared<Actor>(actor);
@@ -66,8 +67,8 @@ void ActorManager::onActorEvent(ztActorEventArgs &args) {
 
 void ActorManager::onActorIdel(Actor & actor) {
 	ofLog() << "actor idel with key " << actor.id << " erase and remove listener";
-	ofRemoveListener(actor.actorIdel, this, &ActorManager::onActorIdel);
-	notifySceneActorEvent(ActorSceneEventType::Leave, std::make_shared<Actor>(actor));
-	actors.erase(actor.id);
+//	ofRemoveListener(actor.actorIdel, this, &ActorManager::onActorIdel);
+//	notifySceneActorEvent(ActorSceneEventType::Leave, std::make_shared<Actor>(actor));
+//	actors.erase(actor.id);
 	
 }

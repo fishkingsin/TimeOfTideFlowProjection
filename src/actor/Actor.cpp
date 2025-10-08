@@ -20,16 +20,23 @@ void Actor::setPosition(ofPoint point) {
 	lastTime = ofGetElapsedTimef();
 	mps = !mps;
 	position[mps] = point;
+	position[mps].z = 1;
 	alive = true;
 }
+
+ofVec3f Actor::getPosition() {
+	return position[mps];
+}
+
 void Actor::update() {
 	if (!alive) {
-		return;
-	}
-	if (ofGetElapsedTimef() - lastTime < idleTime) {
 		
-	} else {
+	}
+	if (ofGetElapsedTimef() - lastTime > idleTime) {
+		
+	} else if (alive == true) {
 		alive = false;
+		position[mps].z = 1;
 		ofNotifyEvent(actorIdel, *this);
 		//notifiy event
 	}

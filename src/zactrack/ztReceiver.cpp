@@ -79,6 +79,7 @@ void ztReceiver::update(){
 				}
 				ztActorEventArgs args;
 				args.key = key;
+				args.index = i;
 				args.point = points[i];
 				ofNotifyEvent(actorEvent, args);
 				hasMessage = true;

@@ -193,7 +193,7 @@ void FlowToolsScene::update() {
 			ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 			shadertoy.end();
 		}
-		
+		actorManager->draw(ofGetWidth() * densityActorFlow.getRadius());
 		ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
 		
 		ofDisableAlphaBlending();
@@ -360,7 +360,7 @@ void FlowToolsScene::exit() {
 
 void FlowToolsScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 	// TODO: Handle actor scene event (enter, move, leave)
-	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.actor->id << " eventType "<< args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->getPosition().x << " " << args.actor->getPosition().y;
 }
 
 void FlowToolsScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {

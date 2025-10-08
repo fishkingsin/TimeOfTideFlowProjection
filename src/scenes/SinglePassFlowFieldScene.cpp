@@ -15,6 +15,7 @@ SinglePassFlowFieldScene::SinglePassFlowFieldScene(std::shared_ptr<ActorManager>
 , actorManager(actorManager_) {
 	setSingleSetup(true); // call setup each time the scene is loaded
 	setFade(5000, 5000); // 1 second fade in/out
+	
 }
 
 // scene setup
@@ -90,6 +91,7 @@ void SinglePassFlowFieldScene:: updateEnter() {
 	// called on first enter update
 	if(isEnteringFirst()) {
 		ofLogNotice("SinglePassFlowFieldScene") << "update enter";
+		addActorSceneEventListener(actorManager);
 	}
 	
 	// fade scene calculates normalized alpha value for us
@@ -156,6 +158,7 @@ void SinglePassFlowFieldScene:: updateExit() {
 	// finished exiting?
 	if(!isExiting()) {
 		ofLogNotice("SinglePassFlowFieldScene") << "update exit done";
+		removeActorSceneEventListener(actorManager);
 	}
 }
 
@@ -205,8 +208,16 @@ void SinglePassFlowFieldScene:: exit() {
 }
 
 void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-	// TODO: Handle actor scene event (enter, move, leave) // print rich info
-	ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	if (args.eventType == ActorSceneEventType::Move) {
+		// TODO: Handle actor scene event (enter, move, leave) // print rich info
+		int index = args.actor->index;
+		if(index >= 0 || index < 25) {
+			ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent index " << index ;
+			positionsParameter[index].set(args.actor->getPosition());
+		}
+		ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.actor->id << " eventType "<< args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->getPosition().x << " " << args.actor->getPosition().y;
+	}
+	
 }
 
 void SinglePassFlowFieldScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {

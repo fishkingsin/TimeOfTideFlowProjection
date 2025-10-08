@@ -136,7 +136,7 @@ void FlowFieldParticlesScene::onCueConfigEvent(CueEventArgs & args) {
 
 void FlowFieldParticlesScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 // TODO: Handle actor scene event (enter, move, leave)
-ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	ofLog() << "FlowFieldParticlesScene::onActorSceneEvent " << args.actor->id << " eventType "<< args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->getPosition().x << " " << args.actor->getPosition().y;
 }
 
 void FlowFieldParticlesScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {

@@ -38,7 +38,7 @@ void ofApp::setup() {
 	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
 	flowToolsScene = static_cast<FlowToolsScene *>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
 	flowFieldParticlesScene = static_cast<FlowFieldParticlesScene *>(sceneManager.add(new FlowFieldParticlesScene(actorManagerPtr)));
-	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene()));
+	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene(actorManagerPtr)));
 	ofAddListener(cueReceiver.cueEvent, curlFlowScene, &CurlFlowScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, flowToolsScene, &FlowToolsScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, singlePassFlowFieldScene, &SinglePassFlowFieldScene::onCueConfigEvent);
@@ -48,7 +48,8 @@ void ofApp::setup() {
 
 	// start with a specific scene
 	// set now to true in order to ignore the scene fade and change now
-	sceneManager.gotoScene("SinglePassFlowFieldScene", true);
+	sceneManager.gotoScene(singlePassFlowFieldScene->getName(), true);
+	singlePassFlowFieldScene->addActorSceneEventListener(actorManagerPtr);
 	lastScene = sceneManager.getCurrentSceneIndex();
 
 	// overlap scenes when transitioning

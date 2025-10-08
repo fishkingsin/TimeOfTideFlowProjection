@@ -14,5 +14,6 @@
 class ztActorEventArgs {
 public:
 	string key;
+	int index;
 	ofPoint point;
 };

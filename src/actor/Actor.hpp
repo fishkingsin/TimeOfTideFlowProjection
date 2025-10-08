@@ -8,17 +8,19 @@
 #pragma once
 
 #include "ofMain.h"
-#define MAX_IDLE_TIME 10 // seconds
+#define MAX_IDLE_TIME 10000 // seconds
 class Actor {
 public:
 	
 	void setup();
 	void setPosition(ofPoint point);
+	ofVec3f getPosition();
 	void update();
 	void draw(float radius);
-	ofPoint position[2];
+	ofVec3f position[2];
 	bool mps;
 	string id;
+	unsigned int index;
 	float idleTime;
 	float lastTime;
 	bool alive;
