@@ -141,6 +141,7 @@ void SinglePassFlowFieldScene::update() {
 	frame += 1;
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 
+
 	// apply noiseshader to fbo
 	if(fboBufferA.isAllocated()) {
 		fboBufferA.begin();

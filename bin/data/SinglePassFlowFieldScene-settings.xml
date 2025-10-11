@@ -1,38 +1,261 @@
 <?xml version="1.0"?>
+<settings>
+	<average_FPS>60</average_FPS>
+	<minimum_FPS>58.922</minimum_FPS>
+	<fullscreen__F_>1</fullscreen__F_>
+	<show_gui__G_>1</show_gui__G_>
+	<draw_camera__C_>0</draw_camera__C_>
+	<draw_mouse__M_>1</draw_mouse__M_>
+	<draw_particles__P_>1</draw_particles__P_>
+	<reset__R_>0</reset__R_>
+	<visualization>
+		<mode>15</mode>
+		<name>fluid density</name>
+		<scale>0.504082</scale>
+		<show_scalar>0</show_scalar>
+	</visualization>
+	<optical_flow>
+		<threshold>0.0836735</threshold>
+		<boost>0.0367347</boost>
+	</optical_flow>
+	<velocity_bridge>
+		<trail>0.0505102</trail>
+		<blur>0.510204</blur>
+		<speed>0.0510204</speed>
+	</velocity_bridge>
+	<density_bridge>
+		<trail>0.318214</trail>
+		<blur>3.21429</blur>
+		<speed>0.316327</speed>
+		<saturation>1.58163</saturation>
+	</density_bridge>
+	<temperature_bridge>
+		<trail>0.303061</trail>
+		<blur>3.06122</blur>
+		<speed>-0.346939</speed>
+	</temperature_bridge>
+	<fluid>
+		<speed>0.00510204</speed>
+		<dissipation>
+			<velocity>0.0260417</velocity>
+			<density>0.0260417</density>
+			<temperature>0.0260417</temperature>
+			<pressure>0.0260417</pressure>
+		</dissipation>
+		<viscosity>
+			<velocity>0.0364583</velocity>
+			<density>0</density>
+			<temperature>0</temperature>
+		</viscosity>
+		<vorticity>0.0408163</vorticity>
+		<smoke_buoyancy>
+			<buoyancy>0.0520833</buoyancy>
+			<weight>0.2</weight>
+			<ambient_temperature>0.2</ambient_temperature>
+		</smoke_buoyancy>
+	</fluid>
+	<particles>
+		<speed>0.00510204</speed>
+		<birth_chance>0.5</birth_chance>
+		<birth_velocity_chance>0.5</birth_velocity_chance>
+		<lifespan>5</lifespan>
+		<lifespan_spread>0.25</lifespan_spread>
+		<mass>1.3</mass>
+		<mass_spread>0.2</mass_spread>
+		<size>2</size>
+		<size_spread>0.75</size_spread>
+		<twinkle_speed>1.83673</twinkle_speed>
+		<gravity>0, 0</gravity>
+	</particles>
+	<mouse_density>
+		<speed>3.06122</speed>
+		<persistent>0</persistent>
+		<radius>0.035</radius>
+		<smooth>1</smooth>
+		<inverse>0</inverse>
+		<color>0.5, 0.5, 0.5, 0.5</color>
+	</mouse_density>
+	<mouse_velocity>
+		<speed>50</speed>
+		<persistent>0</persistent>
+		<radius>0.035</radius>
+		<smooth>1</smooth>
+		<inverse>0</inverse>
+	</mouse_velocity>
+	<useCamera>0</useCamera>
+	<draw_actor__M_>1</draw_actor__M_>
+	<zactrack_receiver>
+		<debug>0</debug>
+		<port>7777</port>
+		<Invert_X>0</Invert_X>
+		<Invert_Y>0</Invert_Y>
+		<min_X>-6000</min_X>
+		<min_Y>-6000</min_Y>
+		<max_X>-6000</max_X>
+		<max_Y>-6000</max_Y>
+	</zactrack_receiver>
+	<obsbstacle>
+		<image_file>flowtools.png</image_file>
+	</obsbstacle>
+	<useShader>1</useShader>
+</settings>
 <group>
-	<debug>0</debug>
-	<SinglePassFlowFieldShaders>
-		<buffer_A />
-		<buffer_B />
-		<buffer_C />
-		<buffer_D />
-		<image />
+	<average_FPS>60</average_FPS>
+	<Flow>1</Flow>
+	<Center>128</Center>
+	<Width>127</Width>
+	<Frequency1>0.3</Frequency1>
+	<Frequency2>0.3</Frequency2>
+	<Frequency3>0.3</Frequency3>
+	<Phase1>0</Phase1>
+	<Phase2>2</Phase2>
+	<Phase3>4</Phase3>
+	<Speed>0.03</Speed>
+	<Fade>0.005</Fade>
+	<noiseScale>410.59</noiseScale>
+	<Step>1026.6</Step>
+	<xVol>0</xVol>
+	<yVol>4.8</yVol>
+	<Particle_Size>0.5</Particle_Size>
+	<Rainbow>0</Rainbow>
+	<Base_Color>255, 255, 255, 255</Base_Color>
+	<debug>1</debug>
+	<shadertoy>
+		<buffer_A>
+			<vector_mode>1</vector_mode>
+			<arrow_density>4.5</arrow_density>
+			<arrow_length>0.45</arrow_length>
+			<iterationTime1>19</iterationTime1>
+			<iterationTime2>19</iterationTime2>
+			<scale>2.27656</scale>
+			<velocity_x>0.1</velocity_x>
+			<velocity_y>0.2</velocity_y>
+			<mode_2_speed>0.116577</mode_2_speed>
+			<mode_1_detail>200</mode_1_detail>
+			<mode_1_twist>35.6649</mode_1_twist>
+			<isArraw>0</isArraw>
+			<mode1_phase>1</mode1_phase>
+			<mode1_rg_amp>0.5</mode1_rg_amp>
+			<mode1_rg_bias>0.5</mode1_rg_bias>
+			<mode1_b_amp>0.3</mode1_b_amp>
+			<mode1_b_bias>0.5</mode1_b_bias>
+			<noiseScale>1.88668</noiseScale>
+		</buffer_A>
+		<buffer_B>
+			<particleSpeedScale>0.454366</particleSpeedScale>
+		</buffer_B>
+		<buffer_C>
+			<smpDst>2</smpDst>
+		</buffer_C>
+		<buffer_D>
+			<damping>0.95117</damping>
+		</buffer_D>
+		<image>
+			<baseColor>0.0691489, 0.244681, 0.425532</baseColor>
+			<colorised>0.395833</colorised>
+			<luminance>1.2629</luminance>
+			<overrideColor>1, 0.5, 0</overrideColor>
+			<tolerance>0.5</tolerance>
+		</image>
 		<positions>
-			<position0>0, 452.142, 0</position0>
-			<position1>0, 195.437, 0</position1>
-			<position2>0, 282.154, 0</position2>
-			<position3>0, 97.8348, 0</position3>
-			<position4>0, 1.90558, 0</position4>
-			<position5>0, 328.752, 0</position5>
-			<position6>0, 301.448, 0</position6>
-			<position7>0, 403.386, 0</position7>
-			<position8>0, 221.679, 0</position8>
-			<position9>0, 121.46, 0</position9>
-			<position10>0, 393.955, 0</position10>
-			<position11>0, 94.747, 0</position11>
-			<position12>0, 645.58, 0</position12>
-			<position13>0, 592.548, 0</position13>
-			<position14>0, 661.17, 0</position14>
-			<position15>0, 488.463, 0</position15>
-			<position16>0, 157.713, 0</position16>
-			<position17>0, 372.324, 0</position17>
-			<position18>0, 166.171, 0</position18>
-			<position19>0, 129.992, 0</position19>
-			<position20>0, 270.264, 0</position20>
-			<position21>0, 80.3385, 0</position21>
-			<position22>0, 471.587, 0</position22>
-			<position23>0, 689.105, 0</position23>
-			<position24>0, 225.859, 0</position24>
+			<position0>0, 297.818, 0</position0>
+			<position1>0, 221.471, 0</position1>
+			<position2>0, 664.349, 0</position2>
+			<position3>0, 47.1709, 0</position3>
+			<position4>0, 250.538, 0</position4>
+			<position5>0, 397.954, 0</position5>
+			<position6>0, 26.6165, 0</position6>
+			<position7>0, 596.673, 0</position7>
+			<position8>0, 54.2737, 0</position8>
+			<position9>0, 303.19, 0</position9>
+			<position10>0, 346.565, 0</position10>
+			<position11>0, 277.399, 0</position11>
+			<position12>0, 72.6038, 0</position12>
+			<position13>0, 419.769, 0</position13>
+			<position14>0, 612.254, 0</position14>
+			<position15>0, 362.699, 0</position15>
+			<position16>0, 108.639, 0</position16>
+			<position17>0, 632.566, 0</position17>
+			<position18>0, 663.705, 0</position18>
+			<position19>0, 108.998, 0</position19>
+			<position20>0, 30.9349, 0</position20>
+			<position21>0, 35.615, 0</position21>
+			<position22>0, 39.513, 0</position22>
+			<position23>0, 592.352, 0</position23>
+			<position24>0, 513.805, 0</position24>
 		</positions>
-	</SinglePassFlowFieldShaders>
+	</shadertoy>
+	<positions>
+		<position0>0, 334.038, 0, 7</position0>
+		<position1>0, 435.645, 0, 7</position1>
+		<position2>0, 521.68, 0, 7</position2>
+		<position3>0, 494.485, 0, 7</position3>
+		<position4>0, 514.28, 0, 7</position4>
+		<position5>0, 275.095, 0, 7</position5>
+		<position6>0, 525.926, 0, 7</position6>
+		<position7>0, 404.979, 0, 7</position7>
+		<position8>0, 448.91, 0, 7</position8>
+		<position9>0, 458.555, 0, 7</position9>
+		<position10>0, 124.35, 0, 7</position10>
+		<position11>0, 245.459, 0, 7</position11>
+		<position12>0, 211.085, 0, 7</position12>
+		<position13>0, 62.5995, 0, 7</position13>
+		<position14>0, 555.843, 0, 7</position14>
+		<position15>0, 439.978, 0, 7</position15>
+		<position16>0, 139.81, 0, 7</position16>
+		<position17>0, 665.825, 0, 7</position17>
+		<position18>0, 547.58, 0, 7</position18>
+		<position19>0, 276.79, 0, 7</position19>
+		<position20>0, 361.272, 0, 7</position20>
+		<position21>0, 16.4448, 0, 7</position21>
+		<position22>0, 645.96, 0, 7</position22>
+		<position23>0, 397.373, 0, 7</position23>
+		<position24>0, 170.484, 0, 7</position24>
+	</positions>
+	<flowField>
+		<iters>4</iters>
+		<smpDst>2</smpDst>
+		<tScale>0.214286</tScale>
+		<scale>5.40357</scale>
+		<pVel>0.780612</pVel>
+		<decay>0.0102041</decay>
+		<spawnRate>102</spawnRate>
+		<birthRateParam>114</birthRateParam>
+		<impulse>7</impulse>
+		<force>0, -0.0104167</force>
+		<speed>0.612245</speed>
+		<brightness>1</brightness>
+	</flowField>
+	<additional_positions>
+		<position0>0, 372.305, 0, 7</position0>
+		<position1>0, 442.654, 0, 7</position1>
+		<position2>0, 579.478, 0, 7</position2>
+		<position3>0, 367.06, 0, 7</position3>
+		<position4>0, 78.2555, 0, 7</position4>
+	</additional_positions>
 </group>
+<Receiver>
+	<zactrack_receiver>
+		<debug>1</debug>
+		<port>7777</port>
+		<Invert_X>0</Invert_X>
+		<Invert_Y>0</Invert_Y>
+		<min_X>-5714</min_X>
+		<min_Y>-3628</min_Y>
+		<max_X>6530</max_X>
+		<max_Y>3616</max_Y>
+	</zactrack_receiver>
+</Receiver>
+<zactrack_receiver>
+	<zactrack_receiver>
+		<debug>1</debug>
+		<port>7777</port>
+		<Invert_X>1</Invert_X>
+		<Invert_Y>0</Invert_Y>
+		<min_X>-5714</min_X>
+		<min_Y>-3628</min_Y>
+		<max_X>6530</max_X>
+		<max_Y>3616</max_Y>
+		<toggleGuiDraw>1</toggleGuiDraw>
+	</zactrack_receiver>
+</zactrack_receiver>
