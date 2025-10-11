@@ -50,7 +50,8 @@ float frmAdj;
 #define MAX_POS 30
 
 uniform vec4 positions[MAX_POS];
-
+uniform vec2 force;
+uniform float speed;
 
 // My own 128-bit bijective hash https://www.shadertoy.com/view/mstXD2
 vec4 bjhash128(vec4 p0) {
@@ -126,7 +127,7 @@ vec3 ss(vec2 pos, vec2 scr) {
 	scr = (hash.w <= spawnRate * frmAdj * birthRate / iResolution.x) ? (pos + hash.xy) : scr;
 	
 	// The velocity field.
-	vec2 v = gFBM(vec3(uv1, -3875.27)) * pVel * frmAdj;
+	vec2 v = (gFBM(vec3(uv1, -3875.27)) * pVel * frmAdj) * speed;
 	
 	for (int i = 0 ; i < MAX_POS; i ++) {
 		vec4 pos = positions[i];
@@ -152,7 +153,7 @@ vec3 ss(vec2 pos, vec2 scr) {
 	// will have a value greater than zero and thus will persist into the next frame,
 	// and likewise the resulting sum of the particle's position and its velocity and the new velocity will
 	// always be greater than 1.0, which, when put into a vector whose .b component is 1.0, makes it white.
-	return (any(greaterThan(scr, vec2(0.0)))) ? vec3(scr + v, 1.0) : vec3(0.0);
+	return (any(greaterThan(scr, vec2(0.0)))) ? vec3(scr + v + force, 1.0) : vec3(0.0);
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {

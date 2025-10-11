@@ -52,7 +52,8 @@ public:
 	// Flow field shader (bufferA) controls
 	ofParameterGroup flowFieldParams;
 	ofParameter<int> itersParam, smpDstParam, birthRateParam, spawnRateParam;
-	ofParameter<float> tScaleParam, scaleParam, pVelParam, decayParam, impulseParam;
+	ofParameter<float> tScaleParam, scaleParam, pVelParam, decayParam, impulseParam, speed;
+	ofParameter<ofVec2f> force;
 
 	ofParameterGroup positionsGroup;
 	ofParameter<ofVec4f> positionsParameter[MAX_POS];

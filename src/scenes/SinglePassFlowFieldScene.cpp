@@ -52,6 +52,8 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(spawnRateParam.set("spawnRate", 5, 0, 1000));
 	flowFieldParams.add(birthRateParam.set("birthRateParam", 100, 0, 1600));
 	flowFieldParams.add(impulseParam.set("impulse", 7.0, 0.0, 20.0));
+	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
+	flowFieldParams.add(speed.set("speed", 1, 0, 10));
 	gui.add(flowFieldParams);
 
 	
@@ -161,6 +163,8 @@ void SinglePassFlowFieldScene::update() {
 	shaderA.setUniform1f("spawnRate", spawnRateParam * 0.00001);
 	shaderA.setUniform1f("impulse", impulseParam);
 	shaderA.setUniform1i("birthRate", birthRateParam);
+	shaderA.setUniform2f("force", force.get());
+	shaderA.setUniform1f("speed", speed.get());
 
 	fboImage.draw(0, 0);
 	shaderA.end();
