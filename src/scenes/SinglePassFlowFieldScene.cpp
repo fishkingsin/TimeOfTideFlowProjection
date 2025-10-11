@@ -26,6 +26,7 @@ void SinglePassFlowFieldScene:: setup() {
 	
 	
 	shaderA.load("shaders/singlePassFlowField/bufferA");
+	shaderB.load("shaders/singlePassFlowField/bufferB");
 	shaderDraw.load("shaders/singlePassFlowField/image");
 	
 	
@@ -39,6 +40,7 @@ void SinglePassFlowFieldScene:: setup() {
 	windowHeight = ofGetWindowHeight();
 	
 	fboBufferA.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
+	fboBufferB.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
 	fboImage.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
 	
 	
@@ -137,6 +139,33 @@ void SinglePassFlowFieldScene:: update() {
 	shaderDraw.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1 );
 	
 	fboBufferA.draw(0, 0);
+	shaderDraw.end();
+	fboImage.end();
+	
+	
+	fboBufferB.begin();
+	shaderB.begin();
+	shaderB.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+	shaderB.setUniform1f("texCoordWidthScale", densityWidth);
+	shaderB.setUniform1f("texCoordHeightScale", densityHeight);
+	shaderB.setUniform1f("iTime", ofGetElapsedTimef());
+	shaderB.setUniform1i("iFrame", frame);
+	shaderB.setUniformTexture("iChannel0", fboBufferA.getTexture() , 1 );
+	
+	fboBufferA.draw(0, 0);
+	shaderB.end();
+	fboBufferB.end();
+	
+	fboImage.begin();
+	shaderDraw.begin();
+	shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+	shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
+	shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
+	shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
+	shaderDraw.setUniform1i("iFrame", frame);
+	shaderDraw.setUniformTexture("iChannel0", fboBufferB.getTexture() , 1 );
+	
+	fboBufferB.draw(0, 0);
 	shaderDraw.end();
 	fboImage.end();
 	

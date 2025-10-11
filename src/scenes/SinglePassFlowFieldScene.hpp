@@ -41,8 +41,10 @@ public:
 	
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;
 	ofxAutoReloadedShader shaderA;
+	ofxAutoReloadedShader shaderB;
 	ofxAutoReloadedShader shaderDraw;
 	ofFbo fboBufferA; // with alpha
+	ofFbo fboBufferB; // with alpha
 	ofFbo fboImage; // with alpha
 	ofParameter<bool> toggleGuiDraw;
 	std::shared_ptr<ActorManager> actorManager;
