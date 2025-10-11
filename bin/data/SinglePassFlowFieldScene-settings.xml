@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<group>
+	<debug>0</debug>
+	<SinglePassFlowFieldShaders>
+		<buffer_A />
+		<buffer_B />
+		<buffer_C />
+		<buffer_D />
+		<image />
+		<positions>
+			<position0>0, 452.142, 0</position0>
+			<position1>0, 195.437, 0</position1>
+			<position2>0, 282.154, 0</position2>
+			<position3>0, 97.8348, 0</position3>
+			<position4>0, 1.90558, 0</position4>
+			<position5>0, 328.752, 0</position5>
+			<position6>0, 301.448, 0</position6>
+			<position7>0, 403.386, 0</position7>
+			<position8>0, 221.679, 0</position8>
+			<position9>0, 121.46, 0</position9>
+			<position10>0, 393.955, 0</position10>
+			<position11>0, 94.747, 0</position11>
+			<position12>0, 645.58, 0</position12>
+			<position13>0, 592.548, 0</position13>
+			<position14>0, 661.17, 0</position14>
+			<position15>0, 488.463, 0</position15>
+			<position16>0, 157.713, 0</position16>
+			<position17>0, 372.324, 0</position17>
+			<position18>0, 166.171, 0</position18>
+			<position19>0, 129.992, 0</position19>
+			<position20>0, 270.264, 0</position20>
+			<position21>0, 80.3385, 0</position21>
+			<position22>0, 471.587, 0</position22>
+			<position23>0, 689.105, 0</position23>
+			<position24>0, 225.859, 0</position24>
+		</positions>
+	</SinglePassFlowFieldShaders>
+</group>

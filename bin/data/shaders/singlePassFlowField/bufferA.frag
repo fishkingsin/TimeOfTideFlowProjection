@@ -11,7 +11,7 @@ out vec4 oFragColor;
 
 // Feel free to modify the number of iterations in the FBM function.
 // ztot and iztot will compensate for it and normalize the result from -1.0 to 1.0.
-const int iters = 2;
+const int iters = 3;
 const float ztot = 0.5 * (2.0 - 1.0 / pow(2.0, float(iters) - 1.0));
 const float iztot = 1.0 / ztot;
 
@@ -32,7 +32,7 @@ const float spawnRate = 0.00005;
 const int smpDst = 2;
 
 // The amount of velocity added by clicking.
-const float impulse = 15.0;
+const float impulse = 7.0;
 
 const uvec4 shft = uvec4(14U, 15U, 16U, 17U);
 const float imf = 1.0 / float(0xFFFFFFFFU);
@@ -114,7 +114,7 @@ vec3 ss(vec2 pos, vec2 scr) {
 	vec4 hash = bjhash128(vec4(pos, frame, 1.738765));
 	
 	// This adds random particles with a random initial velocity offset.
-	scr = (hash.w <= spawnRate * frmAdj * 100.0 / iResolution.x) ? (pos + hash.xy) : scr;
+	scr = (hash.w <= spawnRate * frmAdj * 800.0 / iResolution.x) ? (pos + hash.xy) : scr;
 	
 	// The velocity field.
 	vec2 v = gFBM(vec3(uv1, -3875.27)) * pVel * frmAdj;
@@ -161,7 +161,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	vec3 ssRes = ss(fragCoord, scRes);
 	
 	// The color of the tracer is added to the current frame's color.
-	fragColor = vec4(ssRes + vec3(0.0, 0.0, r *0.98), 1.0);
+	fragColor = vec4(ssRes + vec3(0.0, 0.0, r), 1.0);
 }
 
 

@@ -185,6 +185,33 @@
 			<position24>0, 513.805, 0</position24>
 		</positions>
 	</shadertoy>
+	<positions>
+		<position0>633.333, 420, 1</position0>
+		<position1>893.333, 386.25, 1</position1>
+		<position2>0, 186.586, 0</position2>
+		<position3>0, 665.837, 0</position3>
+		<position4>0, 698.204, 0</position4>
+		<position5>0, 669.195, 0</position5>
+		<position6>0, 53.7915, 0</position6>
+		<position7>0, 298.492, 0</position7>
+		<position8>0, 715.741, 0</position8>
+		<position9>0, 132.707, 0</position9>
+		<position10>0, 55.0181, 0</position10>
+		<position11>0, 363.309, 0</position11>
+		<position12>0, 384.446, 0</position12>
+		<position13>0, 279.162, 0</position13>
+		<position14>0, 190.329, 0</position14>
+		<position15>0, 44.0838, 0</position15>
+		<position16>0, 215.746, 0</position16>
+		<position17>0, 186.255, 0</position17>
+		<position18>0, 427.544, 0</position18>
+		<position19>0, 324.513, 0</position19>
+		<position20>0, 48.0588, 0</position20>
+		<position21>0, 224.179, 0</position21>
+		<position22>0, 440.348, 0</position22>
+		<position23>0, 414.741, 0</position23>
+		<position24>0, 63.1635, 0</position24>
+	</positions>
 </group>
 <Receiver>
 	<zactrack_receiver>

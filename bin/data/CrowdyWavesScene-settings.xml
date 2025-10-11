@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<group>
+	<debug>0</debug>
+	<CrowdyWavesShaders>
+		<buffer_A />
+		<buffer_B />
+		<buffer_C />
+		<buffer_D />
+		<image />
+		<positions>
+			<position0>0, 541.576, 0</position0>
+			<position1>0, 532.099, 0</position1>
+			<position2>0, 66.1182, 0</position2>
+			<position3>0, 377.04, 0</position3>
+			<position4>0, 76.239, 0</position4>
+			<position5>0, 244.469, 0</position5>
+			<position6>0, 534.392, 0</position6>
+			<position7>0, 59.3539, 0</position7>
+			<position8>0, 685.371, 0</position8>
+			<position9>0, 132.907, 0</position9>
+			<position10>0, 342.249, 0</position10>
+			<position11>0, 422.19, 0</position11>
+			<position12>0, 294.685, 0</position12>
+			<position13>0, 712.397, 0</position13>
+			<position14>0, 77.3606, 0</position14>
+			<position15>0, 255.791, 0</position15>
+			<position16>0, 76.8572, 0</position16>
+			<position17>0, 288.029, 0</position17>
+			<position18>0, 237.667, 0</position18>
+			<position19>0, 109.653, 0</position19>
+			<position20>0, 60.6631, 0</position20>
+			<position21>0, 465.558, 0</position21>
+			<position22>0, 547.663, 0</position22>
+			<position23>0, 63.7088, 0</position23>
+			<position24>0, 97.9056, 0</position24>
+		</positions>
+	</CrowdyWavesShaders>
+</group>
