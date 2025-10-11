@@ -11,28 +11,30 @@ out vec4 oFragColor;
 
 // Feel free to modify the number of iterations in the FBM function.
 // ztot and iztot will compensate for it and normalize the result from -1.0 to 1.0.
-const int iters = 3;
-const float ztot = 0.5 * (2.0 - 1.0 / pow(2.0, float(iters) - 1.0));
-const float iztot = 1.0 / ztot;
+const int MAX_ITERS = 8;
+uniform int iters;
 
 // Noise speed and position scale.
-const float tScale = 0.275;
-const float scale = 3.5;
+uniform float tScale;
+uniform float scale;
 
 // Particle velocity.
-const float pVel = 0.6;
+uniform float pVel;
 
 // Tracer decay rate.
-const float decay = 0.01;
+uniform float decay;
 
 // Particle spawn rate.
-const float spawnRate = 0.00005;
+uniform float spawnRate;
+
+uniform int birthRate;
 
 // Distance (in pixels) sampled around point.
-const int smpDst = 2;
+const int MAX_SMP_DST = 4;
+uniform int smpDst;
 
 // The amount of velocity added by clicking.
-const float impulse = 7.0;
+uniform float impulse;
 
 const uvec4 shft = uvec4(14U, 15U, 16U, 17U);
 const float imf = 1.0 / float(0xFFFFFFFFU);
@@ -45,8 +47,9 @@ const mat3 m3 = mat3( 0.3338,  0.56034, -0.71817,
 float tm;
 vec2 invRes;
 float frmAdj;
-#define MAX_POS 25
-uniform vec3 positions[MAX_POS];
+#define MAX_POS 30
+
+uniform vec4 positions[MAX_POS];
 
 
 // My own 128-bit bijective hash https://www.shadertoy.com/view/mstXD2
@@ -74,7 +77,8 @@ vec2 gFBM(vec3 p0) {
 	float z = 1.0;
 	
 	float prd = 1.0;
-	for(int i = 0; i < iters; i++) {
+	for(int i = 0; i < MAX_ITERS; i++) {
+if (i >= iters) break;
 		p0 += sin(p0.yzx * prd);
 		p1 += sin(p1.yzx * prd);
 		d0 += abs(dot(cos(p0), sin(p0.zxy)) * z);
@@ -84,14 +88,18 @@ vec2 gFBM(vec3 p0) {
 		p0 = p0 * m3;
 		p1 = p1 * m3;
 	}
-	return (vec2(d0, d1) - ztot) * iztot;
+	int its = max(iters, 1);
+float ztot = 0.5 * (2.0 - 1.0 / pow(2.0, float(its) - 1.0));
+float iztot = 1.0 / ztot;
+return (vec2(d0, d1) - ztot) * iztot;
 }
 
 // Much of the code in sc(), ss(), and mainImage() is derived from davidar's
 // wind flow map https://www.shadertoy.com/view/4sKBz3
 vec2 sc(vec2 pos) {
-	for(int i = -smpDst; i <= smpDst; i++) {
-		for(int j = -smpDst; j <= smpDst; j++) {
+	for(int i = -MAX_SMP_DST; i <= MAX_SMP_DST; i++) {
+		for(int j = -MAX_SMP_DST; j <= MAX_SMP_DST; j++) {
+if (abs(i) > smpDst || abs(j) > smpDst) continue;
 		
 			// These two lines subtract the current fragCoord's position (pos) from the sum
 			// of the previous frame's pixel coordinate and its velocity at the sampled point (res)
@@ -108,25 +116,26 @@ vec2 sc(vec2 pos) {
 vec3 ss(vec2 pos, vec2 scr) {
 	vec2 uv0 = pos * invRes.x;
 	
+	// This scales the position so that the noise pattern is consistent across different resolutions.
 	vec2 uv1 = scale * (scr - 0.5 * iResolution.xy) * invRes.y;
 	
 	float frame = float(iFrame);
 	vec4 hash = bjhash128(vec4(pos, frame, 1.738765));
 	
 	// This adds random particles with a random initial velocity offset.
-	scr = (hash.w <= spawnRate * frmAdj * 800.0 / iResolution.x) ? (pos + hash.xy) : scr;
+	scr = (hash.w <= spawnRate * frmAdj * birthRate / iResolution.x) ? (pos + hash.xy) : scr;
 	
 	// The velocity field.
 	vec2 v = gFBM(vec3(uv1, -3875.27)) * pVel * frmAdj;
 	
 	for (int i = 0 ; i < MAX_POS; i ++) {
-		vec3 pos = positions[i];
+		vec4 pos = positions[i];
 		// Mouse velocity offset when clicked.
 		if (pos.z > 0.0) {
 			vec2 position = pos.xy * invRes.x;
 			float md = distance(position, uv0);
 			float vFac = smoothstep(0.2, 0.0, md);
-			v = mix(v, (uv0 - position) * impulse, vFac);
+			v = mix(v, (uv0 - position) * impulse * pos.w, vFac);
 		}
 	}
 	
@@ -161,7 +170,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	vec3 ssRes = ss(fragCoord, scRes);
 	
 	// The color of the tracer is added to the current frame's color.
-	fragColor = vec4(ssRes + vec3(0.0, 0.0, r), 1.0);
+	fragColor = vec4(ssRes + vec3(0.0, 0.0, r * 0.998), 1.0);
 }
 
 
