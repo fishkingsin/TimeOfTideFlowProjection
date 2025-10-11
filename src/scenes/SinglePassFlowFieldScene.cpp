@@ -48,7 +48,7 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(tScaleParam.set("tScale", 0.275, 0.0, 2.0));
 	flowFieldParams.add(scaleParam.set("scale", 3.5, 0.1, 10.0));
 	flowFieldParams.add(pVelParam.set("pVel", 0.6, 0.0, 3.0));
-	flowFieldParams.add(decayParam.set("decay", 0.001, 0.0, 0.01));
+	flowFieldParams.add(decayParam.set("decay", 0.001, 0.0, 1));
 	flowFieldParams.add(spawnRateParam.set("spawnRate", 5, 0, 1000));
 	flowFieldParams.add(birthRateParam.set("birthRateParam", 100, 0, 1600));
 	flowFieldParams.add(impulseParam.set("impulse", 7.0, 0.0, 20.0));
