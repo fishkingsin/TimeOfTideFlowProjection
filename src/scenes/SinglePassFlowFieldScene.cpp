@@ -54,6 +54,7 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(impulseParam.set("impulse", 7.0, 0.0, 20.0));
 	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
 	flowFieldParams.add(speed.set("speed", 1, 0, 10));
+	flowFieldParams.add(brightness.set("brightness", 0.5, 0, 1));
 	gui.add(flowFieldParams);
 
 	
@@ -141,73 +142,64 @@ void SinglePassFlowFieldScene::update() {
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 
 	// apply noiseshader to fbo
-	fboBufferA.begin();
-	shaderA.begin();
-	shaderA.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderA.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderA.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderA.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderA.setUniform1f("iTimeDelta", dt);
-	shaderA.setUniform4f("iMouse", ofGetMouseX(), ofGetMouseY(), ofGetMousePressed(), 1.0);
-	shaderA.setUniform1i("iFrame", frame);
-	shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
-	shaderA.setUniform4fv("positions", &positions[0].x, MAX_POS + MAX_ADD_POS);
+	if(fboBufferA.isAllocated()) {
+		fboBufferA.begin();
+		shaderA.begin();
+		shaderA.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+		shaderA.setUniform1f("texCoordWidthScale", densityWidth);
+		shaderA.setUniform1f("texCoordHeightScale", densityHeight);
+		shaderA.setUniform1f("iTime", ofGetElapsedTimef());
+		shaderA.setUniform1f("iTimeDelta", dt);
+		shaderA.setUniform4f("iMouse", ofGetMouseX(), ofGetMouseY(), ofGetMousePressed(), 1.0);
+		shaderA.setUniform1i("iFrame", frame);
+		shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
+		shaderA.setUniform4fv("positions", &positions[0].x, MAX_POS + MAX_ADD_POS);
+		
+		// bind flow field uniforms
+		shaderA.setUniform1i("iters", itersParam);
+		shaderA.setUniform1i("smpDst", smpDstParam);
+		shaderA.setUniform1f("tScale", tScaleParam);
+		shaderA.setUniform1f("scale", scaleParam);
+		shaderA.setUniform1f("pVel", pVelParam);
+		shaderA.setUniform1f("decay", decayParam);
+		shaderA.setUniform1f("spawnRate", spawnRateParam * 0.00001);
+		shaderA.setUniform1f("impulse", impulseParam);
+		shaderA.setUniform1i("birthRate", birthRateParam);
+		shaderA.setUniform2f("force", force.get());
+		shaderA.setUniform1f("speed", speed.get());
+		
+		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+		shaderA.end();
+		fboBufferA.end();
+	}
+	if(fboBufferB.isAllocated()) {
+		fboBufferB.begin();
+		shaderB.begin();
+		shaderB.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+		shaderB.setUniform1f("texCoordWidthScale", densityWidth);
+		shaderB.setUniform1f("texCoordHeightScale", densityHeight);
+		shaderB.setUniform1f("iTime", ofGetElapsedTimef());
+		shaderB.setUniform1i("iFrame", frame);
+		shaderB.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
+		shaderB.setUniform1f("brightness", brightness.get());
+		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+		shaderB.end();
+		fboBufferB.end();
+	}
 
-	// bind flow field uniforms
-	shaderA.setUniform1i("iters", itersParam);
-	shaderA.setUniform1i("smpDst", smpDstParam);
-	shaderA.setUniform1f("tScale", tScaleParam);
-	shaderA.setUniform1f("scale", scaleParam);
-	shaderA.setUniform1f("pVel", pVelParam);
-	shaderA.setUniform1f("decay", decayParam);
-	shaderA.setUniform1f("spawnRate", spawnRateParam * 0.00001);
-	shaderA.setUniform1f("impulse", impulseParam);
-	shaderA.setUniform1i("birthRate", birthRateParam);
-	shaderA.setUniform2f("force", force.get());
-	shaderA.setUniform1f("speed", speed.get());
-
-	fboImage.draw(0, 0);
-	shaderA.end();
-	fboBufferA.end();
-
-	fboImage.begin();
-	shaderDraw.begin();
-	shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderDraw.setUniform1i("iFrame", frame);
-	shaderDraw.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
-
-	fboBufferA.draw(0, 0);
-	shaderDraw.end();
-	fboImage.end();
-
-	fboBufferB.begin();
-	shaderB.begin();
-	shaderB.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderB.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderB.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderB.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderB.setUniform1i("iFrame", frame);
-	shaderB.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
-
-	fboBufferA.draw(0, 0);
-	shaderB.end();
-	fboBufferB.end();
-
-	fboImage.begin();
-	shaderDraw.begin();
-	shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
-	shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
-	shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
-	shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
-	shaderDraw.setUniform1i("iFrame", frame);
-	shaderDraw.setUniformTexture("iChannel0", fboBufferB.getTexture(), 1);
-
-	fboBufferB.draw(0, 0);
-	shaderDraw.end();
-	fboImage.end();
+	if(fboImage.isAllocated()) {
+		fboImage.begin();
+		shaderDraw.begin();
+		shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
+		shaderDraw.setUniform1f("texCoordWidthScale", densityWidth);
+		shaderDraw.setUniform1f("texCoordHeightScale", densityHeight);
+		shaderDraw.setUniform1f("iTime", ofGetElapsedTimef());
+		shaderDraw.setUniform1i("iFrame", frame);
+		shaderDraw.setUniformTexture("iChannel0", fboBufferB.getTexture(), 1);
+		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+		shaderDraw.end();
+		fboImage.end();
+	}
 }
 
 // called when scene is exiting, this is just a demo and this
