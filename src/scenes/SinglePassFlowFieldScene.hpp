@@ -50,6 +50,7 @@ public:
 	ofxPanel gui;
 
 	// Flow field shader (bufferA) controls
+	ofParameter<int> guiFPS;
 	ofParameterGroup flowFieldParams;
 	ofParameter<int> itersParam, smpDstParam, birthRateParam, spawnRateParam;
 	ofParameter<float> tScaleParam, scaleParam, pVelParam, decayParam, impulseParam, speed, brightness;

@@ -39,8 +39,9 @@ void FlowFieldParticlesScene::setup() {
 
 	flowFieldParticlesShaders.setAdvanceTime(true);
 	gui.setup();
-	gui.add(toggleGuiDraw.set("debug", false));
 	
+	gui.add(toggleGuiDraw.set("debug", false));
+	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	gui.add(flowFieldParticlesShaders.parameters);
 	if (!ofFile("FlowFieldParticlesScene-settings.xml")) {
 		gui.saveToFile("FlowFieldParticlesScene-settings.xml");
@@ -79,6 +80,7 @@ void FlowFieldParticlesScene::updateEnter() {
 
 // normal update
 void FlowFieldParticlesScene::update() {
+	guiFPS = (int)(ofGetFrameRate() + 0.5);
 }
 
 // called when scene is exiting, this is just a demo and this

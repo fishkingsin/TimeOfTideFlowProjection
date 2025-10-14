@@ -32,6 +32,7 @@ public:
 	std::shared_ptr<ActorManager> actorManager;
 	ofxPanel gui;
 	ofParameter<bool> toggleGuiDraw;
+	ofParameter<int> guiFPS;
 
 	FlowFieldParticles flowFieldParticlesShaders;
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;

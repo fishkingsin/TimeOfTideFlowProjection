@@ -39,6 +39,7 @@ void SinglePassFlowFieldScene::setup() {
 	fboImage.allocate(densityWidth, densityHeight, GL_RGBA32F_ARB);
 
 	gui.setup();
+	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	gui.add(toggleGuiDraw.set("debug", false));
 
 	// Flow field parameters
@@ -127,6 +128,7 @@ void SinglePassFlowFieldScene::updateEnter() {
 
 // normal update
 void SinglePassFlowFieldScene::update() {
+	guiFPS = (int)(ofGetFrameRate() + 0.5);
 	for (int i = 0; i < MAX_POS + MAX_ADD_POS; i++) {
 		if (i < MAX_POS) {
 			positions[i] = positionsParameter[i].get();
