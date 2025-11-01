@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <group>
-	<average_FPS>60</average_FPS>
+	<average_FPS>61</average_FPS>
 	<Flow>1</Flow>
 	<Center>128</Center>
 	<Width>127</Width>
@@ -10,13 +10,13 @@
 	<Phase1>0</Phase1>
 	<Phase2>2</Phase2>
 	<Phase3>4</Phase3>
-	<Speed>0.05</Speed>
-	<Fade>0.04</Fade>
-	<noiseScale>410.59</noiseScale>
-	<Step>204.35</Step>
-	<xVol>0</xVol>
-	<yVol>4.8</yVol>
-	<Particle_Size>0.5</Particle_Size>
+	<Speed>0.17</Speed>
+	<Fade>0.01</Fade>
+	<noiseScale>85.915</noiseScale>
+	<Step>234.25</Step>
+	<xVol>3</xVol>
+	<yVol>0</yVol>
+	<Particle_Size>0.793</Particle_Size>
 	<Rainbow>0</Rainbow>
-	<Base_Color>255, 255, 255, 255</Base_Color>
+	<Base_Color>172, 216, 255, 255</Base_Color>
 </group>

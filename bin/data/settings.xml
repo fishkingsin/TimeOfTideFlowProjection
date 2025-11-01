@@ -101,7 +101,7 @@
 	<useShader>1</useShader>
 </settings>
 <group>
-	<average_FPS>60</average_FPS>
+	<average_FPS>61</average_FPS>
 	<Flow>1</Flow>
 	<Center>128</Center>
 	<Width>127</Width>
@@ -111,16 +111,16 @@
 	<Phase1>0</Phase1>
 	<Phase2>2</Phase2>
 	<Phase3>4</Phase3>
-	<Speed>0.03</Speed>
-	<Fade>0.005</Fade>
-	<noiseScale>410.59</noiseScale>
-	<Step>1026.6</Step>
-	<xVol>0</xVol>
-	<yVol>4.8</yVol>
-	<Particle_Size>0.5</Particle_Size>
+	<Speed>0.17</Speed>
+	<Fade>0.01</Fade>
+	<noiseScale>85.915</noiseScale>
+	<Step>234.25</Step>
+	<xVol>3</xVol>
+	<yVol>0</yVol>
+	<Particle_Size>0.793</Particle_Size>
 	<Rainbow>0</Rainbow>
-	<Base_Color>255, 255, 255, 255</Base_Color>
-	<debug>1</debug>
+	<Base_Color>172, 216, 255, 255</Base_Color>
+	<debug>0</debug>
 	<shadertoy>
 		<buffer_A>
 			<vector_mode>1</vector_mode>
@@ -237,6 +237,8 @@
 		<position3>0, 367.06, 0, 0.5</position3>
 		<position4>0, 78.2555, 0, 0.5</position4>
 	</additional_positions>
+	<show_gui__G_>1</show_gui__G_>
+	<Color_Mode>1</Color_Mode>
 </group>
 <Receiver>
 	<zactrack_receiver>

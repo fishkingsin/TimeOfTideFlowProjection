@@ -58,7 +58,7 @@ void CurlFlowScene::setup() {
 	guiFade.set("Fade", 0.0f, 0.0f, 1.0f);
 	gui.add(guiFade);
 
-	noiseScale.set("noiseScale", 500.0f, 1.0f, 1000.0f);
+	noiseScale.set("noiseScale", 500.0f, 1.0f, 100000.0f);
 	gui.add(noiseScale);
 
 	guiStep.set("Step", 1000.0f, 10.0f, 3000.0f);
@@ -114,7 +114,7 @@ void CurlFlowScene::setup() {
 	}
 	gui.loadFromFile("CurlFlowScene-settings.xml");
 	// Variables for controls
-	discCount = guiDiscCount;
+	//	discCount = guiDiscCount;
 	flow = guiFlow;
 	center = guiCenter;
 	width = guiWidth;
@@ -249,24 +249,26 @@ void CurlFlowScene::exit() {
 
 //--------------------------------------------------------------
 void CurlFlowScene::move() {
-	int w = ofGetWidth();
-	int h = ofGetHeight();
+	int w = ofGetWidth() + 50;
+	int h = ofGetHeight() + 50;
+	float r = 50;
 	for (int i = 0; i < discs.size(); i++) {
 		Disc & d = discs[i];
 		// Boundary logic
-		if (d.pos.x < d.radius || d.pos.x > w - d.radius || d.pos.y < d.radius || d.pos.y > h - d.radius) {
+
+		if (d.pos.x < -r || d.pos.x > w || d.pos.y < -r || d.pos.y > h) {
 			if (flow) {
 
-				if ((abs(xVol) > abs(yVol)) && (d.pos.x < d.radius || d.pos.x > w - d.radius)) {
+				if ((abs(xVol) > abs(yVol)) && (d.pos.x < -r || d.pos.x > w)) {
 					d.pos.x = d.radius;
-					d.pos.y = ofRandom(h);
-				} else if ((abs(xVol) < abs(yVol)) && (d.pos.y < d.radius || d.pos.y > h - d.radius)) {
-					d.pos.x = ofRandom(w);
+					d.pos.y = ofRandom(-r, h);
+				} else if ((abs(xVol) < abs(yVol)) && (d.pos.y < -r || d.pos.y > h)) {
+					d.pos.x = ofRandom(-r, w);
 					d.pos.y = d.radius;
 				}
 			} else {
-				d.pos.x = ofRandom(w);
-				d.pos.y = ofRandom(h);
+				d.pos.x = ofRandom(-r, w);
+				d.pos.y = ofRandom(-r, h);
 			}
 		}
 		d.pos += d.vel * speed;
@@ -311,33 +313,58 @@ void CurlFlowScene::clearBackground() {
 
 //--------------------------------------------------------------
 void CurlFlowScene::randomize() {
-// Randomize noise field by reseeding (ofNoise is deterministic, so skip)
-clearBackground();
-guiSpeed = 0.1f + ofRandom(0.9f);
-guiStep = ofRandom(10, 3000);
-guiParticleSize = 0.1f + ofRandom(4.9f);
-guiRainbow = false;
-int c = int(ofRandom(discCount));
-guiBaseColor = ofColor(red[c], grn[c], blu[c]);
-guiFade = (particle_size >= 2) ? ofRandom(0.1f) : ofRandom(0.01f);
+	// Randomize noise field by reseeding (ofNoise is deterministic, so skip)
+	clearBackground();
+	guiSpeed = 0.1f + ofRandom(0.9f);
+	guiStep = ofRandom(10, 3000);
+	guiParticleSize = 0.1f + ofRandom(4.9f);
+	guiRainbow = false;
+	guiColorMode = (ofRandom(1.0f) > 0.5f) ? 0 : 1; // Randomly select algorithm
+
+	// Regenerate color arrays
+	red.resize(discCount);
+	grn.resize(discCount);
+	blu.resize(discCount);
+
+	if (guiColorMode == 0) {
+		for (int s = 0; s < discCount; s++) {
+			red[s] = round(sin(frequency1 * s + phase1) * width + center);
+			grn[s] = round(sin(frequency2 * s + phase2) * width + center);
+			blu[s] = round(sin(frequency3 * s + phase3) * width + center);
+		}
+	} else {
+		ofColor colorA = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
+		ofColor colorB = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
+		for (int s = 0; s < discCount; s++) {
+			float t = float(s) / (discCount - 1);
+			ofColor c = colorA.getLerped(colorB, t);
+			red[s] = c.r;
+			grn[s] = c.g;
+			blu[s] = c.b;
+		}
+	}
+
+	int c = int(ofRandom(discCount));
+	guiBaseColor = ofColor(red[c], grn[c], blu[c]);
+	guiFade = (particle_size >= 2) ? ofRandom(0.1f) : ofRandom(0.01f);
 }
 
 void CurlFlowScene::onCueConfigEvent(CueEventArgs & args) {
-    if (args.cueType != CueType::ConfigUpdate || args.sceneId != 1) return;
-    // Apply parameters to GUI controls
-    for (const auto& kv : args.parameters) {
-        if (kv.first == "param0") guiSpeed = kv.second;
-        if (kv.first == "param1") guiFade = kv.second;
-        if (kv.first == "param2") guiStep = kv.second;
-        if (kv.first == "param3") guiParticleSize = kv.second;
-        // Extend mapping as needed
-    }
-    ofLogNotice() << "[CurlFlowScene] Config updated from cue";
+	if (args.cueType != CueType::ConfigUpdate || args.sceneId != 1) return;
+	// Apply parameters to GUI controls
+	for (const auto & kv : args.parameters) {
+		if (kv.first == "param0") guiSpeed = kv.second;
+		if (kv.first == "param1") guiFade = kv.second;
+		if (kv.first == "param2") guiStep = kv.second;
+		if (kv.first == "param3") guiParticleSize = kv.second;
+		// Extend mapping as needed
+	}
+	ofLogNotice() << "[CurlFlowScene] Config updated from cue";
 }
 
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-// TODO: Handle actor scene event (enter, move, leave)
-ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	// TODO: Handle actor scene event (enter, move, leave)
+	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 }
 
 void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
