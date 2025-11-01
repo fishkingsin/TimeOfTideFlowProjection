@@ -13,7 +13,7 @@ int main() {
 #endif
 
 	if (DEBUG) {
-		windowSettings.setSize(1920, 1280);
+		windowSettings.setSize(1280, 720);
 		windowSettings.windowMode = OF_WINDOW;
 	} else {
 		windowSettings.setSize(1920, 1080);

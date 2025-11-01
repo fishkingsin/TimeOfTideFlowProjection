@@ -186,31 +186,31 @@
 		</positions>
 	</shadertoy>
 	<positions>
-		<position0>0, 334.038, 0, 1</position0>
-		<position1>0, 435.645, 0, 1</position1>
-		<position2>0, 521.68, 0, 1</position2>
-		<position3>0, 494.485, 0, 1</position3>
-		<position4>0, 514.28, 0, 1</position4>
-		<position5>0, 275.095, 0, 1</position5>
-		<position6>0, 525.926, 0, 1</position6>
-		<position7>0, 404.979, 0, 1</position7>
-		<position8>0, 448.91, 0, 1</position8>
-		<position9>0, 458.555, 0, 1</position9>
-		<position10>0, 124.35, 0, 1</position10>
-		<position11>0, 245.459, 0, 1</position11>
-		<position12>0, 211.085, 0, 1</position12>
-		<position13>0, 62.5995, 0, 1</position13>
-		<position14>0, 555.843, 0, 1</position14>
-		<position15>0, 439.978, 0, 1</position15>
-		<position16>0, 139.81, 0, 1</position16>
-		<position17>0, 665.825, 0, 1</position17>
-		<position18>0, 547.58, 0, 1</position18>
-		<position19>0, 276.79, 0, 1</position19>
-		<position20>0, 361.272, 0, 1</position20>
-		<position21>0, 16.4448, 0, 1</position21>
-		<position22>0, 645.96, 0, 1</position22>
-		<position23>0, 397.373, 0, 1</position23>
-		<position24>0, 170.484, 0, 1</position24>
+		<position0>0, 334.038, 0, 0.5</position0>
+		<position1>0, 435.645, 0, 0.5</position1>
+		<position2>0, 521.68, 0, 0.5</position2>
+		<position3>0, 494.485, 0, 0.5</position3>
+		<position4>0, 514.28, 0, 0.5</position4>
+		<position5>0, 275.095, 0, 0.5</position5>
+		<position6>0, 525.926, 0, 0.5</position6>
+		<position7>0, 404.979, 0, 0.5</position7>
+		<position8>0, 448.91, 0, 0.5</position8>
+		<position9>0, 458.555, 0, 0.5</position9>
+		<position10>0, 124.35, 0, 0.5</position10>
+		<position11>0, 245.459, 0, 0.5</position11>
+		<position12>0, 211.085, 0, 0.5</position12>
+		<position13>0, 62.5995, 0, 0.5</position13>
+		<position14>0, 555.843, 0, 0.5</position14>
+		<position15>0, 439.978, 0, 0.5</position15>
+		<position16>0, 139.81, 0, 0.5</position16>
+		<position17>0, 665.825, 0, 0.5</position17>
+		<position18>0, 547.58, 0, 0.5</position18>
+		<position19>0, 276.79, 0, 0.5</position19>
+		<position20>0, 361.272, 0, 0.5</position20>
+		<position21>0, 16.4448, 0, 0.5</position21>
+		<position22>0, 645.96, 0, 0.5</position22>
+		<position23>0, 397.373, 0, 0.5</position23>
+		<position24>0, 170.484, 0, 0.5</position24>
 	</positions>
 	<flowField>
 		<iters>4</iters>
@@ -230,11 +230,11 @@
 		<COLOR_HEAD>255, 224, 114, 255</COLOR_HEAD>
 	</flowField>
 	<additional_positions>
-		<position0>0, 372.305, 0, 1</position0>
-		<position1>0, 442.654, 0, 1</position1>
-		<position2>0, 579.478, 0, 1</position2>
-		<position3>0, 367.06, 0, 1</position3>
-		<position4>0, 78.2555, 0, 1</position4>
+		<position0>0, 372.305, 0, 0.5</position0>
+		<position1>0, 442.654, 0, 0.5</position1>
+		<position2>0, 579.478, 0, 0.5</position2>
+		<position3>0, 367.06, 0, 0.5</position3>
+		<position4>0, 78.2555, 0, 0.5</position4>
 	</additional_positions>
 </group>
 <Receiver>
