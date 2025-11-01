@@ -66,6 +66,7 @@ void ofApp::setup() {
 	// the input callbacks in your scenes will be called if they are implemented
 	//
 	setSceneManager(&sceneManager);
+	ofHideCursor();
 }
 
 //--------------------------------------------------------------
@@ -216,6 +217,11 @@ void ofApp::keyPressed(int key) {
 		if (singlePassFlowFieldScene != NULL) singlePassFlowFieldScene->toggleGuiDraw = !singlePassFlowFieldScene->toggleGuiDraw;
 //		if (flowFieldParticlesScene != NULL) flowFieldParticlesScene->toggleGuiDraw = !flowFieldParticlesScene->toggleGuiDraw;
 		actorReceiver.toggleGuiDraw = !actorReceiver.toggleGuiDraw;
+			if (isShowingGui()) {
+				ofShowCursor();
+			} else {
+				ofHideCursor();
+			}
 		break;
 	}
 }
