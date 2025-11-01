@@ -120,7 +120,7 @@
 	<Particle_Size>0.5</Particle_Size>
 	<Rainbow>0</Rainbow>
 	<Base_Color>255, 255, 255, 255</Base_Color>
-	<debug>0</debug>
+	<debug>1</debug>
 	<shadertoy>
 		<buffer_A>
 			<vector_mode>1</vector_mode>
@@ -187,20 +187,20 @@
 		</positions>
 	</shadertoy>
 	<positions>
-		<position0>0, 334.038, 0, 7</position0>
-		<position1>0, 435.645, 0, 7</position1>
-		<position2>0, 521.68, 0, 7</position2>
-		<position3>0, 494.485, 0, 7</position3>
-		<position4>0, 514.28, 0, 7</position4>
-		<position5>0, 275.095, 0, 7</position5>
-		<position6>0, 525.926, 0, 7</position6>
-		<position7>0, 404.979, 0, 7</position7>
-		<position8>0, 448.91, 0, 7</position8>
-		<position9>0, 458.555, 0, 7</position9>
-		<position10>0, 124.35, 0, 7</position10>
-		<position11>0, 245.459, 0, 7</position11>
-		<position12>0, 211.085, 0, 7</position12>
-		<position13>0, 62.5995, 0, 7</position13>
+		<position0>1811.09, 772.242, 1, 0.677083</position0>
+		<position1>1608.63, 619.024, 1, 0.833333</position1>
+		<position2>1425.16, 404.772, 1, 0.677083</position2>
+		<position3>1577.44, 856.519, 1, 0.885417</position3>
+		<position4>444.76, 766.075, 1, 0.703125</position4>
+		<position5>1719.09, 425.96, 1, 1.14583</position5>
+		<position6>1275.5, 604.951, 1, 1.38021</position6>
+		<position7>1081.75, 496.482, 1, 0.651042</position7>
+		<position8>1571.52, 841.34, 1, 0.833333</position8>
+		<position9>1811.09, 772.242, 1, 0.833333</position9>
+		<position10>1579.71, 838.335, 1, 1.61458</position10>
+		<position11>0, 245.459, 0, 1.43229</position11>
+		<position12>0, 211.085, 0, 1.43229</position12>
+		<position13>0, 62.5995, 0, 1.01562</position13>
 		<position14>0, 555.843, 0, 7</position14>
 		<position15>0, 439.978, 0, 7</position15>
 		<position16>0, 139.81, 0, 7</position16>
@@ -221,11 +221,14 @@
 		<pVel>1.72959</pVel>
 		<decay>0.00127553</decay>
 		<spawnRate>5</spawnRate>
-		<birthRateParam>375</birthRateParam>
-		<impulse>0.918367</impulse>
+		<birthRateParam>212</birthRateParam>
+		<impulse>3.57143</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.0892857</speed>
+		<speed>0.165816</speed>
 		<brightness>1</brightness>
+		<COLOR_TAIL>0, 117, 255, 255</COLOR_TAIL>
+		<COLOR_MID>0, 155, 207, 255</COLOR_MID>
+		<COLOR_HEAD>255, 224, 114, 255</COLOR_HEAD>
 	</flowField>
 	<additional_positions>
 		<position0>0, 372.305, 0, 7</position0>
@@ -254,10 +257,10 @@
 		<port>7777</port>
 		<Invert_X>0</Invert_X>
 		<Invert_Y>1</Invert_Y>
-		<min_X>-5714</min_X>
-		<min_Y>-3628</min_Y>
-		<max_X>6530</max_X>
-		<max_Y>3616</max_Y>
-		<toggleGuiDraw>0</toggleGuiDraw>
+		<min_X>-5484.69</min_X>
+		<min_Y>-3545.92</min_Y>
+		<max_X>5535.1</max_X>
+		<max_Y>3284.37</max_Y>
+		<toggleGuiDraw>1</toggleGuiDraw>
 	</zactrack_receiver>
 </zactrack_receiver>

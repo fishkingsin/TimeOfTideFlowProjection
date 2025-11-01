@@ -119,7 +119,7 @@
 	<Particle_Size>0.5</Particle_Size>
 	<Rainbow>0</Rainbow>
 	<Base_Color>255, 255, 255, 255</Base_Color>
-	<debug>1</debug>
+	<debug>0</debug>
 	<shadertoy>
 		<buffer_A>
 			<vector_mode>1</vector_mode>
@@ -220,11 +220,14 @@
 		<pVel>1.72959</pVel>
 		<decay>0.00127553</decay>
 		<spawnRate>5</spawnRate>
-		<birthRateParam>375</birthRateParam>
-		<impulse>0.918367</impulse>
+		<birthRateParam>212</birthRateParam>
+		<impulse>3.57143</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.0892857</speed>
+		<speed>0.165816</speed>
 		<brightness>1</brightness>
+		<COLOR_TAIL>0, 117, 255, 255</COLOR_TAIL>
+		<COLOR_MID>0, 155, 207, 255</COLOR_MID>
+		<COLOR_HEAD>255, 224, 114, 255</COLOR_HEAD>
 	</flowField>
 	<additional_positions>
 		<position0>0, 372.305, 0, 7</position0>
@@ -236,7 +239,7 @@
 </group>
 <Receiver>
 	<zactrack_receiver>
-		<debug>1</debug>
+		<debug>0</debug>
 		<port>7777</port>
 		<Invert_X>0</Invert_X>
 		<Invert_Y>0</Invert_Y>
@@ -248,7 +251,7 @@
 </Receiver>
 <zactrack_receiver>
 	<zactrack_receiver>
-		<debug>1</debug>
+		<debug>0</debug>
 		<port>7777</port>
 		<Invert_X>1</Invert_X>
 		<Invert_Y>0</Invert_Y>
