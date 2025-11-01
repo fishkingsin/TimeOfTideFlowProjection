@@ -88,11 +88,12 @@
 		<debug>0</debug>
 		<port>7777</port>
 		<Invert_X>0</Invert_X>
-		<Invert_Y>0</Invert_Y>
-		<min_X>-6000</min_X>
-		<min_Y>-6000</min_Y>
-		<max_X>-6000</max_X>
-		<max_Y>-6000</max_Y>
+		<Invert_Y>1</Invert_Y>
+		<min_X>-5714</min_X>
+		<min_Y>-3628</min_Y>
+		<max_X>6530</max_X>
+		<max_Y>3616</max_Y>
+		<toggleGuiDraw>0</toggleGuiDraw>
 	</zactrack_receiver>
 	<obsbstacle>
 		<image_file>flowtools.png</image_file>
@@ -239,11 +240,12 @@
 		<debug>0</debug>
 		<port>7777</port>
 		<Invert_X>0</Invert_X>
-		<Invert_Y>0</Invert_Y>
+		<Invert_Y>1</Invert_Y>
 		<min_X>-5714</min_X>
 		<min_Y>-3628</min_Y>
 		<max_X>6530</max_X>
 		<max_Y>3616</max_Y>
+		<toggleGuiDraw>0</toggleGuiDraw>
 	</zactrack_receiver>
 </Receiver>
 <zactrack_receiver>
