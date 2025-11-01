@@ -319,29 +319,17 @@ void CurlFlowScene::randomize() {
 	guiStep = ofRandom(10, 3000);
 	guiParticleSize = 0.1f + ofRandom(4.9f);
 	guiRainbow = false;
-	guiColorMode = (ofRandom(1.0f) > 0.5f) ? 0 : 1; // Randomly select algorithm
+//	guiColorMode = (ofRandom(1.0f) > 0.5f) ? 0 : 1; // Randomly select algorithm
 
 	// Regenerate color arrays
 	red.resize(discCount);
 	grn.resize(discCount);
 	blu.resize(discCount);
 
-	if (guiColorMode == 0) {
-		for (int s = 0; s < discCount; s++) {
-			red[s] = round(sin(frequency1 * s + phase1) * width + center);
-			grn[s] = round(sin(frequency2 * s + phase2) * width + center);
-			blu[s] = round(sin(frequency3 * s + phase3) * width + center);
-		}
-	} else {
-		ofColor colorA = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
-		ofColor colorB = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
-		for (int s = 0; s < discCount; s++) {
-			float t = float(s) / (discCount - 1);
-			ofColor c = colorA.getLerped(colorB, t);
-			red[s] = c.r;
-			grn[s] = c.g;
-			blu[s] = c.b;
-		}
+	for (int s = 0; s < discCount; s++) {
+		red[s] = round(sin(frequency1 * s + phase1) * width + center);
+		grn[s] = round(sin(frequency2 * s + phase2) * width + center);
+		blu[s] = round(sin(frequency3 * s + phase3) * width + center);
 	}
 
 	int c = int(ofRandom(discCount));
