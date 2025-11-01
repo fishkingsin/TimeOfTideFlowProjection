@@ -269,7 +269,7 @@ void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 	if (args.eventType == ActorSceneEventType::Move) {
 		// TODO: Handle actor scene event (enter, move, leave) // print rich info
 		int index = args.actor->index;
-		if (index >= 0 || index < 25) {
+		if (index >= 0 && index < 25) {
 			ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent index " << index;
 			positionsParameter[index].set(args.actor->getPosition());
 		}
