@@ -37,7 +37,7 @@ void ofApp::setup() {
 
 	curlFlowScene = static_cast<CurlFlowScene *>(sceneManager.add(new CurlFlowScene(actorManagerPtr))); // save pointer
 	flowToolsScene = static_cast<FlowToolsScene *>(sceneManager.add(new FlowToolsScene(actorManagerPtr)));
-	flowFieldParticlesScene = static_cast<FlowFieldParticlesScene *>(sceneManager.add(new FlowFieldParticlesScene(actorManagerPtr)));
+//	flowFieldParticlesScene = static_cast<FlowFieldParticlesScene *>(sceneManager.add(new FlowFieldParticlesScene(actorManagerPtr)));
 	singlePassFlowFieldScene = static_cast<SinglePassFlowFieldScene *>(sceneManager.add(new SinglePassFlowFieldScene(actorManagerPtr)));
 	ofAddListener(cueReceiver.cueEvent, curlFlowScene, &CurlFlowScene::onCueConfigEvent);
 	ofAddListener(cueReceiver.cueEvent, flowToolsScene, &FlowToolsScene::onCueConfigEvent);
@@ -214,7 +214,7 @@ void ofApp::keyPressed(int key) {
 		if (curlFlowScene != NULL) curlFlowScene->toggleGuiDraw = !curlFlowScene->toggleGuiDraw;
 		if (flowToolsScene != NULL) flowToolsScene->toggleGuiDraw = !flowToolsScene->toggleGuiDraw;
 		if (singlePassFlowFieldScene != NULL) singlePassFlowFieldScene->toggleGuiDraw = !singlePassFlowFieldScene->toggleGuiDraw;
-		if (flowFieldParticlesScene != NULL) flowFieldParticlesScene->toggleGuiDraw = !flowFieldParticlesScene->toggleGuiDraw;
+//		if (flowFieldParticlesScene != NULL) flowFieldParticlesScene->toggleGuiDraw = !flowFieldParticlesScene->toggleGuiDraw;
 		actorReceiver.toggleGuiDraw = !actorReceiver.toggleGuiDraw;
 		break;
 	}
@@ -251,7 +251,7 @@ bool ofApp::isShowingGui() {
 	if (curlFlowScene != NULL) isGuiVisible = curlFlowScene->toggleGuiDraw || isGuiVisible;
 	if (flowToolsScene != NULL) isGuiVisible = flowToolsScene->toggleGuiDraw || isGuiVisible;
 	if (singlePassFlowFieldScene != NULL) isGuiVisible = singlePassFlowFieldScene->toggleGuiDraw || isGuiVisible;
-	if (flowFieldParticlesScene != NULL) isGuiVisible = flowFieldParticlesScene->toggleGuiDraw || isGuiVisible;
-	isGuiVisible = actorReceiver.toggleGuiDraw || isGuiVisible;
+//	if (flowFieldParticlesScene != NULL) isGuiVisible = flowFieldParticlesScene->toggleGuiDraw || isGuiVisible;
+//	isGuiVisible = actorReceiver.toggleGuiDraw || isGuiVisible;
 	return isGuiVisible;
 }
