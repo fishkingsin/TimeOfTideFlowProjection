@@ -373,7 +373,7 @@ void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 		int actorId = args.actor->index; // or use index if preferred
 		ofVec3f pos = args.actor->getPosition();
 		actorPositions[actorId] = pos;
-		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->positions;
 	} else {
 		ofLogWarning("CurlFlowScene") << "onActorSceneEvent: args.actor is null, skipping position update.";
 	}
