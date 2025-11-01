@@ -3,7 +3,7 @@
 	<average_FPS>89</average_FPS>
 	<minimum_FPS>62.7739</minimum_FPS>
 	<fullscreen__F_>1</fullscreen__F_>
-	<show_gui__G_>1</show_gui__G_>
+	<show_gui__G_>0</show_gui__G_>
 	<draw_camera__C_>0</draw_camera__C_>
 	<draw_mouse__M_>1</draw_mouse__M_>
 	<draw_particles__P_>1</draw_particles__P_>
