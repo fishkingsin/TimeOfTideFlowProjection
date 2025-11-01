@@ -296,6 +296,10 @@ vec3 getRGB(in Field fld,in int mode){
         float g=sin(p.x+p.y+1.)*.5+.5;
         float b=(sin(p.x+p.y)+cos(p.x+p.y))*.3+.5;
         vec3 col = sin(vec3(-.3,0.1,0.5)+p.x-p.y)*0.65+0.35;
+        // gray scale 
+        col = vec3(r*0.3+g*0.59+b*0.11);
+        // apply blue
+        col.b += 0.2;
         return col;
     }
 
