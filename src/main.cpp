@@ -17,7 +17,7 @@ int main() {
 		windowSettings.windowMode = OF_WINDOW;
 	} else {
 		windowSettings.setSize(1920, 1080);
-		windowSettings.windowMode = OF_FULLSCREEN;
+		windowSettings.windowMode = OF_WINDOW	;
 		windowSettings.decorated = false;
 	}
 	ofCreateWindow(windowSettings);
