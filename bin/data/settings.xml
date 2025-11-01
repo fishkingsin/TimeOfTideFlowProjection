@@ -3,7 +3,7 @@
 	<average_FPS>60</average_FPS>
 	<minimum_FPS>55.7753</minimum_FPS>
 	<fullscreen__F_>1</fullscreen__F_>
-	<show_gui__G_>1</show_gui__G_>
+	<show_gui__G_>0</show_gui__G_>
 	<draw_camera__C_>1</draw_camera__C_>
 	<draw_mouse__M_>1</draw_mouse__M_>
 	<draw_particles__P_>1</draw_particles__P_>
@@ -237,7 +237,7 @@
 		<position3>0, 367.06, 0, 0.5</position3>
 		<position4>0, 78.2555, 0, 0.5</position4>
 	</additional_positions>
-	<show_gui__G_>1</show_gui__G_>
+	<show_gui__G_>0</show_gui__G_>
 	<Color_Mode>1</Color_Mode>
 </group>
 <Receiver>
