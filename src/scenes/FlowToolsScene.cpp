@@ -100,6 +100,7 @@ void FlowToolsScene::setupGui() {
 	visualizationParameters.add(visualizationName.set("name", "fluidFlow Density"));
 	visualizationParameters.add(visualizationScale.set("scale", 1, 0.1, 10.0));
 	visualizationParameters.add(toggleVisualizationScalar.set("show scalar", false));
+	visualizationParameters.add(pColor.set("color", ofColor::gray, ofColor::black, ofColor::white));
 	visualizationMode.addListener(this, &FlowToolsScene::visualizationModeListener);
 	toggleVisualizationScalar.addListener(this, &FlowToolsScene::toggleVisualizationScalarListener);
 	visualizationScale.addListener(this, &FlowToolsScene::visualizationScaleListener);
@@ -193,7 +194,7 @@ void FlowToolsScene::update() {
 			ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 			shadertoy.end();
 		}
-		actorManager->draw(ofGetWidth() * densityActorFlow.getRadius());
+		actorManager->draw(pColor, ofGetWidth() * densityActorFlow.getRadius());
 		ofDrawCircle(ofGetMouseX(), ofGetMouseY(), ofGetWidth() * densityActorFlow.getRadius());
 		
 		ofDisableAlphaBlending();

@@ -85,6 +85,7 @@ public:
 	ofParameter<bool>	toggleParticleDraw;
 	ofParameter<bool>	toggleActorDraw;
 	ofParameter<bool>	toggleReset;
+	ofParameter<ofColor>	pColor;
 	
 	void				toggleFullScreenListener(bool& _value) { ofSetFullscreen(_value);}
 	void				toggleResetListener(bool& _value);

@@ -136,7 +136,6 @@ void CurlFlowScene::setup() {
 
 	ofBackground(0, 0, 0);
 	ofSetFrameRate(60);
-	ofSetCircleResolution(6);
 
 	rgbaFboFloat.allocate(ofGetWindowWidth(), ofGetWindowHeight(), GL_RGBA32F_ARB); // with alpha, 32 bits red, 32 bits green, 32 bits blue, 32 bits alpha, from 0 to 1 in 'infinite' steps
 
@@ -373,7 +372,7 @@ void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 		int actorId = args.actor->index; // or use index if preferred
 		ofVec3f pos = args.actor->getPosition();
 		actorPositions[actorId] = pos;
-		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->positions;
+		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
 	} else {
 		ofLogWarning("CurlFlowScene") << "onActorSceneEvent: args.actor is null, skipping position update.";
 	}

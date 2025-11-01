@@ -33,9 +33,9 @@ void ActorManager::update() {
 
 
 //--------------------------------------------------------------
-void ActorManager::draw(float radius) {
+void ActorManager::draw(ofColor color, float radius) {
 	ofPushStyle();
-	ofSetColor(ofColor::white);
+	ofSetColor(color);
 	for (auto actor = actors.begin(); actor != actors.end(); ++actor) {
 		actor->second->draw(radius);
 	}

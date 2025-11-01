@@ -19,7 +19,7 @@ public:
 	
 	void setup();
 	void update();
-	void draw(float radius);
+	void draw(ofColor color, float radius);
 	void onActorEvent(ztActorEventArgs &args);
 	void onActorIdel(Actor & actor);
 	void notifySceneActorEvent(ActorSceneEventType eventType, shared_ptr<Actor> actor, const ztActorEventArgs* args = nullptr);
