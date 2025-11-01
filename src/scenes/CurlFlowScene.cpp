@@ -66,6 +66,9 @@ void CurlFlowScene::setup() {
 	gui.add(xVol.set("xVol", 0.0f, -10.0f, 10.0f));
 	gui.add(yVol.set("yVol", 0.0f, -10.0f, 10.0f));
 
+	gui.add(dodgeThreshold.set("Dodge Threshold", 40.0f, 1.0f, 200.0f));
+	gui.add(dodgeStrength.set("Dodge Strength", 2.0f, 0.1f, 10.0f));
+
 	guiParticleSize.set("Particle Size", 1.5f, 0.1f, 10.0f);
 	gui.add(guiParticleSize);
 
@@ -156,6 +159,7 @@ void CurlFlowScene::updateEnter() {
 
 	// finished entering?
 	if (!isEntering()) {
+		addActorSceneEventListener(actorManager);
 		ofLogNotice("CurlFlowScene") << "update enter done";
 	}
 }
@@ -208,6 +212,7 @@ void CurlFlowScene::updateExit() {
 
 	// finished exiting?
 	if (!isExiting()) {
+		removeActorSceneEventListener(actorManager);
 		ofLogNotice("CurlFlowScene") << "update exit done";
 	}
 }
@@ -252,13 +257,12 @@ void CurlFlowScene::move() {
 	int w = ofGetWidth() + 50;
 	int h = ofGetHeight() + 50;
 	float r = 50;
+
 	for (int i = 0; i < discs.size(); i++) {
 		Disc & d = discs[i];
 		// Boundary logic
-
 		if (d.pos.x < -r || d.pos.x > w || d.pos.y < -r || d.pos.y > h) {
 			if (flow) {
-
 				if ((abs(xVol) > abs(yVol)) && (d.pos.x < -r || d.pos.x > w)) {
 					d.pos.x = d.radius;
 					d.pos.y = ofRandom(-r, h);
@@ -271,6 +275,19 @@ void CurlFlowScene::move() {
 				d.pos.y = ofRandom(-r, h);
 			}
 		}
+
+		// Dodge all active actor positions
+		for (const auto & kv : actorPositions) {
+			const ofVec3f & actorPos = kv.second;
+			// Safe guard: check if actorPos is valid
+			if (!std::isfinite(actorPos.x) || !std::isfinite(actorPos.y)) continue;
+			float dist = d.pos.distance(actorPos);
+			if (dist < dodgeThreshold && dist > 0.01f) {
+				ofVec2f repulse = (d.pos - ofVec2f(actorPos.x, actorPos.y)).getNormalized() * dodgeStrength;
+				d.vel += repulse;
+			}
+		}
+
 		d.pos += d.vel * speed;
 	}
 }
@@ -319,7 +336,7 @@ void CurlFlowScene::randomize() {
 	guiStep = ofRandom(10, 3000);
 	guiParticleSize = 0.1f + ofRandom(4.9f);
 	guiRainbow = false;
-//	guiColorMode = (ofRandom(1.0f) > 0.5f) ? 0 : 1; // Randomly select algorithm
+	//	guiColorMode = (ofRandom(1.0f) > 0.5f) ? 0 : 1; // Randomly select algorithm
 
 	// Regenerate color arrays
 	red.resize(discCount);
@@ -351,8 +368,15 @@ void CurlFlowScene::onCueConfigEvent(CueEventArgs & args) {
 }
 
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
-	// TODO: Handle actor scene event (enter, move, leave)
-	ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	// Store actor position by actor ID, safeguard against null pointer
+	if (args.actor != nullptr) {
+		int actorId = args.actor->index; // or use index if preferred
+		ofVec3f pos = args.actor->getPosition();
+		actorPositions[actorId] = pos;
+		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+	} else {
+		ofLogWarning("CurlFlowScene") << "onActorSceneEvent: args.actor is null, skipping position update.";
+	}
 }
 
 void CurlFlowScene::addActorSceneEventListener(std::shared_ptr<ActorManager> & managerPtr) {
