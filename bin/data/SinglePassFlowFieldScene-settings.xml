@@ -215,15 +215,15 @@
 	<flowField>
 		<iters>4</iters>
 		<smpDst>2</smpDst>
-		<tScale>0.214286</tScale>
-		<scale>5.40357</scale>
-		<pVel>0.780612</pVel>
-		<decay>0.0102041</decay>
-		<spawnRate>102</spawnRate>
-		<birthRateParam>114</birthRateParam>
-		<impulse>7</impulse>
+		<tScale>0.142857</tScale>
+		<scale>1.76684</scale>
+		<pVel>1.72959</pVel>
+		<decay>0.00127553</decay>
+		<spawnRate>5</spawnRate>
+		<birthRateParam>375</birthRateParam>
+		<impulse>0.918367</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.612245</speed>
+		<speed>0.0892857</speed>
 		<brightness>1</brightness>
 	</flowField>
 	<additional_positions>

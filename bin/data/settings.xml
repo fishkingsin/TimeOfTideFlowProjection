@@ -219,12 +219,12 @@
 		<tScale>0.142857</tScale>
 		<scale>1.76684</scale>
 		<pVel>1.72959</pVel>
-		<decay>0.0102041</decay>
+		<decay>0.00127553</decay>
 		<spawnRate>5</spawnRate>
 		<birthRateParam>375</birthRateParam>
-		<impulse>7</impulse>
+		<impulse>0.918367</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.255102</speed>
+		<speed>0.0892857</speed>
 		<brightness>1</brightness>
 	</flowField>
 	<additional_positions>
