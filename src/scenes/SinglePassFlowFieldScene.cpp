@@ -287,7 +287,10 @@ void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 		int index = args.actor->index;
 		if (index >= 0 && index < 25) {
 			ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent index " << index;
-			positionsParameter[index].set(args.actor->getPosition());
+			float w = positionsParameter[index].get().w;
+			ofVec3f input = args.actor->getPosition();
+			ofVec4f newPos = ofVec4f(input.x, input.y, input.z, w);
+			positionsParameter[index].set(newPos);
 		}
 		ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.actor->id << " eventType " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->getPosition().x << " " << args.actor->getPosition().y;
 	}
