@@ -1,84 +1,84 @@
 <?xml version="1.0"?>
 <settings>
 	<average_FPS>60</average_FPS>
-	<minimum_FPS>58.922</minimum_FPS>
+	<minimum_FPS>55.7753</minimum_FPS>
 	<fullscreen__F_>1</fullscreen__F_>
-	<show_gui__G_>0</show_gui__G_>
-	<draw_camera__C_>0</draw_camera__C_>
+	<show_gui__G_>1</show_gui__G_>
+	<draw_camera__C_>1</draw_camera__C_>
 	<draw_mouse__M_>1</draw_mouse__M_>
 	<draw_particles__P_>1</draw_particles__P_>
 	<reset__R_>0</reset__R_>
 	<visualization>
 		<mode>15</mode>
 		<name>fluid density</name>
-		<scale>0.504082</scale>
+		<scale>1</scale>
 		<show_scalar>0</show_scalar>
 	</visualization>
 	<optical_flow>
-		<threshold>0.0836735</threshold>
-		<boost>0.0367347</boost>
+		<threshold>0.111224</threshold>
+		<boost>0.0688775</boost>
 	</optical_flow>
 	<velocity_bridge>
 		<trail>0.0505102</trail>
-		<blur>0.510204</blur>
-		<speed>0.0510204</speed>
+		<blur>9.18367</blur>
+		<speed>0.01</speed>
 	</velocity_bridge>
 	<density_bridge>
-		<trail>0.318214</trail>
-		<blur>3.21429</blur>
-		<speed>0.316327</speed>
-		<saturation>1.58163</saturation>
+		<trail>0.505102</trail>
+		<blur>5.40816</blur>
+		<speed>0.535714</speed>
+		<saturation>2.88265</saturation>
 	</density_bridge>
 	<temperature_bridge>
-		<trail>0.303061</trail>
-		<blur>3.06122</blur>
-		<speed>-0.346939</speed>
+		<trail>0.3</trail>
+		<blur>3</blur>
+		<speed>0.5</speed>
 	</temperature_bridge>
 	<fluid>
-		<speed>0.00510204</speed>
+		<speed>0.01</speed>
 		<dissipation>
-			<velocity>0.0260417</velocity>
-			<density>0.0260417</density>
-			<temperature>0.0260417</temperature>
-			<pressure>0.0260417</pressure>
+			<velocity>0.546875</velocity>
+			<density>0.546875</density>
+			<temperature>0.546875</temperature>
+			<pressure>0.505208</pressure>
 		</dissipation>
 		<viscosity>
-			<velocity>0.0364583</velocity>
-			<density>0</density>
-			<temperature>0</temperature>
+			<velocity>0.5</velocity>
+			<density>0.59375</density>
+			<temperature>0.59375</temperature>
 		</viscosity>
-		<vorticity>0.0408163</vorticity>
+		<vorticity>0.586735</vorticity>
 		<smoke_buoyancy>
-			<buoyancy>0.0520833</buoyancy>
-			<weight>0.2</weight>
-			<ambient_temperature>0.2</ambient_temperature>
+			<buoyancy>0.807292</buoyancy>
+			<weight>0.807292</weight>
+			<ambient_temperature>0.807292</ambient_temperature>
 		</smoke_buoyancy>
 	</fluid>
 	<particles>
-		<speed>0.00510204</speed>
-		<birth_chance>0.5</birth_chance>
-		<birth_velocity_chance>0.5</birth_velocity_chance>
-		<lifespan>5</lifespan>
-		<lifespan_spread>0.25</lifespan_spread>
-		<mass>1.3</mass>
-		<mass_spread>0.2</mass_spread>
-		<size>2</size>
-		<size_spread>0.75</size_spread>
-		<twinkle_speed>1.83673</twinkle_speed>
-		<gravity>0, 0</gravity>
+		<speed>0.01</speed>
+		<birth_chance>0.790816</birth_chance>
+		<birth_velocity_chance>0.658163</birth_velocity_chance>
+		<lifespan>1.60204</lifespan>
+		<lifespan_spread>0.826531</lifespan_spread>
+		<mass>0.44898</mass>
+		<mass_spread>0.272449</mass_spread>
+		<size>4.28571</size>
+		<size_spread>0.964286</size_spread>
+		<twinkle_speed>2.65306</twinkle_speed>
+		<gravity>0, 1</gravity>
 	</particles>
 	<mouse_density>
-		<speed>3.06122</speed>
+		<speed>86.7347</speed>
 		<persistent>0</persistent>
-		<radius>0.035</radius>
+		<radius>0.0168367</radius>
 		<smooth>1</smooth>
 		<inverse>0</inverse>
-		<color>0.5, 0.5, 0.5, 0.5</color>
+		<color>1, 1, 1, 1</color>
 	</mouse_density>
 	<mouse_velocity>
-		<speed>50</speed>
+		<speed>68.8776</speed>
 		<persistent>0</persistent>
-		<radius>0.035</radius>
+		<radius>0.0663265</radius>
 		<smooth>1</smooth>
 		<inverse>0</inverse>
 	</mouse_velocity>

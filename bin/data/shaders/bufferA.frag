@@ -173,14 +173,14 @@ const float arrow_length = .45;
 const int iterationTime1 = 20;
 const int iterationTime2 = 20;
 const int vector_field_mode = 0;
-const float scale = 3.;
+const float scale = 6.;
 
 const float velocity_x = 0.1;
 const float velocity_y = 0.2;
 
 const float mode_2_speed = 0.01;
 const float mode_1_detail = 200.;
-const float mode_1_twist = 50.;
+const float mode_1_twist = 10.;
 
 const bool isArraw = false;
 
@@ -202,7 +202,7 @@ struct Field {
 
 Field field(in vec2 p,in int mode)
 {
-    float _time = time * 0.1;
+    float _time = time * 0.001;
     float timeDecrease = 100.0;
     Field field;
     if(mode == 0){
