@@ -84,6 +84,13 @@ void ofApp::update() {
 
 	// every 3 min change to next scene
 	if (!isShowingGui()) {
+		if(curlFlowScene->isRunning()) {
+			sceneChangeTime = 600000;// 10 mins
+		} else if(singlePassFlowFieldScene->isRunning()) {
+			sceneChangeTime = 600000;// 10 mins
+		} else if(flowToolsScene->isRunning()) {
+			sceneChangeTime = 400000;// 4 mins
+		}
 		if (ofGetElapsedTimeMillis() - lastSceneChangeTime > sceneChangeTime) {
 			sceneManager.nextScene();
 			lastSceneChangeTime = ofGetElapsedTimeMillis();
