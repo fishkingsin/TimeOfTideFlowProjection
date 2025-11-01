@@ -239,6 +239,8 @@
 	</additional_positions>
 	<show_gui__G_>0</show_gui__G_>
 	<Color_Mode>1</Color_Mode>
+	<Dodge_Threshold>87.565</Dodge_Threshold>
+	<Dodge_Strength>3.7135</Dodge_Strength>
 </group>
 <Receiver>
 	<zactrack_receiver>

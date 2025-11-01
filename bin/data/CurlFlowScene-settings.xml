@@ -19,4 +19,6 @@
 	<Particle_Size>0.793</Particle_Size>
 	<Rainbow>0</Rainbow>
 	<Base_Color>172, 216, 255, 255</Base_Color>
+	<Dodge_Threshold>87.565</Dodge_Threshold>
+	<Dodge_Strength>3.7135</Dodge_Strength>
 </group>
