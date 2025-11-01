@@ -173,12 +173,12 @@ const float arrow_length = .45;
 const int iterationTime1 = 20;
 const int iterationTime2 = 20;
 const int vector_field_mode = 0;
-const float scale = 6.;
+const float scale = 3.;
 
 const float velocity_x = 0.1;
 const float velocity_y = 0.2;
 
-const float mode_2_speed = 1;
+const float mode_2_speed = 0.01;
 const float mode_1_detail = 200.;
 const float mode_1_twist = 50.;
 
@@ -202,6 +202,8 @@ struct Field {
 
 Field field(in vec2 p,in int mode)
 {
+    float _time = time * 0.1;
+    float timeDecrease = 100.0;
     Field field;
     if(mode == 0){
     	vec2 ep = vec2(0.05,0.);
@@ -217,8 +219,8 @@ Field field(in vec2 p,in int mode)
             
             //# need update 'p' for next iteration,but give it some change.
             p += (mode_1_twist*0.01)*t + g*(1./mode_1_detail);
-            p.x = p.x + sin( time*mode_2_speed/10.)/10.;
-            p.y = p.y + cos(time*mode_2_speed/10.)/10.;
+            p.x = p.x + sin(_time*mode_2_speed/10.)/timeDecrease;
+            p.y = p.y + cos(_time*mode_2_speed/10.)/timeDecrease;
             rz= g; 
         }
         field.vel = rz;
@@ -239,8 +241,8 @@ Field field(in vec2 p,in int mode)
 
             //# need update 'p' for next iteration,but give it some change.
             p += (mode_1_twist*0.01)*t + g*(1./mode_1_detail);
-            p.x = p.x + sin( time*mode_2_speed/10.)/10.;
-            p.y = p.y + cos(time*mode_2_speed/10.)/10.;
+            p.x = p.x + sin(_time*mode_2_speed/10.)/timeDecrease;
+            p.y = p.y + cos(_time*mode_2_speed/10.)/timeDecrease;
             rz= g;
         }
         
@@ -248,8 +250,8 @@ Field field(in vec2 p,in int mode)
         // add curved effect into curved mesh
         for(int i=1; i<iterationTime2; i++){
             //# try comment these 2 lines,will give more edge effect
-            p.x+=0.3/float(i)*sin(float(i)*3.*p.y+time*mode_2_speed) + 0.5;
-            p.y+=0.3/float(i)*cos(float(i)*3.*p.x + time*mode_2_speed) + 0.5;
+            p.x+=0.3/float(i)*sin(float(i)*3.*p.y+_time*mode_2_speed) + 0.5;
+            p.y+=0.3/float(i)*cos(float(i)*3.*p.x + _time*mode_2_speed) + 0.5;
         }
         field.pos = p;
         return field;
@@ -294,7 +296,7 @@ vec3 getRGB(in Field fld,in int mode){
         float g=sin(p.x+p.y+1.)*.5+.5;
         float b=(sin(p.x+p.y)+cos(p.x+p.y))*.3+.5;
         vec3 col = sin(vec3(-.3,0.1,0.5)+p.x-p.y)*0.65+0.35;
-        return vec3(r,g,b);
+        return col;
     }
 
 }
