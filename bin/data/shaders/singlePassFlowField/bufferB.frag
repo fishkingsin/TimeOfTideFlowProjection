@@ -9,9 +9,9 @@ uniform vec4 iMouse;
 out vec4 oFragColor;
 
  // Colorization: 0-70% blue, 70-95% orange, 95-100% white
-const vec3 COLOR_DARK_BLUE = vec3(0.00, 0.45, 1.00);
-const vec3 COLOR_ORANGE    = vec3(1.00, 0.65, 0.40);
-const vec3 COLOR_WHITE     = vec3(1.00, 0.85, 0.70); // pale orange-white
+uniform vec3 COLOR_TAIL;
+uniform vec3 COLOR_MID;
+uniform vec3 COLOR_HEAD;
 
 #// Mapping controls
 const float LOW_THRESH  = 0.0;  // brightness lower bound
@@ -54,8 +54,8 @@ vec3 colorize(float b) {
     float blueToOrange  = smoothstep(T_BLUE_ORANGE - W_BLUE_ORANGE, T_BLUE_ORANGE + W_BLUE_ORANGE, t);
     float orangeToWhite = smoothstep(T_ORANGE_WHITE - W_ORANGE_WHITE, T_ORANGE_WHITE + W_ORANGE_WHITE, t);
 
-    vec3 c = mix(COLOR_DARK_BLUE, COLOR_ORANGE, blueToOrange);
-    c = mix(c, COLOR_WHITE, orangeToWhite);
+    vec3 c = mix(COLOR_TAIL, COLOR_MID, blueToOrange);
+    c = mix(c, COLOR_HEAD, orangeToWhite);
     return c;
 }
 

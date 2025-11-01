@@ -56,6 +56,16 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
 	flowFieldParams.add(speed.set("speed", 1, 0, 10));
 	flowFieldParams.add(brightness.set("brightness", 0.5, 0, 1));
+	// add uniform for 
+	/*
+	uniform vec3 COLOR_TAIL;
+	uniform vec3 COLOR_MID;
+	uniform vec3 COLOR_HEAD;
+
+	 */
+	flowFieldParams.add(COLOR_TAIL.set("COLOR_TAIL", ofColor(0.00, 114, 255)));
+	flowFieldParams.add(COLOR_MID.set("COLOR_MID", ofColor(255, 165, 102)));
+	flowFieldParams.add(COLOR_HEAD.set("COLOR_HEAD", ofColor(255, 217, 179)));
 	gui.add(flowFieldParams);
 
 	
@@ -170,6 +180,7 @@ void SinglePassFlowFieldScene::update() {
 		shaderA.setUniform1i("birthRate", birthRateParam);
 		shaderA.setUniform2f("force", force.get());
 		shaderA.setUniform1f("speed", speed.get());
+
 		
 		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 		shaderA.end();
@@ -186,6 +197,11 @@ void SinglePassFlowFieldScene::update() {
 		shaderB.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
 		shaderB.setUniform1f("brightness", brightness.get());
 		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+		// set uniform colors
+		shaderB.setUniform3f("COLOR_TAIL", COLOR_TAIL->r / 255.0, COLOR_TAIL->g / 255.0, COLOR_TAIL->b / 255.0);
+		shaderB.setUniform3f("COLOR_MID", COLOR_MID->r / 255.0, COLOR_MID->g / 255.0, COLOR_MID->b / 255.0);
+		shaderB.setUniform3f("COLOR_HEAD", COLOR_HEAD->r / 255.0, COLOR_HEAD->g / 255.0, COLOR_HEAD->b / 255.0);
+		
 		shaderB.end();
 		fboBufferB.end();
 	}

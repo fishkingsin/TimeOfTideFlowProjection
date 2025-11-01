@@ -60,6 +60,10 @@ public:
 	ofParameter<ofVec4f> positionsParameter[MAX_POS];
 	ofParameterGroup additionalPositionsGroup;
 	ofParameter<ofVec4f> additionalPositionsParameter[MAX_ADD_POS];
+
+	ofParameter<ofColor> COLOR_TAIL;
+	ofParameter<ofColor> COLOR_MID;
+	ofParameter<ofColor> COLOR_HEAD;
 	
 	ofVec4f positions[MAX_POS + MAX_ADD_POS];
 	
