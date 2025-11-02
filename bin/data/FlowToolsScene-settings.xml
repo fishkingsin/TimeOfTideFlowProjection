@@ -13,6 +13,7 @@
 		<name>fluid density</name>
 		<scale>1</scale>
 		<show_scalar>0</show_scalar>
+		<color>24, 255, 0, 255</color>
 	</visualization>
 	<optical_flow>
 		<threshold>0.184694</threshold>
@@ -24,10 +25,10 @@
 		<speed>0.01</speed>
 	</velocity_bridge>
 	<density_bridge>
-		<trail>0.505102</trail>
-		<blur>5.40816</blur>
-		<speed>0.535714</speed>
-		<saturation>2.88265</saturation>
+		<trail>0.873827</trail>
+		<blur>6.53061</blur>
+		<speed>0.933673</speed>
+		<saturation>2.83163</saturation>
 	</density_bridge>
 	<temperature_bridge>
 		<trail>0.3</trail>

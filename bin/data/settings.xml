@@ -13,7 +13,7 @@
 		<name>fluid density</name>
 		<scale>1</scale>
 		<show_scalar>0</show_scalar>
-		<color>255, 199, 0, 255</color>
+		<color>24, 255, 0, 255</color>
 	</visualization>
 	<optical_flow>
 		<threshold>0.184694</threshold>

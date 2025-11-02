@@ -369,10 +369,16 @@ void CurlFlowScene::onCueConfigEvent(CueEventArgs & args) {
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 	// Store actor position by actor ID, safeguard against null pointer
 	if (args.actor != nullptr) {
-		int actorId = args.actor->index; // or use index if preferred
-		ofVec3f pos = args.actor->getPosition();
-		actorPositions[actorId] = pos;
-		ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+		if (args.actor->alive) {
+			int actorId = args.actor->index; // or use index if preferred
+			ofVec3f pos = args.actor->getPosition();
+			actorPositions[actorId] = pos;
+			ofLog() << "FlowToolsScene::onActorSceneEvent " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->position;
+		} else {
+			// Actor is idle, remove from positions map
+			int actorId = args.actor->index;
+			actorPositions.erase(actorId);
+		}
 	} else {
 		ofLogWarning("CurlFlowScene") << "onActorSceneEvent: args.actor is null, skipping position update.";
 	}
