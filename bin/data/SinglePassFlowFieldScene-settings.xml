@@ -263,7 +263,9 @@
 		<COLOR_TAIL>0, 117, 255, 255</COLOR_TAIL>
 		<COLOR_MID>0, 155, 207, 255</COLOR_MID>
 		<COLOR_HEAD>255, 224, 114, 255</COLOR_HEAD>
+		<distanceThreshold>0.08</distanceThreshold>
 	</flowField>
+	<sceneChangeTime>8</sceneChangeTime>
 	<additional_positions>
 		<position0>0, 372.305, 0, 0.5</position0>
 		<position1>0, 442.654, 0, 0.5</position1>
