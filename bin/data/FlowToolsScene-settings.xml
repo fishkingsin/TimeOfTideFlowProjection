@@ -84,7 +84,7 @@
 		<inverse>0</inverse>
 	</mouse_velocity>
 	<useCamera>0</useCamera>
-	<sceneChangeTime>5</sceneChangeTime>
+	<sceneChangeTime>3</sceneChangeTime>
 	<draw_actor__M_>1</draw_actor__M_>
 	<zactrack_receiver>
 		<debug>0</debug>
