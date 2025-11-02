@@ -19,7 +19,7 @@
 	<Particle_Size>0.793</Particle_Size>
 	<Rainbow>0</Rainbow>
 	<Base_Color>172, 216, 255, 255</Base_Color>
-	<Dodge_Threshold>42.79</Dodge_Threshold>
+	<Dodge_Threshold>50.79</Dodge_Threshold>
 	<Dodge_Strength>3.3175</Dodge_Strength>
 	<sceneChangeTime>8</sceneChangeTime>
 </group>
