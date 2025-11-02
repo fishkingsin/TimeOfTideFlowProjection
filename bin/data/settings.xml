@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <settings>
 	<average_FPS>60</average_FPS>
-	<minimum_FPS>58.5404</minimum_FPS>
+	<minimum_FPS>47.0805</minimum_FPS>
 	<fullscreen__F_>1</fullscreen__F_>
 	<show_gui__G_>1</show_gui__G_>
 	<draw_camera__C_>0</draw_camera__C_>
@@ -13,22 +13,22 @@
 		<name>fluid density</name>
 		<scale>1</scale>
 		<show_scalar>0</show_scalar>
-		<color>24, 255, 0, 255</color>
+		<color>38, 238, 255, 255</color>
 	</visualization>
 	<optical_flow>
-		<threshold>0.184694</threshold>
-		<boost>0.0688775</boost>
+		<threshold>0.0795918</threshold>
+		<boost>0.0183673</boost>
 	</optical_flow>
 	<velocity_bridge>
-		<trail>0.0505102</trail>
-		<blur>9.18367</blur>
-		<speed>0.01</speed>
+		<trail>0.0656633</trail>
+		<blur>9.17092</blur>
+		<speed>0.00255102</speed>
 	</velocity_bridge>
 	<density_bridge>
-		<trail>0.873827</trail>
-		<blur>6.53061</blur>
-		<speed>0.933673</speed>
-		<saturation>2.83163</saturation>
+		<trail>0.914235</trail>
+		<blur>9.64286</blur>
+		<speed>1</speed>
+		<saturation>2.65306</saturation>
 	</density_bridge>
 	<temperature_bridge>
 		<trail>0.3</trail>
@@ -36,7 +36,7 @@
 		<speed>0.5</speed>
 	</temperature_bridge>
 	<fluid>
-		<speed>0.01</speed>
+		<speed>0.00127558</speed>
 		<dissipation>
 			<velocity>0.546875</velocity>
 			<density>0.546875</density>
@@ -56,7 +56,7 @@
 		</smoke_buoyancy>
 	</fluid>
 	<particles>
-		<speed>0.01</speed>
+		<speed>0.00127558</speed>
 		<birth_chance>0.790816</birth_chance>
 		<birth_velocity_chance>0.658163</birth_velocity_chance>
 		<lifespan>1.60204</lifespan>
@@ -71,15 +71,15 @@
 	<mouse_density>
 		<speed>86.7347</speed>
 		<persistent>0</persistent>
-		<radius>0.0168367</radius>
-		<smooth>1</smooth>
+		<radius>0.0413265</radius>
+		<smooth>0.989796</smooth>
 		<inverse>0</inverse>
-		<color>1, 1, 1, 1</color>
+		<color>0.0636581, 0.674552, 1, 1</color>
 	</mouse_density>
 	<mouse_velocity>
 		<speed>68.8776</speed>
 		<persistent>0</persistent>
-		<radius>0.0663265</radius>
+		<radius>0.0540816</radius>
 		<smooth>1</smooth>
 		<inverse>0</inverse>
 	</mouse_velocity>
@@ -102,7 +102,7 @@
 	<useShader>1</useShader>
 </settings>
 <group>
-	<average_FPS>61</average_FPS>
+	<average_FPS>60</average_FPS>
 	<Flow>1</Flow>
 	<Center>128</Center>
 	<Width>127</Width>
@@ -121,7 +121,7 @@
 	<Particle_Size>0.793</Particle_Size>
 	<Rainbow>0</Rainbow>
 	<Base_Color>172, 216, 255, 255</Base_Color>
-	<debug>0</debug>
+	<debug>1</debug>
 	<shadertoy>
 		<buffer_A>
 			<vector_mode>1</vector_mode>
@@ -188,29 +188,29 @@
 		</positions>
 	</shadertoy>
 	<positions>
-		<position0>1811.09, 772.242, 1, 0.677083</position0>
-		<position1>1608.63, 619.024, 1, 0.833333</position1>
-		<position2>1425.16, 404.772, 1, 0.677083</position2>
-		<position3>1577.44, 856.519, 1, 0.885411</position3>
-		<position4>444.76, 766.075, 1, 0.703125</position4>
-		<position5>1719.09, 425.96, 1, 1.14583</position5>
-		<position6>1275.5, 604.951, 1, 1.38021</position6>
-		<position7>1081.75, 496.482, 1, 0.651042</position7>
-		<position8>1571.52, 841.34, 1, 0.833333</position8>
-		<position9>1811.09, 772.242, 1, 0.833333</position9>
-		<position10>1579.71, 838.335, 1, 1.61458</position10>
-		<position11>0, 245.459, 0, 1.43229</position11>
-		<position12>0, 211.085, 0, 1.43229</position12>
-		<position13>0, 62.5995, 0, 1.01562</position13>
-		<position14>0, 555.843, 0, 0.5</position14>
+		<position0>1434.4, 950.442, 1, 0.5</position0>
+		<position1>1446.25, 938.267, 1, 0.5</position1>
+		<position2>1348.33, 1177.82, 1, 0.5</position2>
+		<position3>1337.18, 1320.44, 1, 0.5</position3>
+		<position4>1268.88, 1192.36, 1, 0.5</position4>
+		<position5>951.427, 166.013, 1, 0.5</position5>
+		<position6>1418.37, 899.369, 1, 0.5</position6>
+		<position7>948.988, 456.319, 1, 0.5</position7>
+		<position8>1426.21, 903.639, 1, 0.5</position8>
+		<position9>0, 458.555, 0, 0.5</position9>
+		<position10>1436.49, 924.194, 1, 0.5</position10>
+		<position11>1446.07, 912.651, 1, 0.5</position11>
+		<position12>0, 211.085, 0, 0.5</position12>
+		<position13>0, 62.5995, 0, 0.5</position13>
+		<position14>1449.03, 920.715, 1, 0.5</position14>
 		<position15>0, 439.978, 0, 0.5</position15>
-		<position16>0, 139.81, 0, 0.5</position16>
-		<position17>0, 665.825, 0, 0.5</position17>
-		<position18>0, 547.58, 0, 0.5</position18>
+		<position16>1446.94, 940.955, 1, 0.5</position16>
+		<position17>1434.4, 950.442, 1, 0.5</position17>
+		<position18>1444.15, 909.015, 1, 0.5</position18>
 		<position19>0, 276.79, 0, 0.5</position19>
 		<position20>0, 361.272, 0, 0.5</position20>
 		<position21>0, 16.4448, 0, 0.5</position21>
-		<position22>0, 645.96, 0, 0.5</position22>
+		<position22>1446.25, 938.267, 1, 0.5</position22>
 		<position23>0, 397.373, 0, 0.5</position23>
 		<position24>0, 170.484, 0, 0.5</position24>
 	</positions>
@@ -220,10 +220,10 @@
 		<tScale>0.142857</tScale>
 		<scale>1.76684</scale>
 		<pVel>1.72959</pVel>
-		<decay>0.00127553</decay>
+		<decay>0.0114796</decay>
 		<spawnRate>5</spawnRate>
 		<birthRateParam>212</birthRateParam>
-		<impulse>3.57143</impulse>
+		<impulse>7.34694</impulse>
 		<force>0, -0.0104167</force>
 		<speed>0.165816</speed>
 		<brightness>1</brightness>
@@ -238,10 +238,10 @@
 		<position3>0, 367.06, 0, 0.5</position3>
 		<position4>0, 78.2555, 0, 0.5</position4>
 	</additional_positions>
-	<show_gui__G_>0</show_gui__G_>
+	<show_gui__G_>1</show_gui__G_>
 	<Color_Mode>1</Color_Mode>
-	<Dodge_Threshold>87.565</Dodge_Threshold>
-	<Dodge_Strength>3.7135</Dodge_Strength>
+	<Dodge_Threshold>42.79</Dodge_Threshold>
+	<Dodge_Strength>3.3175</Dodge_Strength>
 </group>
 <Receiver>
 	<zactrack_receiver>

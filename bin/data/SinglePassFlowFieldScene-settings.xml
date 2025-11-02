@@ -218,10 +218,10 @@
 		<tScale>0.142857</tScale>
 		<scale>1.76684</scale>
 		<pVel>1.72959</pVel>
-		<decay>0.00127553</decay>
+		<decay>0.0114796</decay>
 		<spawnRate>5</spawnRate>
 		<birthRateParam>212</birthRateParam>
-		<impulse>3.57143</impulse>
+		<impulse>7.34694</impulse>
 		<force>0, -0.0104167</force>
 		<speed>0.165816</speed>
 		<brightness>1</brightness>
