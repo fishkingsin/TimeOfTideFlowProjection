@@ -53,7 +53,7 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(decayParam.set("decay", 0.001, 0.0, 1));
 	flowFieldParams.add(spawnRateParam.set("spawnRate", 5, 0, 1000));
 	flowFieldParams.add(birthRateParam.set("birthRateParam", 100, 0, 1600));
-	flowFieldParams.add(impulseParam.set("impulse", 7.0, 0.0, 20.0));
+	flowFieldParams.add(impulseParam.set("impulse", 3.0, 0.0, 20.0));
 	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
 	flowFieldParams.add(speed.set("speed", 1, 0, 10));
 	flowFieldParams.add(brightness.set("brightness", 0.5, 0, 1));
