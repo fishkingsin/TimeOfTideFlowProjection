@@ -7,10 +7,8 @@
 
 #include "Actor.hpp"
 
-
-
 //--------------------------------------------------------------
-void Actor::setup(){
+void Actor::setup() {
 	idleTime = MAX_IDLE_TIME;
 	alive = false;
 }
@@ -30,13 +28,12 @@ ofVec3f Actor::getPosition() {
 
 void Actor::update() {
 	if (!alive) {
-		
 	}
 	if (ofGetElapsedTimef() - lastTime > idleTime) {
-		
+
 	} else if (alive == true) {
 		alive = false;
-		position[mps].z = 1;
+		position[mps].z = 0;
 		ofNotifyEvent(actorIdel, *this);
 		//notifiy event
 	}
@@ -49,6 +46,4 @@ void Actor::draw(float radius) {
 	}
 	ofPoint point = position[mps];
 	ofDrawCircle(point.x, point.y, radius);
-
-	
 }
