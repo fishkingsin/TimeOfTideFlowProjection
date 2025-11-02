@@ -10,8 +10,8 @@
 #include "ofxAppUtils.h"
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
-#define MAX_POS 25
-#define MAX_ADD_POS 5
+#include "Constants.h"
+
 class SinglePassFlowFieldScene : public ofxFadeScene {
 
 public:

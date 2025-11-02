@@ -10,7 +10,7 @@
 
 #include "ofxShadertoy.h"
 #include <stdio.h>
-#define MAX_POS 25
+#include "Constants.h"
 
 class FlowFieldParticles: public ofxShadertoy {
 public:

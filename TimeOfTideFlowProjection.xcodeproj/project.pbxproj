@@ -110,6 +110,7 @@
 		191CD6FA2847E21E0085CBB6 /* of.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = of.entitlements; sourceTree = "<group>"; };
 		191EF70929D778A400F35F26 /* openFrameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openFrameworks; path = ../../../libs/openFrameworks; sourceTree = SOURCE_ROOT; };
 		"1A130F91-A62B-4DB0-BA94-B4B76C4575D0" /* CueEventArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CueEventArgs.h; sourceTree = "<group>"; };
+		1A54D1552EB71650009D7862 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1ADDADD92E8FBD90005A443A /* FlowFieldParticlesScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticlesScene.hpp; sourceTree = "<group>"; };
 		1ADDADDA2E8FBD90005A443A /* FlowFieldParticlesScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlowFieldParticlesScene.cpp; sourceTree = "<group>"; };
 		1ADDADDC2E8FBDC2005A443A /* FlowFieldParticles.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FlowFieldParticles.hpp; sourceTree = "<group>"; };
@@ -346,6 +347,7 @@
 		"1A4259E8-244A-4FFC-8BB1-A9B0CD08375D" /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1A54D1552EB71650009D7862 /* Constants.h */,
 				1AB6FFE12E8F9E4800EDF84A /* FlowFieldParticles */,
 				"BF70B92A-6D23-4108-8E52-1C483C97ABB7" /* CurlFlowScene.cpp */,
 				"F9A22954-5D85-4746-A991-66312CD9D510" /* CurlFlowScene.hpp */,

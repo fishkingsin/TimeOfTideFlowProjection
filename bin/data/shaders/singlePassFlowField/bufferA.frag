@@ -47,7 +47,7 @@ const mat3 m3 = mat3( 0.3338,  0.56034, -0.71817,
 float tm;
 vec2 invRes;
 float frmAdj;
-#define MAX_POS 30
+#define MAX_POS 60
 
 uniform vec4 positions[MAX_POS];
 uniform vec2 force;
