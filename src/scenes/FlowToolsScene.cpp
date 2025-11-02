@@ -89,6 +89,7 @@ void FlowToolsScene::setupGui() {
 	gui.add(toggleParticleDraw.set("draw particles (P)", true));
 	toggleParticleDraw.addListener(this, &FlowToolsScene::toggleParticleDrawListener);
 	gui.add(toggleReset.set("reset (R)", false));
+	gui.add(sceneChangeTime.set("sceneChangeTime", 5, 1, 10));
 	toggleReset.addListener(this, &FlowToolsScene::toggleResetListener);
 	
 	obsbstacleParameters.setName("obsbstacle");
@@ -109,6 +110,7 @@ void FlowToolsScene::setupGui() {
 	switchGuiColor(s = !s);
 	gui.add(obsbstacleParameters);
 	gui.add(visualizationParameters);
+	
 	for (auto flow : flows) {
 		switchGuiColor(s = !s);
 		gui.add(flow->getParameters());

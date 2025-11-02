@@ -33,6 +33,7 @@ public:
 	ofxPanel gui;
 	ofParameter<bool> toggleGuiDraw;
 	ofParameter<int> guiFPS;
+	ofParameter<int> sceneChangeTime;
 
 	FlowFieldParticles flowFieldParticlesShaders;
 	int frame, densityWidth, densityHeight, simulationWidth, simulationHeight, windowWidth, windowHeight;

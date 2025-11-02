@@ -71,7 +71,7 @@ public:
 	// Dodge parameters
 	ofParameter<float> dodgeThreshold;
 	ofParameter<float> dodgeStrength;
-
+	ofParameter<int> sceneChangeTime;
 	std::map<int, ofVec3f> actorPositions; // Stores actor positions by actor ID
 
 	// Utility

@@ -77,6 +77,7 @@ void CurlFlowScene::setup() {
 
 	guiBaseColor.set("Base Color", ofColor::white, ofColor(0, 0, 0), ofColor(255, 255, 255));
 	gui.add(guiBaseColor);
+	gui.add(sceneChangeTime.set("sceneChangeTime",8 , 1, 10));
 
 	// Mobile detection omitted; use desktop defaults
 

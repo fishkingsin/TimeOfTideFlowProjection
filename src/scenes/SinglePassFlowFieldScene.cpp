@@ -41,6 +41,7 @@ void SinglePassFlowFieldScene::setup() {
 	gui.setup();
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	gui.add(toggleGuiDraw.set("debug", false));
+	gui.add(sceneChangeTime.set("sceneChangeTime", 8, 1, 10));
 
 	// Flow field parameters
 	flowFieldParams.setName("flowField");

@@ -64,6 +64,7 @@ public:
 	ofParameter<ofColor> COLOR_TAIL;
 	ofParameter<ofColor> COLOR_MID;
 	ofParameter<ofColor> COLOR_HEAD;
+	ofParameter<int> sceneChangeTime;
 	
 	ofVec4f positions[MAX_POS + MAX_ADD_POS];
 	

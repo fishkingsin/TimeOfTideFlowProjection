@@ -87,6 +87,7 @@ private:
 	
 	// buffer D
 	ofParameter<float> damping;
+	ofParameter<int> sceneChangeTime;
 	
 	
 	// image

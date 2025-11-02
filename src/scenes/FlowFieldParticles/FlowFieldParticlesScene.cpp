@@ -43,6 +43,7 @@ void FlowFieldParticlesScene::setup() {
 	gui.add(toggleGuiDraw.set("debug", false));
 	gui.add(guiFPS.set("average FPS", 0, 0, 60));
 	gui.add(flowFieldParticlesShaders.parameters);
+	gui.add(sceneChangeTime.set("sceneChangeTime", 8, 1, 10));
 	if (!ofFile("FlowFieldParticlesScene-settings.xml")) {
 		gui.saveToFile("FlowFieldParticlesScene-settings.xml");
 	}
