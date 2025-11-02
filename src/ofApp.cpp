@@ -84,11 +84,12 @@ void ofApp::update() {
 
 	// every 3 min change to next scene
 	if (!isShowingGui()) {
-		if (curlFlowScene->isRunning()) {
+		ofxScene *scene = sceneManager.getCurrentScene();
+		if (scene->getName() == curlFlowScene->getName()) {
 			sceneChangeTime = curlFlowScene->sceneChangeTime * 60000L; // 10 mins
-		} else if (singlePassFlowFieldScene->isRunning()) {
+		} else if (scene->getName() == singlePassFlowFieldScene->getName()) {
 			sceneChangeTime = singlePassFlowFieldScene->sceneChangeTime * 60000L; // 10 mins
-		} else if (flowToolsScene->isRunning()) {
+		} else if (scene->getName() == flowToolsScene->getName()) {
 			sceneChangeTime = flowToolsScene->sceneChangeTime * 60000L; // 4 mins
 		}
 		long lct = ofGetElapsedTimeMillis() - lastSceneChangeTime;
