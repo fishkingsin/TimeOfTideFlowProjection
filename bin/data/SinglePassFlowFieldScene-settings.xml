@@ -258,7 +258,7 @@
 		<birthRateParam>212</birthRateParam>
 		<impulse>7.34694</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.165816</speed>
+		<speed>0.085816</speed>
 		<brightness>1</brightness>
 		<COLOR_TAIL>0, 117, 255, 255</COLOR_TAIL>
 		<COLOR_MID>0, 155, 207, 255</COLOR_MID>
