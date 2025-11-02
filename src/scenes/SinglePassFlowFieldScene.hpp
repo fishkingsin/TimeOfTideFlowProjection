@@ -53,7 +53,7 @@ public:
 	ofParameter<int> guiFPS;
 	ofParameterGroup flowFieldParams;
 	ofParameter<int> itersParam, smpDstParam, birthRateParam, spawnRateParam;
-	ofParameter<float> tScaleParam, scaleParam, pVelParam, decayParam, impulseParam, speed, brightness;
+	ofParameter<float> tScaleParam, scaleParam, pVelParam, decayParam, impulseParam, speed, brightness, distanceThreshold;
 	ofParameter<ofVec2f> force;
 
 	ofParameterGroup positionsGroup;

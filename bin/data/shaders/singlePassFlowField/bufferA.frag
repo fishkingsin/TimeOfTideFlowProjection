@@ -52,7 +52,7 @@ float frmAdj;
 uniform vec4 positions[MAX_POS];
 uniform vec2 force;
 uniform float speed;
-
+uniform float distanceThreshold;
 // My own 128-bit bijective hash https://www.shadertoy.com/view/mstXD2
 vec4 bjhash128(vec4 p0) {
 	uvec4 p = floatBitsToUint(p0);;
@@ -135,7 +135,7 @@ vec3 ss(vec2 pos, vec2 scr) {
 		if (pos.z > 0.0) {
 			vec2 position = pos.xy * invRes.x;
 			float md = distance(position, uv0);
-			float vFac = smoothstep(0.2, 0.0, md);
+			float vFac = smoothstep(distanceThreshold, 0.0, md);
 			v = mix(v, (uv0 - position) * impulse * pos.w, vFac);
 		}
 	}

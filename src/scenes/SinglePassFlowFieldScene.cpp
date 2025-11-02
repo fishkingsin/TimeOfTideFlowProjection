@@ -54,6 +54,7 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(spawnRateParam.set("spawnRate", 5, 0, 1000));
 	flowFieldParams.add(birthRateParam.set("birthRateParam", 100, 0, 1600));
 	flowFieldParams.add(impulseParam.set("impulse", 3.0, 0.0, 20.0));
+	flowFieldParams.add(distanceThreshold.set("distanceThreshold", 0.2, 0, 1));
 	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
 	flowFieldParams.add(speed.set("speed", 1, 0, 10));
 	flowFieldParams.add(brightness.set("brightness", 0.5, 0, 1));
@@ -178,6 +179,7 @@ void SinglePassFlowFieldScene::update() {
 		shaderA.setUniform1f("decay", decayParam);
 		shaderA.setUniform1f("spawnRate", spawnRateParam * 0.00001);
 		shaderA.setUniform1f("impulse", impulseParam);
+		shaderA.setUniform1f("distanceThreshold", distanceThreshold);
 		shaderA.setUniform1i("birthRate", birthRateParam);
 		shaderA.setUniform2f("force", force.get());
 		shaderA.setUniform1f("speed", speed.get());
