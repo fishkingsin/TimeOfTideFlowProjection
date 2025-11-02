@@ -3,7 +3,7 @@
 #include "testApp.h"
 
 #define USE_PROGRAMMABLE_GL
-#define DEBUG 1
+#define DEBUG 0
 //========================================================================
 int main() {
 
@@ -17,7 +17,7 @@ int main() {
 		windowSettings.windowMode = OF_WINDOW;
 	} else {
 		windowSettings.setSize(1920, 1080);
-		windowSettings.windowMode = OF_WINDOW	;
+		windowSettings.windowMode = OF_WINDOW;
 		windowSettings.decorated = false;
 	}
 	ofCreateWindow(windowSettings);
