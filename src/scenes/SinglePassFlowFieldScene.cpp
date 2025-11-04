@@ -58,7 +58,7 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(force.set("force", ofVec3f::zero(), ofVec3f(-1, -1), ofVec3f(1, 1)));
 	flowFieldParams.add(speed.set("speed", 1, 0, 10));
 	flowFieldParams.add(brightness.set("brightness", 0.5, 0, 1));
-	// add uniform for 
+	// add uniform for
 	/*
 	uniform vec3 COLOR_TAIL;
 	uniform vec3 COLOR_MID;
@@ -70,7 +70,6 @@ void SinglePassFlowFieldScene::setup() {
 	flowFieldParams.add(COLOR_HEAD.set("COLOR_HEAD", ofColor(255, 217, 179)));
 	gui.add(flowFieldParams);
 
-	
 	positionsGroup.setName("positions");
 	for (int i = 0; i < MAX_POS; i++) {
 		positionsGroup.add(positionsParameter[i]
@@ -80,11 +79,10 @@ void SinglePassFlowFieldScene::setup() {
 					,
 					ofVec4f(0, ofRandom(ofGetHeight()), 0, impulseParam),
 					ofVec4f::zero(),
-					ofVec4f(ofGetWidth(), ofGetHeight(), 1, 5)
-					 ));
+					ofVec4f(ofGetWidth(), ofGetHeight(), 1, 5)));
 	}
 	gui.add(positionsGroup);
-	
+
 	additionalPositionsGroup.setName("additional_positions");
 	for (int i = 0; i < MAX_ADD_POS; i++) {
 		additionalPositionsGroup.add(additionalPositionsParameter[i]
@@ -92,13 +90,12 @@ void SinglePassFlowFieldScene::setup() {
 					"position" + ofToString(i)
 					// random init position
 					,
-					 ofVec4f(0, ofRandom(ofGetHeight()), 0, impulseParam),
-					 ofVec4f::zero(),
-					 ofVec4f(ofGetWidth(), ofGetHeight(), 1, 5)
-					 ));
+					ofVec4f(0, ofRandom(ofGetHeight()), 0, impulseParam),
+					ofVec4f::zero(),
+					ofVec4f(ofGetWidth(), ofGetHeight(), 1, 5)));
 	}
 	gui.add(additionalPositionsGroup);
-	
+
 	minimizeGui(&gui);
 
 	if (!ofFile("SinglePassFlowFieldScene-settings.xml")) {
@@ -147,17 +144,13 @@ void SinglePassFlowFieldScene::update() {
 		} else {
 			positions[i] = additionalPositionsParameter[i - MAX_POS].get();
 		}
-		
 	}
-	
-	
-	
+
 	frame += 1;
 	float dt = 1.0 / max(ofGetFrameRate(), 1.f); // more smooth as 'real' deltaTime.
 
-
 	// apply noiseshader to fbo
-	if(fboBufferA.isAllocated()) {
+	if (fboBufferA.isAllocated()) {
 		fboBufferA.begin();
 		shaderA.begin();
 		shaderA.setUniform3f("iResolution", densityWidth, densityHeight, 0);
@@ -169,7 +162,7 @@ void SinglePassFlowFieldScene::update() {
 		shaderA.setUniform1i("iFrame", frame);
 		shaderA.setUniformTexture("iChannel0", fboBufferA.getTexture(), 1);
 		shaderA.setUniform4fv("positions", &positions[0].x, MAX_POS + MAX_ADD_POS);
-		
+
 		// bind flow field uniforms
 		shaderA.setUniform1i("iters", itersParam);
 		shaderA.setUniform1i("smpDst", smpDstParam);
@@ -184,12 +177,11 @@ void SinglePassFlowFieldScene::update() {
 		shaderA.setUniform2f("force", force.get());
 		shaderA.setUniform1f("speed", speed.get());
 
-		
 		ofDrawRectangle(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 		shaderA.end();
 		fboBufferA.end();
 	}
-	if(fboBufferB.isAllocated()) {
+	if (fboBufferB.isAllocated()) {
 		fboBufferB.begin();
 		shaderB.begin();
 		shaderB.setUniform3f("iResolution", densityWidth, densityHeight, 0);
@@ -204,12 +196,12 @@ void SinglePassFlowFieldScene::update() {
 		shaderB.setUniform3f("COLOR_TAIL", COLOR_TAIL->r / 255.0, COLOR_TAIL->g / 255.0, COLOR_TAIL->b / 255.0);
 		shaderB.setUniform3f("COLOR_MID", COLOR_MID->r / 255.0, COLOR_MID->g / 255.0, COLOR_MID->b / 255.0);
 		shaderB.setUniform3f("COLOR_HEAD", COLOR_HEAD->r / 255.0, COLOR_HEAD->g / 255.0, COLOR_HEAD->b / 255.0);
-		
+
 		shaderB.end();
 		fboBufferB.end();
 	}
 
-	if(fboImage.isAllocated()) {
+	if (fboImage.isAllocated()) {
 		fboImage.begin();
 		shaderDraw.begin();
 		shaderDraw.setUniform3f("iResolution", densityWidth, densityHeight, 0);
@@ -240,6 +232,10 @@ void SinglePassFlowFieldScene::updateExit() {
 	if (!isExiting()) {
 		ofLogNotice("SinglePassFlowFieldScene") << "update exit done";
 		removeActorSceneEventListener(actorManager);
+		// reset positionsParameter to 0 0
+		for (int i = 0; i < MAX_POS + MAX_ADD_POS; i++) {
+			positionsParameter[i].set(ofVec4f(0, 0, 0, 0));
+		}
 	}
 }
 
@@ -274,7 +270,7 @@ void SinglePassFlowFieldScene::draw() {
 				positions[i].x * (densityWidth / ofGetWindowWidth()),
 				positions[i].y * (densityHeight / ofGetWindowHeight()), 5);
 		}
-		
+
 		ofPopStyle();
 		gui.draw();
 	}
@@ -297,8 +293,6 @@ void SinglePassFlowFieldScene::onActorSceneEvent(ActorSceneEventArgs & args) {
 				newPos.z = 0;
 			}
 			positionsParameter[index].set(newPos);
-				
-			
 		}
 		ofLog() << "SinglePassFlowFieldScene::onActorSceneEvent " << args.actor->id << " eventType " << args.eventType << " actor key: " << args.actorEventArgs.key << " position: " << args.actor->getPosition().x << " " << args.actor->getPosition().y;
 	}

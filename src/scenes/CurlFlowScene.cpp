@@ -214,6 +214,8 @@ void CurlFlowScene::updateExit() {
 	if (!isExiting()) {
 		removeActorSceneEventListener(actorManager);
 		ofLogNotice("CurlFlowScene") << "update exit done";
+		// clear actorPositions when exit
+		actorPositions.clear();
 	}
 }
 
