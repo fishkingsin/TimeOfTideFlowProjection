@@ -77,7 +77,7 @@ void CurlFlowScene::setup() {
 
 	guiBaseColor.set("Base Color", ofColor::white, ofColor(0, 0, 0), ofColor(255, 255, 255));
 	gui.add(guiBaseColor);
-	gui.add(sceneChangeTime.set("sceneChangeTime",8 , 1, 10));
+	gui.add(sceneChangeTime.set("sceneChangeTime", 8, 1, 10));
 
 	// Mobile detection omitted; use desktop defaults
 
@@ -216,6 +216,12 @@ void CurlFlowScene::updateExit() {
 		ofLogNotice("CurlFlowScene") << "update exit done";
 		// clear actorPositions when exit
 		actorPositions.clear();
+		// reset discs to random positions
+		for (int i = 0; i < discs.size(); i++) {
+			discs[i].pos.set(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()));
+			discs[i].vel.set(0, 0);
+			discs[i].radius = 1;
+		}
 	}
 }
 

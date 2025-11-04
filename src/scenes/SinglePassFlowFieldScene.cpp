@@ -233,7 +233,7 @@ void SinglePassFlowFieldScene::updateExit() {
 		ofLogNotice("SinglePassFlowFieldScene") << "update exit done";
 		removeActorSceneEventListener(actorManager);
 		// reset positionsParameter to 0 0
-		for (int i = 0; i < MAX_POS + MAX_ADD_POS; i++) {
+		for (int i = 0; i < MAX_POS; i++) {
 			positionsParameter[i].set(ofVec4f(0, 0, 0, 0));
 		}
 	}
