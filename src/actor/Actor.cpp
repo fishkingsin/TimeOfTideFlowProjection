@@ -29,7 +29,7 @@ ofVec3f Actor::getPosition() {
 void Actor::update() {
 	if (!alive) {
 	}
-	if (ofGetElapsedTimef() - lastTime > idleTime) {
+	if (ofGetElapsedTimef() - lastTime < idleTime) {
 
 	} else if (alive == true) {
 		alive = false;
@@ -42,7 +42,8 @@ void Actor::update() {
 //--------------------------------------------------------------
 void Actor::draw(float radius) {
 	if (!alive) {
-		return;
+
+		ofSetColor(ofColor::red);
 	}
 	ofPoint point = position[mps];
 	ofDrawCircle(point.x, point.y, radius);

@@ -8,7 +8,7 @@
 #pragma once
 
 #include "ofMain.h"
-#define MAX_IDLE_TIME 10000 // seconds
+#define MAX_IDLE_TIME 10 // seconds
 class Actor {
 public:
 	
@@ -21,7 +21,7 @@ public:
 	bool mps;
 	string id;
 	unsigned int index;
-	float idleTime;
+	float idleTime = MAX_IDLE_TIME;
 	float lastTime;
 	bool alive;
 	ofEvent<Actor> actorIdel;

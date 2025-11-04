@@ -68,7 +68,7 @@ void ActorManager::onActorEvent(ztActorEventArgs &args) {
 void ActorManager::onActorIdel(Actor & actor) {
 	ofLog() << "actor idel with key " << actor.id << " erase and remove listener";
 //	ofRemoveListener(actor.actorIdel, this, &ActorManager::onActorIdel);
-//	notifySceneActorEvent(ActorSceneEventType::Leave, std::make_shared<Actor>(actor));
+	notifySceneActorEvent(ActorSceneEventType::Leave, std::make_shared<Actor>(actor));
 //	actors.erase(actor.id);
 	
 }

@@ -376,6 +376,11 @@ void CurlFlowScene::onCueConfigEvent(CueEventArgs & args) {
 }
 
 void CurlFlowScene::onActorSceneEvent(ActorSceneEventArgs & args) {
+	if (args.eventType == ActorSceneEventType::Leave) {
+		int actorId = args.actor->index;
+		actorPositions.erase(actorId);
+		return;
+	}
 	// Store actor position by actor ID, safeguard against null pointer
 	if (args.actor != nullptr) {
 		if (args.actor->alive) {
