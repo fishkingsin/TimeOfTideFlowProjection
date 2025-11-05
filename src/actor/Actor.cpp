@@ -42,8 +42,7 @@ void Actor::update() {
 //--------------------------------------------------------------
 void Actor::draw(float radius) {
 	if (!alive) {
-
-		ofSetColor(ofColor::red);
+		return;
 	}
 	ofPoint point = position[mps];
 	ofDrawCircle(point.x, point.y, radius);
