@@ -255,10 +255,10 @@
 		<pVel>1.72959</pVel>
 		<decay>0.0191327</decay>
 		<spawnRate>5</spawnRate>
-		<birthRateParam>400</birthRateParam>
+		<birthRateParam>987</birthRateParam>
 		<impulse>11.1224</impulse>
 		<force>0, -0.0104167</force>
-		<speed>0.124081</speed>
+		<speed>0.08</speed>
 		<brightness>1</brightness>
 		<COLOR_TAIL>0, 117, 255, 255</COLOR_TAIL>
 		<COLOR_MID>0, 155, 207, 255</COLOR_MID>
